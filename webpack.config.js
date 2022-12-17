@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 const EslingPlugin = require('eslint-webpack-plugin');
+const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
@@ -10,7 +11,7 @@ console.log(isProd);
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    main: './index',
+    main: './router',
   },
   resolve: {
     extensions: ['.ts', '.js'],
@@ -19,13 +20,17 @@ module.exports = {
     path: path.resolve(__dirname, 'dist'),
     clean: true,
     filename: '[name].[contenthash].js',
-    assetModuleFilename: 'assets/[name][ext]'
+    assetModuleFilename: 'assets/[name][ext]',
+    publicPath: '/',
   },
   optimization: {
     minimize: isProd,
     minimizer: [new CssMinimizerPlugin()],
   },
   devServer: {
+    historyApiFallback: {
+      rewrites: [{ from: /./, to: '/index.html' }],
+    },
     port: 4200,
     hot: false,
   },
@@ -35,38 +40,47 @@ module.exports = {
       template: './index.html',
     }),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
-    new EslingPlugin({ extensions: 'ts' })
+    new EslingPlugin({ extensions: 'ts' }),
+    new NetlifyPlugin({
+      redirects: [
+        {
+          from: '/*',
+          to: '/index.html',
+          status: 200,
+        },
+      ],
+    }),
   ],
   module: {
     rules: [
       {
         test: /\.html$/,
-        loader: 'html-loader'
+        loader: 'html-loader',
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader']
+        use: [MiniCssExtractPlugin.loader, 'css-loader', 'postcss-loader', 'sass-loader'],
       },
       {
         test: /\.(png|jpg|svg|gif)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/img/[name][ext]'
-        }
+          filename: 'assets/img/[name][ext]',
+        },
       },
       {
         test: /\.(ttf|woff|woff2|eot)$/,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/fonts/[name][ext]'
-        }
+          filename: 'assets/fonts/[name][ext]',
+        },
       },
       {
         test: /\.mp3$/,
         type: 'asset/resource',
         generator: {
-          filename: 'assets/audio/[name][ext]'
-        }
+          filename: 'assets/audio/[name][ext]',
+        },
       },
       {
         test: /\.m?js$/,
@@ -74,13 +88,14 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
+            presets: ['@babel/preset-env'],
+          },
+        },
       },
       {
-        test: /\.ts$/i, use: 'ts-loader'
-      }
+        test: /\.ts$/i,
+        use: 'ts-loader',
+      },
     ],
-  }
+  },
 };
