@@ -7,11 +7,10 @@ const { NetlifyPlugin } = require('netlify-webpack-plugin');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isProd = !isDev;
-console.log(isProd);
 module.exports = {
   context: path.resolve(__dirname, 'src'),
   entry: {
-    main: './router',
+    main: './script',
   },
   resolve: {
     extensions: ['.ts', '.js'],
@@ -38,6 +37,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       filename: 'index.html',
       template: './index.html',
+      chunks: ['main'],
     }),
     new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     new EslingPlugin({ extensions: 'ts' }),
