@@ -1,0 +1,55 @@
+@import './_colors.scss';
+
+.page-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    height: 130px;
+}
+
+.gh-anchor-block {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    &__anchor {
+        display: flex;
+        align-items: center;
+        color: $main-black;
+        text-decoration: none;
+        column-gap: 5px;
+        transition: 300ms;
+    }
+    .github-icon {
+        width: 20px;
+        height: 20px;
+        fill: $main-black;
+        transition: 300ms;
+    }
+    &__anchor:hover,
+    &__anchor:hover .github-icon {
+        fill: $main-gold;
+        color: $main-gold;
+    }
+}
+
+.footer-year {
+    text-align: center;
+}
+
+.footer-rs-anchor {
+    width: 100px;
+    &__icon {
+        fill: $main-black;
+        transition: 300ms;
+    }
+    &__icon:hover {
+        fill: $main-gold;
+    }
+    &__icon:hover .st7, 
+    &__icon:hover .st6,
+    &__icon:hover .st5,
+    &__icon:hover .st9 {
+        stroke: $main-gold;
+    }
+}

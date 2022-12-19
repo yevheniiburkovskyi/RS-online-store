@@ -1,5 +1,6 @@
 @import './blocks/header';
 @import './blocks/colors';
+@import './blocks/footer';
 
 html {
     font-family: $base-font-family;
@@ -9,4 +10,8 @@ html {
 .page-wrapper {
     margin: 0 auto;
     max-width: 1200px;
+}
+
+main {
+    min-height: 60vh;
 }
