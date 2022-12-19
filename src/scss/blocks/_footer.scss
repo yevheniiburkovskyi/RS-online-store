@@ -38,7 +38,7 @@
 }
 
 .footer-rs-anchor {
-    width: 100px;
+    width: 120px;
     &__icon {
         fill: $main-black;
         transition: 300ms;
@@ -51,5 +51,16 @@
     &__icon:hover .st5,
     &__icon:hover .st9 {
         stroke: $main-gold;
+    }
+}
+
+@media (min-width: $breakpoint-small-tablet) {
+    .page-footer {
+        flex-direction: row;
+        height: 80px;
+    }
+    .gh-anchor-block {
+        flex-direction: column;
+        gap: 6px;
     }
 }

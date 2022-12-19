@@ -82,20 +82,20 @@
     .cart-icon__svg {
         stroke: $main-gold;
     }
-    
+
     &__cart-icon:hover
     .cart-icon__count {
         color: $main-white;
     }
 }
 
-@media (min-width: 450px) {
+@media (min-width: $breakpoint-small-tablet) {
     .cart-block__total-price {
         display: block;
     }
 }
 
-@media (min-width: 720px) {
+@media (min-width: $breakpoint-tablet) {
     .search-block {
         display: flex;
     }
