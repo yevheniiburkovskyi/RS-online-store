@@ -42,16 +42,13 @@
     &__icon {
         fill: $main-black;
         transition: 300ms;
+        width: 120px;
+        max-height: 50px;
     }
     &__icon:hover {
         fill: $main-gold;
     }
-    &__icon:hover .st7, 
-    &__icon:hover .st6,
-    &__icon:hover .st5,
-    &__icon:hover .st9 {
-        stroke: $main-gold;
-    }
+
 }
 
 @media (min-width: $breakpoint-small-tablet) {
