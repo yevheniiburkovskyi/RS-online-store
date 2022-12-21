@@ -1,4 +1,5 @@
 import routes from './routes';
+import { Create404Page } from './page404';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -13,6 +14,9 @@ const handleLocation = async () => {
   const route = routes[path as keyof typeof routes] || routes[404];
   const mainPage = document.getElementById('main-page') as HTMLDivElement;
   mainPage.innerHTML = route;
+  if (route === routes[404]) {
+    Create404Page(mainPage);
+  }
 };
 
 const startRouting = () => {
