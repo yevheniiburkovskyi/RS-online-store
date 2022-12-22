@@ -5,5 +5,11 @@
     align-items: center;
     justify-content: center;
     height: 50vh;
-    font-size: $h1-font-size;
+    font-size: $price-font-size;
+}
+
+@media (min-width: $breakpoint-small-tablet) {
+    .page-404 {
+        font-size: $h1-font-size;
+    }
 }
