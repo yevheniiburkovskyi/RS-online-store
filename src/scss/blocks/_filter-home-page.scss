@@ -1,0 +1,30 @@
+.filters-container {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(1,1,1,0);
+    transition: 300ms;
+}
+
+.filters-container_show {
+    z-index: 1;
+    background-color: rgba(1,1,1,0.5);
+}
+
+.filters-block {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100vh;
+    background-color: $main-white;
+    transition: 500ms;
+}
+
+.filters-block_show {
+    left: 0;
+}
