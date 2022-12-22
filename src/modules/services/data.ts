@@ -1,13 +1,21 @@
 async function getData() {
-  const dataArr = [Response];
-  const categories: Array<Response> = await fetch('https://dummyjson.com/products/categories').then((res) =>
-    res.json()
+  const productsCategoriesLinksArr: Array<string> = [];
+  await fetch('https://dummyjson.com/products/categories')
+    .then((res) => res.json())
+    .then((categories: Array<string>) => {
+      categories.forEach((category) => {
+        productsCategoriesLinksArr.push(`https://dummyjson.com/products/category/${category}`);
+      });
+    });
+  const productsArr: Array<object> = [];
+  Promise.all(
+    productsCategoriesLinksArr.map((url) => {
+      fetch(url)
+        .then((res) => res.json())
+        .then((data) => productsArr.push(data.products));
+    })
   );
-  categories.forEach(async (category) => {
-    await fetch(`https://dummyjson.com/products/category/${category}`)
-      .then((res) => res.json())
-      .then((productArr) => dataArr.push(...productArr));
-  });
-  return dataArr;
+  console.log(productsArr);
+  return productsArr;
 }
 export default getData;

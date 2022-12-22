@@ -1,6 +1,7 @@
-@import './blocks/header';
-@import './blocks/colors';
-@import './blocks/footer';
+@import "./blocks/reset";
+@import "./blocks/header";
+@import "./blocks/colors";
+@import "./blocks/footer";
 
 html {
     font-family: $base-font-family;
