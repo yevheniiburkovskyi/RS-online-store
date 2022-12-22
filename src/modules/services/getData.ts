@@ -6,7 +6,7 @@ async function getData() {
   const res = categories.map(async (category: string) => {
     return await fetch(`https://dummyjson.com/products/category/${category}`).then((res) => res.json());
   });
-  const promiseArr = await Promise.all(res).then((data: Array<ICategory>) => data.map((item) => item.products));
+  const promiseArr = await Promise.all(res).then((data: Array<ICategory>) => data.map((item) => item.products).flat());
   return promiseArr;
 }
 export default getData;
