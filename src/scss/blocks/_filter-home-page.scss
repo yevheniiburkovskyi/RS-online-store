@@ -15,7 +15,12 @@
 }
 
 .filters-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     position: absolute;
+    column-gap: 20px;
+    padding-top: 20px;
     z-index: 2;
     top: 0;
     left: -100%;
@@ -27,4 +32,26 @@
 
 .filters-block_show {
     left: 0;
+}
+
+.filters-btns-block {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    &__reset-btn,
+    &__copy-link-btn {
+        border: 0 solid;
+        width: 120px;
+        height: 40px;
+        font-weight: bold;
+        font-size: $base-font-size;
+        background-color: $main-black-deep;
+        color: $main-white;
+        transition: 300ms;
+        cursor: pointer;
+    }
+    &__reset-btn:hover,
+    &__copy-link-btn:hover {
+        background-color: $main-gold;
+    }
 }
