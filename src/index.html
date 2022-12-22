@@ -7,17 +7,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Online-Store</title>
 </head>
-
 <body>
-  <h1>Hello World</h1>
-  <main id="root">
-    <nav id="main-nav" class="sidebar">
-      <a href="/">Home</a>
-      <a href="/cart">cart</a>
-      <a href="/details">details</a>
-    </nav>
-    <div id="main-page"></div>
-  </main>
+  <section class="page-wrapper">
+    <header class="page-header">
+      <div class="search-block">
+        <input type="search" name="search" placeholder="Search Anything..." class="search-block__input">
+        <svg class="search-block__icon">
+          <use xlink:href="./assets/svg/search.svg#search"></use>
+        </svg>
+      </div> 
+      <div class="store-logo">Online Store</div>
+      <div class="cart-block">
+        <div class="cart-block__total-price">Cart total: $ 9999</div>
+        <div class="cart-block__cart-icon">
+          <svg class="cart-icon__svg">
+            <use xlink:href="./assets/svg/cart.svg#cart"></use>
+          </svg>
+          <div class="cart-icon__count">99</div>
+        </div>
+        <svg class="cart-block__filters-icon">
+          <use xlink:href="./assets/svg/burger.svg#burger"></use>
+        </svg>
+      </div>
+    </header>
+    <main id="root">
+      <nav id="main-nav" class="sidebar">
+        <a href="/">Home</a>
+        <a href="/cart">cart</a>
+        <a href="/details">details</a>
+      </nav>
+      <div id="main-page"></div>
+    </main>
+    <footer class="page-footer">
+      <div class="gh-anchor-block">
+        <a href="https://github.com/EugeneBurkovskiy" class="gh-anchor-block__anchor" target="_blank">
+          <svg class="github-icon">
+            <use xlink:href="./assets/svg/github.svg#github"></use>
+          </svg>
+          E. Burkovskiy
+        </a>
+        <a href="https://github.com/ordinaraviro" class="gh-anchor-block__anchor" target="_blank">
+          <svg class="github-icon">
+            <use xlink:href="./assets/svg/github.svg#github"></use>
+          </svg>
+          A. Yulin
+        </a>
+      </div>
+      <div class="footer-year">© 2022 Online Store</div>
+      <a class="footer-rs-anchor" href="https://rs.school/js/" target="_blank">
+        <svg class="footer-rs-anchor__icon">
+          <use xlink:href="./assets/svg/rss.svg#rss"></use>
+        </svg>
+      </a>
+    </footer>
+  </section>
 </body>
-
 </html>

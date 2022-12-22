@@ -1,4 +1,5 @@
 import './index.html';
+import './scss/style.scss';
 import { route, startRouting } from './modules/router/router';
 import getData from './modules/services/data';
 
