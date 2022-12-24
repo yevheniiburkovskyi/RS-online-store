@@ -22,6 +22,7 @@ const handleLocation = async () => {
   const path = window.location.pathname;
   const route = routesObj[path as keyof typeof routesObj] || routesObj[404];
   const mainPage = document.getElementById('main-page') as HTMLDivElement;
+
   if (typeof route === 'string') {
     mainPage.innerHTML = route;
   } else {

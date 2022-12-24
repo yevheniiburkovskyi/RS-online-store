@@ -4,6 +4,7 @@
 @import "./blocks/footer";
 @import "./blocks/main";
 @import "./blocks/details";
+@import "./blocks/page404";
 
 html {
     font-family: $base-font-family;
@@ -16,5 +17,5 @@ html {
 }
 
 main {
-    min-height: 70vh;
+    min-height: calc(100vh-230px);
 }

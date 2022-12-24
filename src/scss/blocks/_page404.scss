@@ -1,0 +1,15 @@
+@import './_colors.scss';
+
+.page-404 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 50vh;
+    font-size: $price-font-size;
+}
+
+@media (min-width: $breakpoint-small-tablet) {
+    .page-404 {
+        font-size: $h1-font-size;
+    }
+}
