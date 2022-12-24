@@ -1,5 +1,5 @@
 import { IRoutes } from '../../types/types';
-import routes from './routes';
+import { routes } from './routes';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -14,7 +14,6 @@ const handleLocation = async () => {
 
   if (localStorage.getItem('onlineStoreRoutes') !== null) {
     routesObj = JSON.parse(localStorage.getItem('onlineStoreRoutes') as string);
-    console.log('storage');
   } else {
     routesObj = routes;
   }

@@ -7,13 +7,10 @@ function mainPage() {
   const products = generateElement('section', 'products');
   const productsList = generateElement('ul', 'products__list');
   if (localStorage.getItem('productsArr') === null) {
-    getData()
-      .then((data) => createProductList(productsList, data))
-      .then(() => showDetails(productsList));
+    getData().then((data) => createProductList(productsList, data));
   } else {
     const productArr: Array<IProduct> = JSON.parse(localStorage.getItem('productsArr') as string);
     createProductList(productsList, productArr);
-    showDetails(productsList);
   }
   products.append(productsList);
   return products;
@@ -28,5 +25,6 @@ const createProductList = (contentBlock: HTMLElement, dataArr: Array<IProduct>) 
           <p class="products__item-price">${product.price}$</p>
         </a>`;
   });
+  showDetails(contentBlock);
 };
 export default mainPage;

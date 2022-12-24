@@ -1,13 +1,10 @@
 import { ICategory } from '../../types/types';
 
 async function getData() {
-  const response = await fetch('https://dummyjson.com/products/categories');
-  const categories: Array<string> = await response.json();
-  const res = categories.slice(0, 7).map(async (category: string) => {
-    return await fetch(`https://dummyjson.com/products/category/${category}`).then((res) => res.json());
-  });
-  const promiseArr = await Promise.all(res).then((data: Array<ICategory>) => data.map((item) => item.products).flat());
-  localStorage.setItem('productsArr', JSON.stringify(promiseArr));
-  return promiseArr;
+  const response = await fetch('https://dummyjson.com/products?limit=20&skip=5');
+  const resObj: ICategory = await response.json();
+  const productArr = resObj.products;
+  localStorage.setItem('productsArr', JSON.stringify(productArr));
+  return productArr;
 }
 export default getData;
