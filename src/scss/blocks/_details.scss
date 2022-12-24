@@ -1,4 +1,16 @@
 .product {
+  &__path {
+    font-size: 1.3rem;
+    margin-bottom: 30px;
+    margin-top: 30px;
+    a {
+      color: $main-black;
+      transition: all 0.2s;
+      &:hover {
+        color: $main-gold;
+      }
+    }
+  }
   &__wrapper {
     display: grid;
     grid-template-columns: 1fr 2fr 1fr;
@@ -12,6 +24,10 @@
       &-item {
         cursor: pointer;
         width: 30%;
+        transition: all 0.2s;
+        &:hover {
+          transform: scale(2);
+        }
         img {
           height: 100%;
           width: 100%;
