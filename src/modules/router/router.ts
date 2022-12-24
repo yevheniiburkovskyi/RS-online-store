@@ -1,3 +1,4 @@
+import { IRoutes } from '../../types/types';
 import routes from './routes';
 
 const route = (event: Event | undefined) => {
@@ -9,8 +10,17 @@ const route = (event: Event | undefined) => {
 };
 
 const handleLocation = async () => {
+  let routesObj: IRoutes;
+
+  if (localStorage.getItem('onlineStoreRoutes') !== null) {
+    routesObj = JSON.parse(localStorage.getItem('onlineStoreRoutes') as string);
+    console.log('storage');
+  } else {
+    routesObj = routes;
+  }
+
   const path = window.location.pathname;
-  const route = routes[path as keyof typeof routes] || routes[404];
+  const route = routesObj[path as keyof typeof routesObj] || routesObj[404];
   const mainPage = document.getElementById('main-page') as HTMLDivElement;
   if (typeof route === 'string') {
     mainPage.innerHTML = route;

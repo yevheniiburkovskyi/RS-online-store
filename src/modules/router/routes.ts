@@ -1,5 +1,5 @@
+import mainPage from '../../pages/main';
 import { IRoutes } from '../../types/types';
-import mainPage from '../pages/main';
 
 const routes: IRoutes = {
   '/': mainPage(),
