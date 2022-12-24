@@ -1,10 +1,10 @@
 import './index.html';
 import './scss/style.scss';
 import { route, startRouting } from './modules/router/router';
-import { CreateFiltersBlock } from './modules/filter-home-page';
+import { createFiltersBlock } from './modules/pages/filters';
 
 startRouting();
 const menuRow = document.querySelector('#main-nav');
 menuRow?.addEventListener('click', route);
 
-CreateFiltersBlock();
+createFiltersBlock();

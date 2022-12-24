@@ -36,7 +36,53 @@
         <a href="/cart">cart</a>
         <a href="/details">details</a>
       </nav>
-      <div id="main-page"></div>
+      <div id="main-page">
+
+      </div>
+      <div class="filters-container">
+        <div class='filters-block'>
+          <div class='filters-btns-block'>
+            <button class='filters-btns-block__reset-btn'>Reset Filters</button>
+            <button class='filters-btns-block__copy-link-btn'>Copy Link</button>
+          </div>
+          <div class="filters-block__line"></div>
+          <div class="category-block">
+            <div class="category-block__title">Category</div>
+            <label class="category-block__item" for="filter-1">
+              <input type="checkbox" class="category-input" id="filter-1">Filter 1
+            </label>
+            <label class="category-block__item" for="filter-2">
+              <input type="checkbox" class="category-input" id="filter-2">Filter 2
+            </label>
+          </div>
+          <div class="filters-block__line"></div>
+          <div class="category-block">
+            <div class="category-block__title">Brand</div>
+            <label class="category-block__item" for="filter-3">
+              <input type="checkbox" class="category-input" id="filter-3">Filter 3
+            </label>
+            <label class="category-block__item" for="filter-4">
+              <input type="checkbox" class="category-input" id="filter-4">Filter 4
+            </label>
+          </div>
+          <div class="filters-block__line"></div>
+          <div class="category-block">
+            <div class="category-block__title">Price</div>
+            <div class="category-block__slider">
+              <input type="range" min="0" max="100">
+              <input type="range" min="0" max="100">
+            </div>
+          </div>
+          <div class="category-block">
+            <div class="category-block__title">Stock</div>
+            <div class="category-block__slider">
+              <input type="range" min="0" max="100">
+              <input type="range" min="0" max="100">
+            </div>
+          </div>
+        </div>
+      </div>
+
     </main>
     <footer class="page-footer">
       <div class="gh-anchor-block">

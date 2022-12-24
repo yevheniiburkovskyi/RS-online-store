@@ -1,0 +1,105 @@
+.filters-container {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(1,1,1,0);
+    transition: 300ms;
+}
+
+.filters-container_show {
+    z-index: 1;
+    background-color: rgba(1,1,1,0.5);
+}
+
+.filters-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    column-gap: 20px;
+    padding-top: 20px;
+    z-index: 2;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100vh;
+    background-color: $main-white;
+    transition: 500ms;
+    &__line {
+        width: 260px;
+        height: 1px;
+        background-color: $main-gray-light;
+        margin: 50px 0;
+    }
+}
+
+.filters-block_show {
+    left: 0;
+}
+
+.filters-btns-block {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    &__reset-btn,
+    &__copy-link-btn {
+        border: 0 solid;
+        width: 120px;
+        height: 40px;
+        font-weight: bold;
+        font-size: $base-font-size;
+        background-color: $main-black-deep;
+        color: $main-white;
+        transition: 300ms;
+        cursor: pointer;
+    }
+    &__reset-btn:hover,
+    &__copy-link-btn:hover {
+        background-color: $main-gold;
+    }
+}
+
+
+$w: 20em;
+$h: 1em;
+
+// @mixin track() {
+//   width: 100%; height: 100%;
+//   background: none /* get rid of Firefox track background */
+// }
+
+@mixin thumb() {
+  border: none; /* get rid of Firefox thumb border */
+  width: $h; height: $h;
+  border-radius: 0; /* get rid of Firefox corner rounding */
+  background: currentcolor;
+  pointer-events: auto
+}
+
+.category-block {
+    &__slider {
+        display: grid;
+        grid-template-rows: max-content 1em;
+        margin: 1em auto;
+        width: 250px;
+        overflow: hidden;
+        position: relative;
+        input {
+            grid-column: 1;
+            grid-row: 2;
+            background: none;
+            color: $main-black-deep;
+            -webkit-appearance: none;
+            background: none;
+            pointer-events: none;
+            // &::-webkit-slider-runnable-track { @include track }
+            // &::-moz-range-track { @include track }
+            
+            &::-webkit-slider-thumb { @include thumb }
+            &::-moz-range-thumb { @include thumb }
+        }
+    }
+}

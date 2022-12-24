@@ -2,11 +2,12 @@
 @import './blocks/colors';
 @import './blocks/footer';
 @import './blocks/page404';
-@import './blocks/filter-home-page';
+@import './blocks/filters';
 
 html {
     font-family: $base-font-family;
     color: $main-black;
+    overflow: hidden;
 }
 
 .page-wrapper {

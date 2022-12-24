@@ -1,5 +1,5 @@
 import routes from './routes';
-import { Create404Page } from './page404';
+import { Create404Page } from '../pages/page404';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
