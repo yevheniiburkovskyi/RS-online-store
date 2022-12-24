@@ -1,5 +1,5 @@
 import detailsPage from '../pages/details';
-import { route, startRouting } from './router/router';
+import { route } from './router/router';
 import routes from './router/routes';
 
 function showDetails(content: HTMLElement) {
@@ -11,7 +11,6 @@ function showDetails(content: HTMLElement) {
     item.addEventListener('click', () => {
       routes['/'] = content.outerHTML;
       localStorage.setItem('onlineStoreRoutes', JSON.stringify(routes));
-      startRouting();
       route;
     });
   });
