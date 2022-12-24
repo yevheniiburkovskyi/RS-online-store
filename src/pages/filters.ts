@@ -15,17 +15,21 @@ function createFiltersBlock() {
   document.querySelector('.cart-block__filters-icon')?.addEventListener('click', () => {
     document.querySelector('.filters-container')?.classList.toggle('filters-container_show');
     document.querySelector('.filters-block')?.classList.toggle('filters-block_show');
+    document.getElementsByTagName('html')[0].classList.toggle('html_scroll-lock');
   });
   document.querySelector('.filters-container')?.addEventListener('click', function (this: HTMLElement) {
     if ((this as HTMLElement) === event?.target) {
       document.querySelector('.filters-container')?.classList.toggle('filters-container_show');
       document.querySelector('.filters-block')?.classList.toggle('filters-block_show');
+      document.getElementsByTagName('html')[0].classList.toggle('html_scroll-lock');
     }
   });
 
   addEventListener('input', (event) => {
-    const targetId = (event.target as HTMLElement).id;
-    (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = (event.target as HTMLInputElement).value;
+    if ((event.target as HTMLElement).classList.contains('slider-input')) {
+      const targetId = (event.target as HTMLElement).id;
+      (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = (event.target as HTMLInputElement).value;
+    }
   });
 }
 
