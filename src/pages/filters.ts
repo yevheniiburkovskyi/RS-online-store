@@ -1,4 +1,4 @@
-import '../../scss/style.scss';
+import '../scss/style.scss';
 // import generateElement from '../services/generateElement';
 
 function createFiltersBlock() {
@@ -21,6 +21,11 @@ function createFiltersBlock() {
       document.querySelector('.filters-container')?.classList.toggle('filters-container_show');
       document.querySelector('.filters-block')?.classList.toggle('filters-block_show');
     }
+  });
+
+  addEventListener('input', (event) => {
+    const targetId = (event.target as HTMLElement).id;
+    (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = (event.target as HTMLInputElement).value;
   });
 }
 
