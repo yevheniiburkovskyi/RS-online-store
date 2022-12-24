@@ -1,4 +1,4 @@
-import '../../scss/style.scss';
+import '../scss/style.scss';
 
 function Create404Page(element: HTMLDivElement) {
   element.innerHTML = 'PAGE NOT FOUND (404)';
