@@ -28,6 +28,7 @@
     height: 100vh;
     background-color: $main-white;
     transition: 500ms;
+    overflow-y: scroll;
     &__line {
         width: 260px;
         height: 1px;
@@ -76,12 +77,18 @@
         margin-top: 20px;
         .category-input {
             cursor: pointer;
+            margin-right: 10px;
         }
     }
     &__properties {
         display: flex;
         width: 250px;
         justify-content: space-around;
+        margin-top: 5px;
+    }
+    &__prop {
+        width: 100px;
+        text-align: center;
     }
     &__slider {
         display: grid;
@@ -109,6 +116,10 @@
                 border-radius: 0;
                 background: $main-black-deep;
                 cursor: pointer;
+                transition: 300ms;
+             }
+             &::-webkit-slider-thumb:hover {
+                background: $main-gold;
              }
         }
     }
@@ -126,5 +137,6 @@
         top: 0px;
         left: 5vw;
         height: auto;
+        overflow: auto;
     }
 }
