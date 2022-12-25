@@ -1,4 +1,5 @@
 import { IRoutes } from '../../types/types';
+import changeNavigation from '../navigation';
 import { routes } from './routes';
 
 const route = (event: Event | undefined) => {
@@ -28,6 +29,8 @@ const handleLocation = async () => {
     mainPage.innerHTML = '';
     mainPage.append(route);
   }
+
+  changeNavigation();
 };
 
 const startRouting = () => {

@@ -3,7 +3,7 @@ function imgShow() {
   main?.addEventListener('click', (e) => {
     const target = e.target as HTMLImageElement;
     const parent = target.parentNode as HTMLLIElement;
-    if (e.target && parent.classList.contains('product__images-choose-item')) {
+    if (e.target && parent !== null && parent.classList.contains('product__images-choose-item')) {
       const bigImg = document.querySelector('.product__big-img') as HTMLDivElement;
       bigImg.innerHTML = target.outerHTML;
     }

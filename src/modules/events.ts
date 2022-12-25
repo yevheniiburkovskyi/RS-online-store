@@ -2,12 +2,15 @@ import { route } from './router/router';
 
 function startEvents() {
   const mainPage = document.querySelector('#main-page');
-  mainPage?.addEventListener('click', route);
+  const menu = document.querySelector('#page-menu') as HTMLDivElement;
+  menu?.addEventListener('click', route);
   mainPage?.addEventListener('click', (e) => {
+    e.preventDefault();
     const target = e.target as HTMLElement;
-    if (e.target && target.classList.contains('products__item-img')) {
+    const parent = target.parentNode as HTMLLinkElement;
+    if (e.target && parent.classList.contains('products__item')) {
+      route;
       target.parentNode?.addEventListener('click', route);
-      const parent = target.parentNode as HTMLLinkElement;
       parent.click();
     }
   });

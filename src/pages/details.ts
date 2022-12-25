@@ -7,8 +7,6 @@ function detailsPage(id: number | string) {
     (item: IProduct) => item.id === Number(id)
   )[0];
   productPage.innerHTML = `
-  <h3  class="product__path"><a href='/'>STORE</a> / ${productObj.category.toUpperCase()} / 
-  ${productObj.brand.toUpperCase()} / ${productObj.title}</h3>
   <div class="product__wrapper">
   <aside class="product__images">
     <ul class="product__images-choose">

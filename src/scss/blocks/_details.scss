@@ -37,7 +37,9 @@
     }
   }
   &__big-img {
+    align-self: flex-start;
     width: 100%;
+    height: 70vh;
     img {
       width: 100%;
       height: 100%;
