@@ -1,4 +1,4 @@
-import { productsArr } from './services/getData';
+import { IProduct } from '../types/types';
 
 function changeNavigation() {
   enum homeUrl {
@@ -10,9 +10,10 @@ function changeNavigation() {
   const pattern = new RegExp(homeUrl.localHost, 'ig');
   const currentUrl = `${window.location.href}`;
   const pathUrl = currentUrl.replace(pattern, '');
-  if (pathUrl) {
+  if (pathUrl && localStorage.getItem('productsArr') !== null) {
     const pathUrlComponents = pathUrl.split('/');
     const urlId = Number(pathUrlComponents[pathUrlComponents.length - 1]);
+    const productsArr: Array<IProduct> = JSON.parse(localStorage.getItem('productsArr') as string);
     if (typeof urlId === 'number') {
       const product = productsArr.filter((item) => item.id === urlId)[0];
       if (product) {
