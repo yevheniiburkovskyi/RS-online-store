@@ -1,8 +1,11 @@
-@import './blocks/header';
-@import './blocks/colors';
-@import './blocks/footer';
-@import './blocks/page404';
-@import './blocks/filters';
+@import "./blocks/reset";
+@import "./blocks/header";
+@import "./blocks/colors";
+@import "./blocks/footer";
+@import "./blocks/main";
+@import "./blocks/details";
+@import "./blocks/page404";
+@import "./blocks/filters";
 
 html {
     font-family: $base-font-family;
@@ -18,7 +21,18 @@ html {
     margin: 0 auto;
     max-width: 1200px;
 }
-
+#page-menu {
+    margin: 40px 0px;
+    font-size: 2rem;
+    font-weight: 500;
+    a {
+        transition: all 0.2s;
+        color: $main-black-deep;
+        &:hover {
+            color: $main-gold;
+        }
+    }
+}
 main {
     min-height: calc(100vh-230px);
 }

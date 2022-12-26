@@ -10,7 +10,7 @@
 }
 
 .filters-container_show {
-    z-index: 1;
+    z-index: 10;
     background-color: $color-bg-half-transparent;
 }
 
@@ -99,8 +99,9 @@
         position: relative;
         background: $gradient-bg-slider;
         input {
-            &::-webkit-slider-thumb, & {
-                -webkit-appearance: none
+            &::-webkit-slider-thumb,
+            & {
+                -webkit-appearance: none;
             }
             grid-column: 1;
             grid-row: 2;
@@ -109,7 +110,7 @@
             background: none;
             pointer-events: none;
             margin: 0;
-            &::-webkit-slider-thumb { 
+            &::-webkit-slider-thumb {
                 width: 1em;
                 height: 1em;
                 pointer-events: auto;
@@ -117,10 +118,10 @@
                 background: $main-black-deep;
                 cursor: pointer;
                 transition: 300ms;
-             }
-             &::-webkit-slider-thumb:hover {
+            }
+            &::-webkit-slider-thumb:hover {
                 background: $main-gold;
-             }
+            }
         }
     }
 }
@@ -135,7 +136,7 @@
     .filters-block {
         position: relative;
         top: 0px;
-        left: 5vw;
+        left: 0;
         height: auto;
         overflow: auto;
     }

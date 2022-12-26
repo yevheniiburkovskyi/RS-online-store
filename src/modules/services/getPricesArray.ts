@@ -1,7 +1,7 @@
 import { IProduct } from '../../types/types';
 
-function getPricesArray() {
-  const prodArray: Array<IProduct> = JSON.parse(localStorage.getItem('productsArr') as string);
+function getPricesArray(data: IProduct[]) {
+  const prodArray = data;
   const pricesArr: number[] = [];
   prodArray.forEach((e, i) => {
     const subObj = prodArray[i];
@@ -11,8 +11,8 @@ function getPricesArray() {
   return finalArr;
 }
 
-function getStockArray() {
-  const prodArray: Array<IProduct> = JSON.parse(localStorage.getItem('productsArr') as string);
+function getStockArray(data: IProduct[]) {
+  const prodArray = data;
   const pricesArr: number[] = [];
   prodArray.forEach((e, i) => {
     const subObj = prodArray[i];

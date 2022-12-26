@@ -1,5 +1,5 @@
-import routes from './routes';
-import { Create404Page } from '../../pages/page404';
+import changeNavigation from '../navigation';
+import { routes } from './routes';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -13,10 +13,15 @@ const handleLocation = async () => {
   const path = window.location.pathname;
   const route = routes[path as keyof typeof routes] || routes[404];
   const mainPage = document.getElementById('main-page') as HTMLDivElement;
-  mainPage.innerHTML = route;
-  if (route === routes[404]) {
-    Create404Page(mainPage);
+
+  if (typeof route === 'string') {
+    mainPage.innerHTML = route;
+  } else {
+    mainPage.innerHTML = '';
+    mainPage.append(route);
   }
+
+  changeNavigation();
 };
 
 const startRouting = () => {
