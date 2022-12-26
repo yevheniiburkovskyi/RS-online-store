@@ -1,6 +1,6 @@
 import { IProduct } from '../types/types';
 
-function changeNavigation() {
+function changeNavigation(data: Array<IProduct> | undefined) {
   enum homeUrl {
     localHost = 'http://localhost:4200/',
   }
@@ -10,12 +10,12 @@ function changeNavigation() {
   const pattern = new RegExp(homeUrl.localHost, 'ig');
   const currentUrl = `${window.location.href}`;
   const pathUrl = currentUrl.replace(pattern, '');
-  if (pathUrl && localStorage.getItem('productsArr') !== null) {
+  if (pathUrl) {
     const pathUrlComponents = pathUrl.split('/');
     const urlId = Number(pathUrlComponents[pathUrlComponents.length - 1]);
-    const productsArr: Array<IProduct> = JSON.parse(localStorage.getItem('productsArr') as string);
+    const productsArr = data;
     if (typeof urlId === 'number') {
-      const product = productsArr.filter((item) => item.id === urlId)[0];
+      const product = productsArr?.filter((item) => item.id === urlId)[0];
       if (product) {
         menu.innerHTML += ` / ${product.category} / ${product.brand} / ${product.title}`;
       }

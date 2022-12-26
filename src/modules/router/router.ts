@@ -30,7 +30,7 @@ const handleLocation = async () => {
     mainPage.append(route);
   }
 
-  changeNavigation();
+  changeNavigation;
 };
 
 const startRouting = () => {

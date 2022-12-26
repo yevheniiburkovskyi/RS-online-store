@@ -1,11 +1,9 @@
 import generateElement from '../modules/services/generateElement';
 import { IProduct } from '../types/types';
 
-function detailsPage(id: number | string) {
+function detailsPage(id: number | string, data: IProduct[]) {
   const productPage = generateElement('section', 'product');
-  const productObj: IProduct = JSON.parse(localStorage.getItem('productsArr') as string).filter(
-    (item: IProduct) => item.id === Number(id)
-  )[0];
+  const productObj: IProduct = data.filter((item: IProduct) => item.id === Number(id))[0];
   productPage.innerHTML = `
   <div class="product__wrapper">
   <aside class="product__images">

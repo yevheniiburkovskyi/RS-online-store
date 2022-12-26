@@ -4,10 +4,13 @@ import { startRouting } from './modules/router/router';
 import mainPage from './pages/main';
 import startEvents from './modules/events';
 import imgShow from './modules//imgShow';
+import getData from './modules/services/getData';
 
 window.addEventListener('DOMContentLoaded', () => {
-  startRouting();
-  mainPage();
-  startEvents();
-  imgShow();
+  getData().then((data) => {
+    startEvents();
+    startRouting();
+    mainPage(data);
+    imgShow();
+  });
 });
