@@ -20,7 +20,6 @@ const handleLocation = async () => {
     mainPage.innerHTML = '';
     mainPage.append(route);
   }
-
   changeNavigation();
 };
 
