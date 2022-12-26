@@ -12,7 +12,6 @@ function showDetails(content: HTMLElement, data: IProduct[]) {
       data
     ).outerHTML;
   });
-  localStorage.setItem('onlineStoreRoutes', JSON.stringify(routes));
   startRouting();
 }
 export default showDetails;
