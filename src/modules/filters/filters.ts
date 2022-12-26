@@ -1,4 +1,4 @@
-import filterData from '../services/filterData';
+import filterData from '../services/hideAndShowCards';
 
 function filters() {
   const url = new URL(window.location.href);
@@ -10,7 +10,7 @@ function filters() {
     searchParams.forEach((item) => {
       queryArr.push(item);
     });
-    return queryArr;
+    return filterData(...queryArr);
   }
 
   function changeUrl(topic: string, ...queryArr: string[]) {
@@ -26,6 +26,9 @@ function filters() {
 
   function startSearch() {
     const inputArea = document.querySelector('.search-block__input') as HTMLInputElement;
+    if (searchParams.has('search')) {
+      inputArea.value = searchParams.get('search') as string;
+    }
     inputArea?.addEventListener('input', () => {
       changeUrl('search', inputArea.value);
       filterData(inputArea.value);

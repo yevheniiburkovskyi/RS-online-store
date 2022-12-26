@@ -3,8 +3,8 @@ function filterData(...queryArr: string[]) {
     ...(document.querySelectorAll('.products__item') as NodeListOf<HTMLLinkElement>),
   ];
   const charArr = ['title', 'description', 'price', 'rating', 'stock', 'brand', 'category'];
-
   const matchArr = queryArr;
+
   function recursiveFilter(strArr: string[], dataArr: Array<HTMLLinkElement>): Array<HTMLLinkElement> {
     if (strArr.length < 1) {
       return dataArr;
