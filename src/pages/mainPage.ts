@@ -1,7 +1,7 @@
 import { IProduct } from '../types/types';
 import generateElement from '../modules/services/generateElement';
 import showDetails from '../modules/showDetails';
-import createFiltersBlock from './filters';
+import createFiltersBlock from './filtersPage';
 
 function mainPage(data: Array<IProduct>) {
   const products = generateElement('section', 'products');

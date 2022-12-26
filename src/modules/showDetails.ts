@@ -1,4 +1,4 @@
-import detailsPage from '../pages/details';
+import detailsPage from '../pages/detailsPage';
 import { IProduct } from '../types/types';
 import { startRouting } from './router/router';
 import { routes } from './router/routes';
