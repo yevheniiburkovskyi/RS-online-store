@@ -1,6 +1,7 @@
 import { IProduct } from '../types/types';
 import generateElement from '../modules/services/generateElement';
 import showDetails from '../modules/showDetails';
+import createFiltersBlock from './filters';
 
 function mainPage(data: Array<IProduct>) {
   const products = generateElement('section', 'products');
@@ -15,7 +16,7 @@ function mainPage(data: Array<IProduct>) {
             <p class="products__item-price">${product.price}$</p>
           </a>`;
   });
-  showDetails(productsList, data);
-  products.append(productsList);
+  products.append(productsList, createFiltersBlock(data));
+  showDetails(products, productsList, data);
 }
 export default mainPage;

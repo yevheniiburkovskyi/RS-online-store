@@ -2,8 +2,9 @@ import '../scss/style.scss';
 import generateElement from '../modules/services/generateElement';
 import createFiltersElements from '../modules/services/createFiltersElements';
 import { getPricesArray, getStockArray } from '../modules/services/getPricesArray';
+import { IProduct } from '../types/types';
 
-function createFiltersBlock() {
+function createFiltersBlock(data: IProduct[]) {
   const filters = generateElement('div', 'filters-container');
   (document.getElementById('main-page') as HTMLElement).append(filters);
   filters.innerHTML = `<div class='filters-block'>
@@ -45,16 +46,16 @@ function createFiltersBlock() {
     </div>
   </div>`;
 
-  createFiltersElements('category', 'categoryBlock');
-  createFiltersElements('brand', 'brandBlock');
+  createFiltersElements('category', 'categoryBlock', data);
+  createFiltersElements('brand', 'brandBlock', data);
 
-  const priceArray = getPricesArray();
+  const priceArray = getPricesArray(data);
   (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = `${priceArray[priceArray.length - 1]} $`;
   (document.getElementById('maxPrice') as HTMLElement).setAttribute('max', `${priceArray.length - 1}`);
   (document.getElementById('minPrice') as HTMLElement).setAttribute('max', `${priceArray.length - 1}`);
   (document.getElementById('minPriceProp') as HTMLElement).innerHTML = `${priceArray[0]} $`;
 
-  const stockArray = getStockArray();
+  const stockArray = getStockArray(data);
   (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${stockArray[stockArray.length - 1]}`;
   (document.getElementById('maxStock') as HTMLElement).setAttribute('max', `${stockArray.length - 1}`);
   (document.getElementById('minStock') as HTMLElement).setAttribute('max', `${stockArray.length - 1}`);
@@ -96,6 +97,7 @@ function createFiltersBlock() {
       }
     }
   });
+  return filters;
 }
 
-export { createFiltersBlock };
+export default createFiltersBlock;

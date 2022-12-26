@@ -1,6 +1,8 @@
 .products {
+  display: flex;
   width: 100%;
   &__list {
+    order: 2;
     width: 100%;
     padding: 10px;
     display: grid;

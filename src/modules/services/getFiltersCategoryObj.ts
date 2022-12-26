@@ -1,7 +1,7 @@
 import { IProduct } from '../../types/types';
 
-function getFiltersCategoryObj(keyName: string) {
-  const prodArray: Array<IProduct> = JSON.parse(localStorage.getItem('productsArr') as string);
+function getFiltersCategoryObj(keyName: string, data: IProduct[]) {
+  const prodArray = data;
   const categoriesObj = {};
   prodArray.forEach((e, i) => {
     const subObj = prodArray[i];
