@@ -4,9 +4,9 @@ import createFiltersElements from '../modules/services/createFiltersElements';
 import { getPricesArray, getStockArray } from '../modules/services/getPricesArray';
 
 function createFiltersBlock() {
-  const FILTERS = generateElement('div', 'filters-container');
-  (document.getElementById('main-page') as HTMLElement).append(FILTERS);
-  FILTERS.innerHTML = `<div class='filters-block'>
+  const filters = generateElement('div', 'filters-container');
+  (document.getElementById('main-page') as HTMLElement).append(filters);
+  filters.innerHTML = `<div class='filters-block'>
     <div class='filters-btns-block'>
       <button class='filters-btns-block__reset-btn'>Reset Filters</button>
       <button class='filters-btns-block__copy-link-btn'>Copy Link</button>
