@@ -5,13 +5,13 @@
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(1,1,1,0);
+    background-color: $color-bg-full-transparent;
     transition: 300ms;
 }
 
 .filters-container_show {
     z-index: 1;
-    background-color: rgba(1,1,1,0.5);
+    background-color: $color-bg-half-transparent;
 }
 
 .filters-block {
@@ -97,7 +97,7 @@
         width: 250px;
         overflow: hidden;
         position: relative;
-        background: linear-gradient(0deg, #ccc 1em, transparent 0);
+        background: $gradient-bg-slider;
         input {
             &::-webkit-slider-thumb, & {
                 -webkit-appearance: none
