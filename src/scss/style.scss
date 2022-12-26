@@ -5,10 +5,16 @@
 @import "./blocks/main";
 @import "./blocks/details";
 @import "./blocks/page404";
+@import "./blocks/filters";
 
 html {
     font-family: $base-font-family;
     color: $main-black;
+    overflow-x: hidden;
+}
+
+.html_scroll-lock {
+    overflow: hidden;
 }
 
 .page-wrapper {

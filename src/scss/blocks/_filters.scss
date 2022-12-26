@@ -1,0 +1,143 @@
+.filters-container {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $color-bg-full-transparent;
+    transition: 300ms;
+}
+
+.filters-container_show {
+    z-index: 10;
+    background-color: $color-bg-half-transparent;
+}
+
+.filters-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    column-gap: 20px;
+    padding-top: 20px;
+    z-index: 2;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100vh;
+    background-color: $main-white;
+    transition: 500ms;
+    overflow-y: scroll;
+    &__line {
+        width: 260px;
+        height: 1px;
+        background-color: $main-gray-light;
+        margin: 20px 0;
+    }
+}
+
+.filters-block_show {
+    left: 0;
+}
+
+.filters-btns-block {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    &__reset-btn,
+    &__copy-link-btn {
+        border: 0 solid;
+        width: 120px;
+        height: 40px;
+        font-weight: bold;
+        font-size: $base-font-size;
+        background-color: $main-black-deep;
+        color: $main-white;
+        transition: 300ms;
+        cursor: pointer;
+    }
+    &__reset-btn:hover,
+    &__copy-link-btn:hover {
+        background-color: $main-gold;
+    }
+}
+
+.category-block {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    &__title {
+        user-select: none;
+        color: $main-black;
+        font-weight: bold;
+        font-size: $price-font-size;
+    }
+    &__item {
+        margin-top: 20px;
+        .category-input {
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    }
+    &__properties {
+        display: flex;
+        width: 250px;
+        justify-content: space-around;
+        margin-top: 5px;
+    }
+    &__prop {
+        width: 100px;
+        text-align: center;
+    }
+    &__slider {
+        display: grid;
+        grid-template-rows: max-content 1em;
+        margin: 1em auto;
+        width: 250px;
+        overflow: hidden;
+        position: relative;
+        background: $gradient-bg-slider;
+        input {
+            &::-webkit-slider-thumb,
+            & {
+                -webkit-appearance: none;
+            }
+            grid-column: 1;
+            grid-row: 2;
+            background: none;
+            color: $main-black-deep;
+            background: none;
+            pointer-events: none;
+            margin: 0;
+            &::-webkit-slider-thumb {
+                width: 1em;
+                height: 1em;
+                pointer-events: auto;
+                border-radius: 0;
+                background: $main-black-deep;
+                cursor: pointer;
+                transition: 300ms;
+            }
+            &::-webkit-slider-thumb:hover {
+                background: $main-gold;
+            }
+        }
+    }
+}
+
+@media (min-width: $breakpoint-tablet) {
+    .filters-container {
+        position: relative;
+        z-index: 0;
+        height: auto;
+        width: 300px;
+    }
+    .filters-block {
+        position: relative;
+        top: 0px;
+        left: 0;
+        height: auto;
+        overflow: auto;
+    }
+}

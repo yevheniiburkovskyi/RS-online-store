@@ -1,4 +1,3 @@
-// import { IRoutes } from '../../types/types';
 import changeNavigation from '../navigation';
 import { routes } from './routes';
 

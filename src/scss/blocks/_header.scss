@@ -53,6 +53,11 @@
         transition: 300ms;
     }
 
+    .cart-block__filters-icon {
+        position: relative;
+        z-index: 100;
+    }
+
     .cart-block__filters-icon:hover {
         stroke: $main-gold;
     }
