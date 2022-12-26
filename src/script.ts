@@ -6,7 +6,7 @@ import mainPage from './pages/main';
 import startEvents from './modules/events';
 import imgShow from './modules//imgShow';
 import getData from './modules/services/getData';
-import startSearch from './modules/search';
+import startSearch from './modules/filters/search';
 
 window.addEventListener('DOMContentLoaded', () => {
   getData().then((data) => {
@@ -15,5 +15,6 @@ window.addEventListener('DOMContentLoaded', () => {
     mainPage(data);
     startSearch();
     imgShow();
+    startSearch();
   });
 });
