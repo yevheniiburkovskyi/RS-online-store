@@ -1,3 +1,4 @@
+import startEvents from '../routingEvents';
 import changeNavigation from '../navigation';
 import { routes } from './routes';
 
@@ -21,6 +22,7 @@ const handleLocation = async () => {
     mainPage.append(route);
   }
   changeNavigation();
+  startEvents();
 };
 
 const startRouting = () => {
