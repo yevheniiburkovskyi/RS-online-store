@@ -5,13 +5,11 @@ import { startRouting } from './modules/router/router';
 import mainPage from './pages/mainPage';
 import imgShow from './modules//imgShow';
 import getData from './modules/services/getData';
-import filters from './modules/filters/filters';
 
 window.addEventListener('DOMContentLoaded', () => {
   getData().then((data) => {
     startRouting();
     mainPage(data);
     imgShow();
-    filters();
   });
 });

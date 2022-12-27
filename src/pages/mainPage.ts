@@ -1,6 +1,6 @@
 import { IProduct } from '../types/types';
 import generateElement from '../modules/services/generateElement';
-import showDetails from '../modules/showDetails';
+import showDetails from '../modules/createDeatilsRoutes';
 import createFiltersBlock from './filtersPage';
 import createTopBar from './topBar';
 

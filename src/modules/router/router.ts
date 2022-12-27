@@ -1,6 +1,7 @@
 import startEvents from '../routingEvents';
 import changeNavigation from '../navigation';
 import { routes } from './routes';
+import filters from '../filters/filters';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -23,6 +24,9 @@ const handleLocation = async () => {
   }
   changeNavigation();
   startEvents();
+  if (mainPage.querySelector('.products')) {
+    filters();
+  }
 };
 
 const startRouting = () => {

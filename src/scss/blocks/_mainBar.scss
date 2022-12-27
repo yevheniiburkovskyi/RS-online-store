@@ -1,0 +1,11 @@
+.products__bar {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+  font-size: 1.2rem;
+  font-weight: 500;
+  &-sort {
+    font-size: 1.2rem;
+    font-weight: 500;
+  }
+}

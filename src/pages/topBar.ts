@@ -9,8 +9,8 @@ function createTopBar(data: IProduct[]) {
   totalCount.innerHTML = `Showing: ${data.length}`;
   sortBuntns.innerHTML = `
   <select id="sort-select" class="products__bar-sort">
-    <option value="value1">Значение 1</option>
-    <option value="value2" selected>Значение 2</option>
+    <option value="price-ASC" selected>Sort by price ASC</option>
+    <option value="price-DESC">Sort by price DESC</option>
   </select>
   `;
   const positionRow = generateElement('div', 'products__bar-position-row');
