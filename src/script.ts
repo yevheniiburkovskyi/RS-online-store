@@ -6,6 +6,7 @@ import mainPage from './pages/main';
 import startEvents from './modules/events';
 import imgShow from './modules//imgShow';
 import getData from './modules/services/getData';
+import modaleValidateEvent from './modules/modalValidateEvent';
 
 window.addEventListener('DOMContentLoaded', () => {
   getData().then((data) => {
@@ -13,5 +14,6 @@ window.addEventListener('DOMContentLoaded', () => {
     startRouting();
     mainPage(data);
     imgShow();
+    modaleValidateEvent();
   });
 });

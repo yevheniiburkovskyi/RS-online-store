@@ -21,6 +21,11 @@
     padding-bottom: 20px;
     row-gap: 10px;
     min-height: 50vh;
+    min-width: 320px;
+    width: 90vw;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
     background-color: $main-white;
     &__title {
         font-weight: bold;
@@ -34,6 +39,9 @@
     }
     &__input:invalid {
         border-color: $color-red-sale-icon;
+    }
+    &__input:focus {
+        border-color: $main-gold;
     }
     &__input_card-info {
         height: 30px;
@@ -69,3 +77,10 @@
     height: 30px;
     width: 40px;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
