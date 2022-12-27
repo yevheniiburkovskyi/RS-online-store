@@ -1,0 +1,71 @@
+.modal-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $color-bg-half-transparent;
+    transition: 300ms;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    row-gap: 10px;
+    min-height: 50vh;
+    background-color: $main-white;
+    &__title {
+        font-weight: bold;
+    }
+    &__input {
+        height: 50px;
+        width: 280px;
+        border: 1px solid $gray-input-border;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    &__input:invalid {
+        border-color: $color-red-sale-icon;
+    }
+    &__input_card-info {
+        height: 30px;
+        width: 110px;
+    }
+    &__input_card-number {
+        height: 30px;
+        width: 230px;
+    }
+    &__btn {
+        border: 0 solid;
+        width: 120px;
+        height: 40px;
+        font-weight: bold;
+        font-size: $base-font-size;
+        background-color: $main-black-deep;
+        color: $main-white;
+        transition: 300ms;
+        cursor: pointer;
+    }
+    &__btn:hover {
+        background-color: $main-gold;
+    }
+    &__credit-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+    }
+}
+
+.credit-block__icon {
+    height: 30px;
+    width: 40px;
+}

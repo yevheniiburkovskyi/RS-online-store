@@ -11,12 +11,12 @@ function createFiltersElements(keyName: string, parentNodeSelector: string, data
     const input = generateElement('input', 'category-input');
     input.setAttribute('type', `checkbox`);
     input.setAttribute('id', `${e}Filter`);
-    const SPAN = generateElement('span', 'category-items-counter');
-    SPAN.innerHTML = ` (${categoriesObj[e as keyof typeof categoriesObj]}
+    const span = generateElement('span', 'category-items-counter');
+    span.innerHTML = ` (${categoriesObj[e as keyof typeof categoriesObj]}
       /${categoriesObj[e as keyof typeof categoriesObj]})`;
     label.append(input);
     label.append(`${e}`);
-    label.append(SPAN);
+    label.append(span);
     document.getElementById(parentNodeSelector)?.append(label);
   });
 }
