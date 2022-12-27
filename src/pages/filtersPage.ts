@@ -5,7 +5,7 @@ import { getPricesArray, getStockArray } from '../modules/services/getPricesArra
 import { IProduct } from '../types/types';
 
 function createFiltersBlock(data: IProduct[]) {
-  const filters = generateElement('div', 'filters-container');
+  const filters = generateElement('aside', 'products__filter');
   (document.getElementById('main-page') as HTMLElement).append(filters);
   filters.innerHTML = `<div class='filters-block'>
     <div class='filters-btns-block'>
