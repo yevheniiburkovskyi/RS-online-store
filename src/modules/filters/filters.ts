@@ -1,4 +1,5 @@
-// import { routes } from '../router/routes';
+// import { startRouting } from '../router/router';
+import { routes } from '../router/routes';
 import filterData from '../services/filterCards';
 
 function filters() {
@@ -24,8 +25,7 @@ function filters() {
       window.history.pushState({}, '', `?${searchParams.toString()}`);
     }
     (document.querySelector('#page-menu > a') as HTMLLinkElement).href = window.location.href;
-    // console.log((document.querySelector('#page-menu > a') as HTMLLinkElement).href);
-    // routes[window.location.href] = (document.querySelector('.products') as HTMLDivElement).outerHTML;
+    routes[window.location.href] = (document.querySelector('.products') as HTMLDivElement).outerHTML;
   }
 
   function startSearch() {
