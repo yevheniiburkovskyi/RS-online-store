@@ -1,7 +1,7 @@
 import { IProduct } from '../types/types';
 import generateElement from '../modules/services/generateElement';
 import showDetails from '../modules/showDetails';
-import createFiltersBlock from './filtersPage';
+import { createFiltersBlock } from './filtersPage';
 import createTopBar from './topBar';
 
 function mainPage(data: Array<IProduct>) {
@@ -18,7 +18,7 @@ function mainPage(data: Array<IProduct>) {
             <p class="products__item-price">${product.price}$</p>
           </a>`;
   });
-  products.append(productsList, createFiltersBlock(data), createTopBar(data));
+  products.append(productsList, createFiltersBlock(), createTopBar(data));
   showDetails(products, productsList, data);
 }
 export default mainPage;

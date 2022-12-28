@@ -67,6 +67,9 @@
             margin-right: 10px;
         }
     }
+    &__item_out-of-stock {
+        color: $main-gray-light;
+    }
     &__properties {
         display: flex;
         width: 250px;
@@ -85,6 +88,14 @@
         overflow: hidden;
         position: relative;
         background: $gradient-bg-slider;
+        .slider-input {
+            position: relative;
+            right: -5px;
+        }
+        .slider-input__min {
+            position: relative;
+            left: -5px;
+        }
         input {
             &::-webkit-slider-thumb,
             & {
