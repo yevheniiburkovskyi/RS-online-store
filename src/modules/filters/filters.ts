@@ -1,4 +1,3 @@
-// import { startRouting } from '../router/router';
 import { routes } from '../router/routes';
 import filterData from '../services/filterCards';
 
@@ -7,11 +6,11 @@ function filters() {
   const queryUrl = url.search;
   const searchParams = new URLSearchParams(queryUrl);
   function parseQuery() {
-    const queryArr: string[] = [];
+    const queryArr: string[] = [''];
     searchParams.forEach((item) => {
       queryArr.push(item);
     });
-    return filterData(...queryArr);
+    filterData(...queryArr);
   }
 
   function changeUrl(topic: string, ...queryArr: string[]) {
@@ -34,7 +33,7 @@ function filters() {
       inputArea.value = searchParams.get('search') as string;
     }
     inputArea?.addEventListener('input', () => {
-      inputArea.value = inputArea.value.replace(/[^a-z0-9]/, '');
+      inputArea.value = inputArea.value.replace(/[^a-zA-Z0-9]/, '');
       changeUrl('search', inputArea.value);
       parseQuery();
     });

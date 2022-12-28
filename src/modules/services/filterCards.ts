@@ -2,9 +2,10 @@ function filterData(...queryArr: string[]) {
   let productsArr: Array<HTMLLinkElement> = [
     ...(document.querySelectorAll('.products__item') as NodeListOf<HTMLLinkElement>),
   ];
+  const productsCount = document.querySelector('.products__bar-total-count') as HTMLParagraphElement;
   const productsList = document.querySelector('.products__list') as HTMLUListElement;
   const charArr = ['title', 'description', 'price', 'rating', 'stock', 'brand', 'category'];
-  const sortParams = ['price-ASC', 'price-DESC'];
+  const sortParams = ['price-ASC', 'price-DESC', 'rating-ASC', 'rating-DESC'];
   const sortParam = sortParams.filter((param) => {
     if (queryArr.find((query) => query === param)) {
       return param;
@@ -22,7 +23,7 @@ function filterData(...queryArr: string[]) {
     if (strArr.length < 1) {
       return dataArr;
     }
-    const resArr: Array<HTMLLinkElement> = [];
+    let resArr: Array<HTMLLinkElement> = [];
     const pattern = new RegExp(strArr[0], 'ig');
     dataArr.forEach((product) => {
       charArr.forEach((char) => {
@@ -31,17 +32,18 @@ function filterData(...queryArr: string[]) {
         }
       });
     });
-
+    resArr = [...new Set(resArr)];
     dataArr.forEach((product) => {
-      if (resArr.some((item) => item === product)) {
+      if (resArr.find((item) => item === product)) {
         product.style.display = 'grid';
       } else {
         product.style.display = 'none';
       }
     });
     productsArr = resArr;
-    matchArr.splice(0, 1);
-    return recursiveFilter(matchArr, productsArr);
+    strArr.splice(0, 1);
+    productsCount.textContent = `Found: ${resArr.length} of ${dataArr.length}`;
+    return recursiveFilter(strArr, productsArr);
   }
   recursiveFilter(matchArr, productsArr);
 }
@@ -53,6 +55,12 @@ function sortProducts(arr: Array<HTMLLinkElement>, param?: string) {
       break;
     case 'price-DESC':
       arr.sort((a, b) => Number(b.dataset.price) - Number(a.dataset.price));
+      break;
+    case 'rating-ASC':
+      arr.sort((a, b) => Number(a.dataset.rating) - Number(b.dataset.rating));
+      break;
+    case 'rating-DESC':
+      arr.sort((a, b) => Number(b.dataset.rating) - Number(a.dataset.rating));
       break;
     default:
       arr.sort((a, b) => Number(a.dataset.price) - Number(b.dataset.price));
