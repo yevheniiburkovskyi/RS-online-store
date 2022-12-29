@@ -11,6 +11,8 @@ function filters() {
       queryArr.push(item);
     });
     filterData(...queryArr);
+    (document.querySelector('#page-menu > a') as HTMLLinkElement).href = window.location.href;
+    routes[window.location.href] = (document.querySelector('.products') as HTMLDivElement).outerHTML;
   }
 
   function changeUrl(topic: string, ...queryArr: string[]) {
@@ -19,10 +21,8 @@ function filters() {
     });
     if (queryArr.length === 1 && queryArr[0] === '') {
       searchParams.delete(topic);
-      window.history.pushState({}, '', `.`);
-    } else {
-      window.history.pushState({}, '', `?${searchParams.toString()}`);
     }
+    window.history.pushState({}, '', `?${searchParams.toString()}`);
   }
 
   function startSearch() {
@@ -86,8 +86,6 @@ function filters() {
     startSearch();
     startSort();
     startPosition();
-    (document.querySelector('#page-menu > a') as HTMLLinkElement).href = window.location.href;
-    routes[window.location.href] = (document.querySelector('.products') as HTMLDivElement).outerHTML;
   }
 }
 
