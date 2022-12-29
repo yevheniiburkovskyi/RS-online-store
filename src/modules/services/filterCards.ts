@@ -6,19 +6,28 @@ function filterData(...queryArr: string[]) {
   const productsList = document.querySelector('.products__list') as HTMLUListElement;
   const charArr = ['title', 'description', 'price', 'rating', 'stock', 'brand', 'category'];
   const sortParams = ['price-ASC', 'price-DESC', 'rating-ASC', 'rating-DESC'];
-  const sortParam = sortParams.filter((param) => {
-    if (queryArr.find((query) => query === param)) {
-      return param;
-    }
-  })[0];
-
+  const gridParams = ['grid-3', 'grid-4', 'grid-5'];
+  const sortParam = sortParams
+    .filter((param) => {
+      if (queryArr.find((query) => query === param)) {
+        return param;
+      }
+    })
+    .join('');
+  const gridParam = gridParams
+    .filter((param) => {
+      if (queryArr.find((query) => query === param)) {
+        return param;
+      }
+    })
+    .join('');
   productsArr = sortProducts(productsArr, sortParam);
+  productsList.style.cssText = `grid-template-columns: repeat(${gridParam.match(/\d/gi)?.join('')},1fr);`;
   productsList.innerHTML = '';
   productsArr.forEach((productCard) => {
     productsList.append(productCard);
   });
-  const matchArr = queryArr.filter((char) => !sortParams.find((item) => item === char));
-
+  const matchArr = queryArr.filter((char) => char !== sortParam && char != gridParam);
   function recursiveFilter(strArr: string[], dataArr: Array<HTMLLinkElement>): Array<HTMLLinkElement> {
     if (strArr.length < 1) {
       return dataArr;
