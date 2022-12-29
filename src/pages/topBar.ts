@@ -5,15 +5,37 @@ function createTopBar(data: IProduct[]) {
   const row = generateElement('div', 'products__bar');
   const totalCount = generateElement('p', 'products__bar-total-count');
   const sortBuntns = generateElement('div', 'products__bar-sort');
-
-  totalCount.innerHTML = `Showing: ${data.length}`;
+  const positionRow = generateElement('div', 'products__bar-position-row');
+  positionRow.id = 'position-select';
+  totalCount.innerHTML = `Found: ${data.length} of ${data.length}`;
   sortBuntns.innerHTML = `
-  <select id="sort-select" class="products__bar-sort">
-    <option value="value1">Значение 1</option>
-    <option value="value2" selected>Значение 2</option>
+  <select id="sort-select" class="products__bar-sort-select">
+    <option value="price-ASC" selected>Sort by price: low to high</option>
+    <option value="price-DESC">Sort by price: high to low</option>
+    <option value="rating-ASC" selected>Sort by rating: low to high</option>
+    <option value="rating-DESC">Sort by rating: high to low</option>
   </select>
   `;
-  const positionRow = generateElement('div', 'products__bar-position-row');
+  positionRow.innerHTML = `
+  <div class="products__bar-position-row-3" data-position="grid-3">
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+  <div class="products__bar-position-row-4 products__bar-position-row-active" data-position="grid-4">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+  <div class="products__bar-position-row-5" data-position="grid-5">
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
+  `;
   row.append(totalCount, sortBuntns, positionRow);
   return row;
 }

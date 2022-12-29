@@ -2,8 +2,8 @@ import { route } from './router/router';
 
 function startEvents() {
   const productsBlock = document.querySelector('.products__list');
-  const menu = document.querySelector('#page-menu') as HTMLDivElement;
-  menu?.addEventListener('click', route);
+  const catalogBtn = document.querySelector('#catalog-link') as HTMLDivElement;
+  catalogBtn?.addEventListener('click', route);
   productsBlock?.addEventListener('click', (e) => {
     e.preventDefault();
     const target = e.target as HTMLElement;

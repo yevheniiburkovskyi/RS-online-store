@@ -27,7 +27,10 @@
         "@typescript-eslint/no-explicit-any": 2,
         "indent": [
             "error",
-            2
+            2,
+            {
+                "SwitchCase": 1
+            }
         ],
         "prettier/prettier": [
             "error",
