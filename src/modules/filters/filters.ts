@@ -31,7 +31,6 @@ function filters() {
       inputArea.value = searchParams.get('search') as string;
     }
     inputArea?.addEventListener('input', () => {
-      inputArea.value = inputArea.value.replace(/[^a-zA-Z0-9]/, '');
       changeUrl('search', inputArea.value);
       parseQuery();
     });
