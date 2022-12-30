@@ -7,7 +7,8 @@ import createTopBar from './topBar';
 function mainPage(data: Array<IProduct>) {
   const products = generateElement('section', 'products');
   const productsList = generateElement('ul', 'products__list');
-
+  const emptyList = generateElement('div', 'empty__list');
+  emptyList.textContent = 'No products found';
   data.forEach((product: IProduct) => {
     productsList.innerHTML += `
           <a href="/${product.category}/${product.id}" class="products__item" data-title = "${product.title}"
@@ -18,7 +19,7 @@ function mainPage(data: Array<IProduct>) {
             <p class="products__item-price">${product.price}$</p>
           </a>`;
   });
-  products.append(productsList, createFiltersBlock(), createTopBar(data));
+  products.append(emptyList, productsList, createFiltersBlock(), createTopBar(data));
   showDetails(products, productsList, data);
 }
 export default mainPage;

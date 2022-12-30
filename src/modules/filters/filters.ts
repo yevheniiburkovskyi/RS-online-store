@@ -152,6 +152,36 @@ function filters() {
     });
   }
 
+  function copyFilters() {
+    const copyBtn = document.querySelector('.filters-btns-block__copy-link-btn') as HTMLButtonElement;
+    const copyBtnText = copyBtn.textContent;
+    copyBtn.addEventListener('click', () => {
+      window.navigator.clipboard.writeText(window.location.href);
+      copyBtn.textContent = 'Сopied';
+      setTimeout(() => {
+        copyBtn.textContent = copyBtnText;
+      }, 500);
+    });
+  }
+
+  function resetFilters() {
+    const resetBtn = document.querySelector('.filters-btns-block__reset-btn') as HTMLButtonElement;
+    const resetBtnText = resetBtn.textContent;
+    resetBtn.addEventListener('click', () => {
+      searchParams.forEach((item, key) => {
+        searchParams.delete(key);
+      });
+      window.history.pushState({}, '', `.`);
+      (document.querySelector('#page-menu > a') as HTMLLinkElement).href = window.location.href;
+      routes[window.location.href] = (document.querySelector('.products') as HTMLDivElement).outerHTML;
+      (document.querySelector('#page-menu > a') as HTMLLinkElement).click();
+      resetBtn.textContent = 'Reseted';
+      setTimeout(() => {
+        resetBtn.textContent = resetBtnText;
+      }, 500);
+    });
+  }
+
   if (document.querySelector('.products')) {
     parseQuery();
     startSearch();
@@ -160,6 +190,8 @@ function filters() {
     startCategory();
     startBrand();
     startPrice();
+    copyFilters();
+    resetFilters();
   }
 }
 

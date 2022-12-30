@@ -6,6 +6,10 @@ function filterData(queryObj: IQuery) {
     ...(document.querySelectorAll('.products__item') as NodeListOf<HTMLLinkElement>),
   ];
   const productsList = document.querySelector('.products__list') as HTMLUListElement;
+  const emptyList = document.querySelector('.empty__list') as HTMLDivElement;
+
+  productsList.style.display = 'grid';
+  emptyList.style.display = 'none';
 
   let searchArr: HTMLLinkElement[] = [];
 
@@ -95,6 +99,15 @@ function filterData(queryObj: IQuery) {
       }
     });
     searchArr = matchArr;
+  }
+
+  (
+    document.querySelector('.products__bar-total-count') as HTMLParagraphElement
+  ).textContent = `Found: ${searchArr.length} of ${productsArr.length}`;
+
+  if (searchArr.length === 0) {
+    productsList.style.display = 'none';
+    emptyList.style.display = 'flex';
   }
 }
 
