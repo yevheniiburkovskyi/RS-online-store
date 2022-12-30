@@ -17,18 +17,18 @@ function createTopBar(data: IProduct[]) {
   </select>
   `;
   positionRow.innerHTML = `
-  <div class="products__bar-position-row-3" data-position="grid-3">
+  <div class="products__bar-position-row-3" data-position="3">
     <p></p>
     <p></p>
     <p></p>
   </div>
-  <div class="products__bar-position-row-4 products__bar-position-row-active" data-position="grid-4">
+  <div class="products__bar-position-row-4 products__bar-position-row-active" data-position="4">
     <p></p>
     <p></p>
     <p></p>
     <p></p>
   </div>
-  <div class="products__bar-position-row-5" data-position="grid-5">
+  <div class="products__bar-position-row-5" data-position="5">
     <p></p>
     <p></p>
     <p></p>

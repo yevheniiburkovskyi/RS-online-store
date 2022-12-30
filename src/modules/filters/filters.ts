@@ -1,6 +1,7 @@
 import { updateFilters } from '../../pages/filtersPage';
+import { IQuery } from '../../types/types';
 import { routes } from '../router/routes';
-import filterData from '../services/filterCards';
+import filterData from './filterCards';
 
 function filters() {
   const url = new URL(window.location.href);
@@ -8,11 +9,11 @@ function filters() {
   const searchParams = new URLSearchParams(queryUrl);
 
   function parseQuery() {
-    const queryArr: string[] = [' '];
-    searchParams.forEach((item) => {
-      queryArr.push(item);
+    const queryObj: IQuery = {};
+    searchParams.forEach((item, key) => {
+      queryObj[key] = item;
     });
-    filterData(...queryArr);
+    filterData(queryObj);
     (document.querySelector('#page-menu > a') as HTMLLinkElement).href = window.location.href;
     routes[window.location.href] = (document.querySelector('.products') as HTMLDivElement).outerHTML;
     updateFilters();
@@ -86,17 +87,79 @@ function filters() {
     });
   }
 
-  // function startCategory() {
-  //   const categoryBlock = document.querySelector('categoryBlock') as NodeListOf<HTMLInputElement>;
-  //   console.log(categoryContainer);
-  // }
+  function startCategory() {
+    const categoryInputs = document.querySelectorAll('.category-input') as NodeListOf<HTMLInputElement>;
+    if (searchParams.has('category')) {
+      const categoryParam = (searchParams.get('category') as string)?.split('↕');
+      categoryInputs.forEach((item) => {
+        if (categoryParam.includes(item.value)) {
+          item.checked = true;
+        } else {
+          item.checked = false;
+        }
+      });
+    }
+    categoryInputs.forEach((input) => {
+      input.addEventListener('change', () => {
+        const categoriesArr: string[] = [];
+        categoryInputs.forEach((item) => {
+          if (item.checked) {
+            categoriesArr.push(item.value);
+          }
+        });
+        changeUrl('category', categoriesArr.join('↕'));
+        parseQuery();
+      });
+    });
+  }
+
+  function startBrand() {
+    const categoryInputs = document.querySelectorAll('.brand-input') as NodeListOf<HTMLInputElement>;
+    if (searchParams.has('brand')) {
+      const categoryParam = (searchParams.get('brand') as string)?.split('↕');
+      categoryInputs.forEach((item) => {
+        if (categoryParam.includes(item.value)) {
+          item.checked = true;
+        } else {
+          item.checked = false;
+        }
+      });
+    }
+
+    categoryInputs.forEach((input) => {
+      input.addEventListener('change', () => {
+        const categoriesArr: string[] = [];
+        categoryInputs.forEach((item) => {
+          if (item.checked) {
+            categoriesArr.push(item.value);
+          }
+        });
+        changeUrl('brand', categoriesArr.join('↕'));
+        parseQuery();
+      });
+    });
+  }
+
+  function startPrice() {
+    const categoryInputs = document.querySelectorAll('.slider-input') as NodeListOf<HTMLLinkElement>;
+    categoryInputs.forEach((input) => {
+      input.addEventListener('input', () => {
+        const minPrice = (document.querySelector('#minPriceProp') as HTMLDivElement).textContent?.replace(' $', '');
+        const maxPrice = (document.querySelector('#maxPriceProp') as HTMLDivElement).textContent?.replace(' $', '');
+        changeUrl('price', `${minPrice}↕${maxPrice}`);
+        parseQuery();
+      });
+    });
+  }
 
   if (document.querySelector('.products')) {
     parseQuery();
     startSearch();
     startSort();
     startPosition();
-    // startCategory();
+    startCategory();
+    startBrand();
+    startPrice();
   }
 }
 
