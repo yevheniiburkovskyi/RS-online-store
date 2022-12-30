@@ -13,6 +13,7 @@
 }
 
 .modal-content {
+    position: relative;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -27,6 +28,31 @@
     margin-left: auto;
     margin-right: auto;
     background-color: $main-white;
+    .modal-cross-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        &__line1,
+        &__line2 {
+            width: 20px;
+            height: 2px;
+            background-color: $main-black-deep;
+            position: absolute;
+            margin-top: 9px;
+            transition: 300ms;
+            transform: rotate(45deg);
+        }
+        &__line2 {
+            transform: rotate(-45deg);
+        }
+    }
+    .modal-cross-btn:hover .modal-cross-btn__line1,
+    .modal-cross-btn:hover .modal-cross-btn__line2  {
+        background-color: $main-gold;
+    }
     &__title {
         font-weight: bold;
     }
@@ -76,6 +102,9 @@
         flex-direction: column;
         align-items: center;
         row-gap: 10px;
+        input {
+            text-align: center;
+        }
     }
 }
 
