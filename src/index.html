@@ -41,7 +41,7 @@
         <form class="modal-content">
           <p class="modal-content__title">Personal details</p>
           <input type="text" class="modal-content__input" id="modalInputName" placeholder="Name *" pattern="\b([A-ZÀ-ÿ][-,a-z. '][-,a-z. ']+[ ]+[A-ZÀ-ÿ][-,a-z. '][-,a-z. ']+([A-ZÀ-ÿ][-,a-z. '][-,a-z. '])*)">
-          <input type="tel" class="modal-content__input" id="modalInputTel" placeholder="Phone number *" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+          <input type="tel" class="modal-content__input" id="modalInputTel" placeholder="Phone number *" minlength="10" pattern=".{10,}">
           <input type="text" class="modal-content__input" placeholder="Delivery address *">
           <input type="email" class="modal-content__input" placeholder="E-mail *">
           <p class="modal-content__title">Credit card details</p>

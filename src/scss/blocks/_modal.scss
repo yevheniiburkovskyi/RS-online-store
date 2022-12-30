@@ -40,6 +40,12 @@
     &__input:invalid {
         border-color: $color-red-sale-icon;
     }
+    // .tel-span {
+    //     position: absolute;
+    // }
+    // &__input:invalid+.tel-span::after {
+    //     content: 'wrong';
+    // }
     &__input:focus {
         border-color: $main-gold;
     }

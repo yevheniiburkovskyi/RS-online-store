@@ -20,9 +20,12 @@ function validateName() {
 }
 function validateTel(eventTarget: EventTarget) {
   inputTel.required = true;
-  inputTel.value = '+';
+  if (!inputTel.value) {
+    inputTel.value = '+';
+  }
   inputTel.addEventListener('input', () => {
-    (eventTarget as HTMLInputElement).value = (eventTarget as HTMLInputElement).value.replace(/[^+\d]/g, '');
+    (eventTarget as HTMLInputElement).value = (eventTarget as HTMLInputElement).value.replace(/[^\d]/g, '');
+    (eventTarget as HTMLInputElement).value = `+${(eventTarget as HTMLInputElement).value}`;
   });
 }
 
