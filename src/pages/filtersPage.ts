@@ -105,6 +105,10 @@ function updateFilters() {
   countsArr.forEach((e) => {
     e.innerHTML = '0';
   });
+  const brandCountsArr = document.querySelectorAll('.brand-items-counter');
+  brandCountsArr.forEach((e) => {
+    e.innerHTML = '0';
+  });
 
   const prodArr = document.querySelectorAll('.products__item');
   const shownArr: Array<HTMLElement> = [];
@@ -170,6 +174,13 @@ function updateFilters() {
       (e.parentNode as HTMLElement).classList.add('category-block__item_out-of-stock');
     } else {
       (e.parentNode as HTMLElement).classList.remove('category-block__item_out-of-stock');
+    }
+  });
+  brandCountsArr.forEach((e) => {
+    if (e.textContent === '0') {
+      (e.parentNode as HTMLElement).classList.add('brand-block__item_out-of-stock');
+    } else {
+      (e.parentNode as HTMLElement).classList.remove('brand-block__item_out-of-stock');
     }
   });
 }
