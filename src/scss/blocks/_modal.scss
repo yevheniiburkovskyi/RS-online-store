@@ -105,12 +105,17 @@
         input {
             text-align: center;
         }
+        .credit-block__number-line {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
     }
 }
 
 .credit-block__icon {
     height: 30px;
-    width: 40px;
+    width: 45px;
 }
 
 input::-webkit-outer-spin-button,
