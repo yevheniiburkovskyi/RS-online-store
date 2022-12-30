@@ -15,8 +15,8 @@ function createFiltersBlock() {
       <div class="category-block__title">Category</div>
     </div>
     <div class="filters-block__line"></div>
-    <div class="category-block" id="brandBlock">
-      <div class="category-block__title">Brand</div>
+    <div class="brand-block" id="brandBlock">
+      <div class="brand-block__title">Brand</div>
     </div>
     <div class="filters-block__line"></div>
     <div class="category-block">
@@ -116,9 +116,8 @@ function updateFilters() {
   shownArr.forEach((e) => {
     const count = +((document.getElementById(`category${e.getAttribute('data-category')}Count`) as HTMLSpanElement)
       .textContent as string);
-    (document.getElementById(`category${e.getAttribute('data-category')}Count`) as HTMLElement).innerHTML = `${
-      count + 1
-    }`;
+    (document.getElementById(`category${e.getAttribute('data-category')}Count`) as HTMLElement).innerHTML = `
+    ${count + 1}`;
   });
   shownArr.forEach((e) => {
     const count = +((document.getElementById(`brand${e.getAttribute('data-brand')}Count`) as HTMLSpanElement)

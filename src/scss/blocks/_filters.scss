@@ -50,7 +50,8 @@
     }
 }
 
-.category-block {
+.category-block,
+.brand-block {
     display: flex;
     flex-direction: column;
     width: 250px;
@@ -62,7 +63,9 @@
     }
     &__item {
         margin-top: 20px;
-        .category-input {
+        cursor: pointer;
+        .category-input,
+        .brand-input {
             cursor: pointer;
             margin-right: 10px;
         }

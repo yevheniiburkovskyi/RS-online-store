@@ -1,3 +1,4 @@
+import { updateFilters } from '../../pages/filtersPage';
 import { routes } from '../router/routes';
 import filterData from '../services/filterCards';
 
@@ -5,14 +6,16 @@ function filters() {
   const url = new URL(window.location.href);
   const queryUrl = url.search;
   const searchParams = new URLSearchParams(queryUrl);
+
   function parseQuery() {
-    const queryArr: string[] = [''];
+    const queryArr: string[] = [' '];
     searchParams.forEach((item) => {
       queryArr.push(item);
     });
     filterData(...queryArr);
     (document.querySelector('#page-menu > a') as HTMLLinkElement).href = window.location.href;
     routes[window.location.href] = (document.querySelector('.products') as HTMLDivElement).outerHTML;
+    updateFilters();
   }
 
   function changeUrl(topic: string, ...queryArr: string[]) {
@@ -23,6 +26,9 @@ function filters() {
       searchParams.delete(topic);
     }
     window.history.pushState({}, '', `?${searchParams.toString()}`);
+    if (!searchParams.toString()) {
+      window.history.pushState({}, '', `.`);
+    }
   }
 
   function startSearch() {
@@ -80,11 +86,17 @@ function filters() {
     });
   }
 
+  // function startCategory() {
+  //   const categoryBlock = document.querySelector('categoryBlock') as NodeListOf<HTMLInputElement>;
+  //   console.log(categoryContainer);
+  // }
+
   if (document.querySelector('.products')) {
     parseQuery();
     startSearch();
     startSort();
     startPosition();
+    // startCategory();
   }
 }
 
