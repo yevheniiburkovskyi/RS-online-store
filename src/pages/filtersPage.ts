@@ -11,12 +11,12 @@ function createFiltersBlock() {
       <button class='filters-btns-block__copy-link-btn'>Copy Link</button>
     </div>
     <div class="filters-block__line"></div>
+    <div class="category-block__title">Category</div>
     <div class="category-block" id="categoryBlock">
-      <div class="category-block__title">Category</div>
     </div>
     <div class="filters-block__line"></div>
+    <div class="brand-block__title">Brand</div>
     <div class="brand-block" id="brandBlock">
-      <div class="brand-block__title">Brand</div>
     </div>
     <div class="filters-block__line"></div>
     <div class="category-block">
@@ -127,46 +127,6 @@ function updateFilters() {
     const count = +((document.getElementById(`brand${e.getAttribute('data-brand')}Count`) as HTMLSpanElement)
       .textContent as string);
     (document.getElementById(`brand${e.getAttribute('data-brand')}Count`) as HTMLElement).innerHTML = `${count + 1}`;
-  });
-
-  const priceArray = getPricesArray('price', shownArr);
-  (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = `${priceArray[priceArray.length - 1]} $`;
-  (document.getElementById('maxPrice') as HTMLElement).setAttribute('max', `${priceArray.length - 1}`);
-  (document.getElementById('minPrice') as HTMLElement).setAttribute('max', `${priceArray.length - 1}`);
-  (document.getElementById('minPriceProp') as HTMLElement).innerHTML = `${priceArray[0]} $`;
-
-  const stockArray = getPricesArray('stock', shownArr);
-  (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${stockArray[stockArray.length - 1]}`;
-  (document.getElementById('maxStock') as HTMLElement).setAttribute('max', `${stockArray.length - 1}`);
-  (document.getElementById('minStock') as HTMLElement).setAttribute('max', `${stockArray.length - 1}`);
-  (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${stockArray[0]}`;
-  // (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${stockArray[stockArray.length - 1]}`;
-  (document.getElementById('maxStock') as HTMLElement).setAttribute('value', `${stockArray.length - 1}`);
-  (document.getElementById('minStock') as HTMLElement).setAttribute('max', `${stockArray.length - 1}`);
-  // (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${stockArray[0]}`;
-
-  addEventListener('input', (event) => {
-    const eventTarget: HTMLInputElement = event.target as HTMLInputElement;
-    if (eventTarget.classList.contains('slider-input')) {
-      const targetId = eventTarget.id;
-      if (targetId === 'maxPrice' || targetId === 'maxStock') {
-        if (+eventTarget.value <= +(eventTarget.previousElementSibling as HTMLInputElement).value) {
-          eventTarget.value = `${+(eventTarget.previousElementSibling as HTMLInputElement).value}`;
-        }
-      }
-      if (targetId === 'minPrice' || targetId === 'minStock') {
-        if (+eventTarget.value >= +(eventTarget.nextElementSibling as HTMLInputElement).value) {
-          eventTarget.value = `${+(eventTarget.nextElementSibling as HTMLInputElement).value}`;
-        }
-      }
-      const i = +eventTarget.value;
-      if (targetId === 'maxPrice' || targetId === 'minPrice') {
-        (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = `${priceArray[i]} $`;
-      }
-      if (targetId === 'maxStock' || targetId === 'minStock') {
-        (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = `${stockArray[i]}`;
-      }
-    }
   });
 
   countsArr.forEach((e) => {
