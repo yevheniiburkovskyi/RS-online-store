@@ -2,6 +2,8 @@ const inputTel = document.getElementById('modalInputTel') as HTMLInputElement;
 const inputCvv = document.getElementById('modalInputCvv') as HTMLInputElement;
 const inputCardNum = document.getElementById('modalInputCardNum') as HTMLInputElement;
 const inputCardDate = document.getElementById('modalCardDate') as HTMLInputElement;
+const modalWindow = document.querySelector('.modal-container') as HTMLInputElement;
+const modalCrossBtn = document.querySelector('.modal-cross-btn') as HTMLInputElement;
 
 function modaleValidateEvent() {
   const modalContainer = document.querySelector('.modal-container');
@@ -78,6 +80,23 @@ inputCardDate.addEventListener('input', () => {
   if (inputCardDate.value.length === 4 && inputCardDate.value[2] !== '/') {
     inputCardDate.value = `${inputCardDate.value[0]}${inputCardDate.value[1]}/${inputCardDate.value[2]}${inputCardDate.value[3]}`;
   }
+});
+
+modalCrossBtn.addEventListener('click', () => {
+  modalWindow.classList.toggle('modal-container_hide');
+  const inputArr = document.querySelectorAll('.modal-content__input');
+  inputArr.forEach((e) => {
+    (e as HTMLInputElement).required = false;
+    (e as HTMLInputElement).value = ``;
+  });
+});
+(document.querySelector('.store-logo') as HTMLElement).addEventListener('click', () => {
+  modalWindow.classList.toggle('modal-container_hide');
+  const inputArr = document.querySelectorAll('.modal-content__input');
+  inputArr.forEach((e) => {
+    (e as HTMLInputElement).required = false;
+    (e as HTMLInputElement).value = ``;
+  });
 });
 
 export default modaleValidateEvent;
