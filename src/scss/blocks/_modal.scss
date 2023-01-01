@@ -127,6 +127,26 @@
 .credit-block__icon {
     height: 30px;
     width: 45px;
+    background-image: $card-logo;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.credit-block__icon_aexpress {
+    background-image: $card-aexpres;
+}
+
+.credit-block__icon_visa {
+    background-image: $card-visa;
+}
+
+.credit-block__icon_mcard {
+    background-image: $card-mc;
+}
+
+.credit-block__icon_up {
+    background-image: $card-up;
 }
 
 input::-webkit-outer-spin-button,
