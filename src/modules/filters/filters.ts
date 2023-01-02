@@ -143,10 +143,22 @@ function filters() {
   function startPrice() {
     const categoryInputs = document.querySelectorAll('.slider-input') as NodeListOf<HTMLLinkElement>;
     categoryInputs.forEach((input) => {
-      input.addEventListener('input', () => {
+      input.addEventListener('change', () => {
         const minPrice = (document.querySelector('#minPriceProp') as HTMLDivElement).textContent?.replace(' $', '');
         const maxPrice = (document.querySelector('#maxPriceProp') as HTMLDivElement).textContent?.replace(' $', '');
         changeUrl('price', `${minPrice}↕${maxPrice}`);
+        parseQuery();
+      });
+    });
+  }
+
+  function startStock() {
+    const categoryInputs = document.querySelectorAll('.slider-input') as NodeListOf<HTMLLinkElement>;
+    categoryInputs.forEach((input) => {
+      input.addEventListener('change', () => {
+        const minStock = (document.querySelector('#minStockProp') as HTMLDivElement).textContent;
+        const maxStock = (document.querySelector('#maxStockProp') as HTMLDivElement).textContent;
+        changeUrl('stock', `${minStock}↕${maxStock}`);
         parseQuery();
       });
     });
@@ -190,6 +202,7 @@ function filters() {
     startCategory();
     startBrand();
     startPrice();
+    startStock();
     copyFilters();
     resetFilters();
   }

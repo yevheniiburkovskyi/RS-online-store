@@ -101,6 +101,25 @@ function filterData(queryObj: IQuery) {
     searchArr = matchArr;
   }
 
+  if (queryMap.has('stock')) {
+    const stockArr = queryMap.get('stock')?.split('↕') as Array<string>;
+    const matchArr: HTMLLinkElement[] = [];
+    searchArr.forEach((product) => {
+      const currentPrice = Number(product.dataset['stock']) as number;
+      if (currentPrice >= +stockArr[0] && currentPrice <= +stockArr[1]) {
+        matchArr.push(product);
+      }
+    });
+    searchArr.forEach((product) => {
+      if (matchArr.includes(product)) {
+        product.style.display = 'grid';
+      } else {
+        product.style.display = 'none';
+      }
+    });
+    searchArr = matchArr;
+  }
+
   (
     document.querySelector('.products__bar-total-count') as HTMLParagraphElement
   ).textContent = `Found: ${searchArr.length} of ${productsArr.length}`;

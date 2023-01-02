@@ -14,7 +14,7 @@ function mainPage(data: Array<IProduct>) {
           <a href="/${product.category}/${product.id}" class="products__item" data-title = "${product.title}"
           data-description = "${product.description}" data-price ="${product.price}" data-rating ="${product.rating}"
           data-stock ="${product.stock}" data-brand ="${product.brand}" data-category ="${product.category}">
-            <img src="${product.images[0]}" alt="${product.title}" class="products__item-img">
+            <img src="${product.images[0]}" alt="${product.title}" class="products__item-img" loading="lazy">
             <h3 class="products__item-title">${product.title}</h3>
             <p class="products__item-price">${product.price}$</p>
           </a>`;
