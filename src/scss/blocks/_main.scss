@@ -1,3 +1,19 @@
+@mixin cardBtns {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: $color-gray-placeholder;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $main-black-deep;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    color: $main-gold;
+  }
+}
 .products {
   display: grid;
   grid-template-columns: 1fr 3fr;
@@ -24,12 +40,39 @@
     height: 290px;
     position: relative;
     z-index: 10;
-    cursor: pointer;
+    &-container {
+      position: relative;
+    }
+    &-background {
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      transition: all 0.2s;
+      &:hover {
+        background-color: $color-bg-half-transparent;
+      }
+    }
+    &-row {
+      display: flex;
+      column-gap: 20px;
+      position: absolute;
+      bottom: -50%;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      transition: all 0.2s;
+      &-cartBtn {
+        @include cardBtns;
+      }
+      &-detailsBtn {
+        @include cardBtns;
+      }
+    }
     &-img {
       align-self: flex-start;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
     &-title {
       font-size: 1.1rem;
@@ -37,6 +80,8 @@
       text-align: center;
       align-self: flex-end;
       transition: all 0.2s;
+      user-select: none;
+      cursor: pointer;
       &:hover {
         color: $main-gold;
       }

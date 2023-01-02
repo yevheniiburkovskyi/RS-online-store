@@ -1,5 +1,5 @@
-import generateElement from '../modules/services/generateElement';
-import { IProduct } from '../types/types';
+import generateElement from '../../modules/services/generateElement';
+import { IProduct } from '../../types/types';
 
 function createTopBar(data: IProduct[]) {
   const row = generateElement('div', 'products__bar');

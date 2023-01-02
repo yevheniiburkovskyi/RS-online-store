@@ -1,7 +1,6 @@
-import '../scss/style.scss';
-import generateElement from '../modules/services/generateElement';
-import createFiltersElements from '../modules/services/createFiltersElements';
-import { getPricesArray } from '../modules/services/getPricesArray';
+import generateElement from '../../modules/services/generateElement';
+import createFiltersElements from '../../modules/services/createFiltersElements';
+import { getPricesArray } from '../../modules/services/getPricesArray';
 
 function createFiltersBlock() {
   const filters = generateElement('aside', 'products__filter');

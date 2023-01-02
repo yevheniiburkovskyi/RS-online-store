@@ -1,4 +1,4 @@
-import { updateFilters } from '../../pages/filtersPage';
+import { updateFilters } from '../../pages/mainPage/filtersBar';
 import { IQuery } from '../../types/types';
 import { routes } from '../router/routes';
 import filterData from './filterCards';
