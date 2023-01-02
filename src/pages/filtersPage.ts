@@ -79,22 +79,32 @@ function generateCategories() {
     const eventTarget: HTMLInputElement = event.target as HTMLInputElement;
     if (eventTarget.classList.contains('slider-input')) {
       const targetId = eventTarget.id;
-      if (targetId === 'maxPrice' || targetId === 'maxStock') {
-        if (+eventTarget.value <= +(eventTarget.previousElementSibling as HTMLInputElement).value) {
-          eventTarget.value = `${+(eventTarget.previousElementSibling as HTMLInputElement).value}`;
-        }
+      const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
+      const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
+      const maxPriceOutput = document.getElementById('maxPriceProp') as HTMLElement;
+      if (+maxPriceInput.value < +minPriceInput.value) {
+        (maxPriceOutput.parentNode as HTMLElement).classList.add('category-block__properties_reverse');
       }
-      if (targetId === 'minPrice' || targetId === 'minStock') {
-        if (+eventTarget.value >= +(eventTarget.nextElementSibling as HTMLInputElement).value) {
-          eventTarget.value = `${+(eventTarget.nextElementSibling as HTMLInputElement).value}`;
-        }
+      if (+maxPriceInput.value > +minPriceInput.value) {
+        (maxPriceOutput.parentNode as HTMLElement).classList.remove('category-block__properties_reverse');
+      }
+      const maxStockInput = document.getElementById('maxStock') as HTMLInputElement;
+      const minStockInput = document.getElementById('minStock') as HTMLInputElement;
+      const maxStockOutput = document.getElementById('maxStockProp') as HTMLElement;
+      if (+maxStockInput.value < +minStockInput.value) {
+        (maxStockOutput.parentNode as HTMLElement).classList.add('category-block__properties_reverse');
+      }
+      if (+maxStockInput.value > +minStockInput.value) {
+        (maxStockOutput.parentNode as HTMLElement).classList.remove('category-block__properties_reverse');
       }
       const i = +eventTarget.value;
       if (targetId === 'maxPrice' || targetId === 'minPrice') {
         (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = `${priceArray[i]} $`;
+        (document.getElementById(`${targetId}Prop`) as HTMLElement).dataset.price = `${priceArray[i]}`;
       }
       if (targetId === 'maxStock' || targetId === 'minStock') {
         (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = `${stockArray[i]}`;
+        (document.getElementById(`${targetId}Prop`) as HTMLElement).dataset.stock = `${stockArray[i]}`;
       }
     }
   });
@@ -143,6 +153,14 @@ function updateFilters() {
       (e.parentNode as HTMLElement).classList.remove('brand-block__item_out-of-stock');
     }
   });
+  const priceArray = getPricesArray('price', shownArr);
+  console.log(priceArray);
+  (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = `${priceArray[priceArray.length - 1]} $`;
+  (document.getElementById('minPriceProp') as HTMLElement).innerHTML = `${priceArray[0]} $`;
+
+  const stockArray = getPricesArray('stock', shownArr);
+  (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${stockArray[stockArray.length - 1]}`;
+  (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${stockArray[0]}`;
 }
 
 export { createFiltersBlock, generateCategories, updateFilters };

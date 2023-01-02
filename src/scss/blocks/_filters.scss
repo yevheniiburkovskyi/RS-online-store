@@ -83,6 +83,9 @@
         justify-content: space-around;
         margin-top: 5px;
     }
+    &__properties_reverse {
+        flex-direction: row-reverse;
+    }
     &__prop {
         width: 100px;
         text-align: center;
@@ -95,14 +98,6 @@
         overflow: hidden;
         position: relative;
         background: $gradient-bg-slider;
-        .slider-input {
-            position: relative;
-            right: -5px;
-        }
-        .slider-input__min {
-            position: relative;
-            left: -5px;
-        }
         input {
             &::-webkit-slider-thumb,
             & {
