@@ -21,7 +21,7 @@ function createFiltersBlock() {
     <div class="category-block">
       <div class="category-block__title">Price</div>
       <div class="category-block__properties">
-        <div class="category-block__prop" id="minPriceProp"></div><span>&lt;&gt;</span>
+        <div class="category-block__prop" id="minPriceProp"></div><span id="betPriceSpan">&lt;&gt;</span>
         <div class="category-block__prop" id="maxPriceProp"></div>
       </div>
       <div class="category-block__slider">
@@ -33,7 +33,7 @@ function createFiltersBlock() {
     <div class="category-block">
       <div class="category-block__title">Stock</div>
       <div class="category-block__properties">
-        <div class="category-block__prop" id="minStockProp"></div><span>&lt;&gt;</span>
+        <div class="category-block__prop" id="minStockProp"></div><span id="betStockSpan">&lt;&gt;</span>
         <div class="category-block__prop" id="maxStockProp"></div>
       </div>
       <div class="category-block__slider">
@@ -51,15 +51,19 @@ function generateCategories() {
 
   const priceArray = getPricesArray('price');
   (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = `${priceArray[priceArray.length - 1]} $`;
+  (document.getElementById('maxPriceProp') as HTMLElement).dataset.price = `${priceArray[priceArray.length - 1]}`;
   (document.getElementById('maxPrice') as HTMLElement).setAttribute('max', `${priceArray.length - 1}`);
   (document.getElementById('minPrice') as HTMLElement).setAttribute('max', `${priceArray.length - 1}`);
   (document.getElementById('minPriceProp') as HTMLElement).innerHTML = `${priceArray[0]} $`;
+  (document.getElementById('minPriceProp') as HTMLElement).dataset.price = `${priceArray[0]}`;
 
   const stockArray = getPricesArray('stock');
   (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${stockArray[stockArray.length - 1]}`;
+  (document.getElementById('maxStockProp') as HTMLElement).dataset.stock = `${stockArray[stockArray.length - 1]}`;
   (document.getElementById('maxStock') as HTMLElement).setAttribute('max', `${stockArray.length - 1}`);
   (document.getElementById('minStock') as HTMLElement).setAttribute('max', `${stockArray.length - 1}`);
   (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${stockArray[0]}`;
+  (document.getElementById('minStockProp') as HTMLElement).dataset.stock = `${stockArray[0]}`;
 
   document.querySelector('.cart-block__filters-icon')?.addEventListener('click', () => {
     document.querySelector('.filters-container')?.classList.toggle('filters-container_show');
@@ -77,7 +81,6 @@ function generateCategories() {
   addEventListener('input', (event) => {
     const eventTarget: HTMLInputElement = event.target as HTMLInputElement;
     if (eventTarget.classList.contains('slider-input')) {
-      const targetId = eventTarget.id;
       const maxPriceInput = document.getElementById('maxPrice') as HTMLInputElement;
       const minPriceInput = document.getElementById('minPrice') as HTMLInputElement;
       const maxPriceOutput = document.getElementById('maxPriceProp') as HTMLElement;
@@ -96,17 +99,74 @@ function generateCategories() {
       if (+maxStockInput.value > +minStockInput.value) {
         (maxStockOutput.parentNode as HTMLElement).classList.remove('category-block__properties_reverse');
       }
-      const i = +eventTarget.value;
-      if (targetId === 'maxPrice' || targetId === 'minPrice') {
-        (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = `${priceArray[i]} $`;
-        (document.getElementById(`${targetId}Prop`) as HTMLElement).dataset.price = `${priceArray[i]}`;
+
+      if (eventTarget === document.getElementById('minStock') || eventTarget === document.getElementById('maxStock')) {
+        const prodArr = document.querySelectorAll('.products__item');
+        const shownArr: Array<HTMLElement> = [];
+        prodArr.forEach((e) => {
+          if ((e as HTMLElement).getAttribute('style') === 'display: grid;') {
+            shownArr.push(e as HTMLElement);
+          }
+        });
+        const priceArray = getPricesArray('price', shownArr);
+        const priceArrayAll = getPricesArray('price');
+        const curMax = priceArray[priceArray.length - 1];
+        const curMin = priceArray[0];
+        (document.getElementById('maxPrice') as HTMLInputElement).value = `${priceArrayAll.indexOf(curMax)}`;
+        (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = `${curMax} $`;
+        (document.getElementById('minPrice') as HTMLInputElement).value = `${priceArrayAll.indexOf(curMin)}`;
+        (document.getElementById('minPriceProp') as HTMLElement).innerHTML = `${curMin} $`;
+        (document.getElementById('betPriceSpan') as HTMLElement).innerHTML = `&lt;&gt;`;
+        if (!curMax || !curMin) {
+          (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = ``;
+          (document.getElementById('minPriceProp') as HTMLElement).innerHTML = ``;
+          (document.getElementById('betPriceSpan') as HTMLElement).innerHTML = `Not found`;
+        }
       }
-      if (targetId === 'maxStock' || targetId === 'minStock') {
-        (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = `${stockArray[i]}`;
-        (document.getElementById(`${targetId}Prop`) as HTMLElement).dataset.stock = `${stockArray[i]}`;
+
+      if (eventTarget === document.getElementById('minPrice') || eventTarget === document.getElementById('maxPrice')) {
+        const prodArr = document.querySelectorAll('.products__item');
+        const shownArr: Array<HTMLElement> = [];
+        prodArr.forEach((e) => {
+          if ((e as HTMLElement).getAttribute('style') === 'display: grid;') {
+            shownArr.push(e as HTMLElement);
+          }
+        });
+        const stockArray = getPricesArray('stock', shownArr);
+        const stockArrayAll = getPricesArray('stock');
+        const curMax = stockArray[stockArray.length - 1];
+        const curMin = stockArray[0];
+        (document.getElementById('maxStock') as HTMLInputElement).value = `${stockArrayAll.indexOf(curMax)}`;
+        (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${curMax} $`;
+        (document.getElementById('minStock') as HTMLInputElement).value = `${stockArrayAll.indexOf(curMin)}`;
+        (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${curMin} $`;
+        (document.getElementById('betStockSpan') as HTMLElement).innerHTML = `&lt;&gt;`;
+        if (!curMax || !curMin) {
+          (document.getElementById('maxStockProp') as HTMLElement).innerHTML = ``;
+          (document.getElementById('minStockProp') as HTMLElement).innerHTML = ``;
+          (document.getElementById('betStockSpan') as HTMLElement).innerHTML = `Not found`;
+        }
       }
     }
   });
+}
+
+function changeInput(event: Event) {
+  const eventTarget: HTMLInputElement = event.target as HTMLInputElement;
+  const priceArray = getPricesArray('price');
+  const stockArray = getPricesArray('stock');
+  const i = +(eventTarget as HTMLInputElement).value;
+  const targetId = (eventTarget as HTMLInputElement).id;
+  if (targetId === 'maxPrice' || targetId === 'minPrice') {
+    (document.getElementById('betPriceSpan') as HTMLElement).innerHTML = `&lt;&gt;`;
+    (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = `${priceArray[i]} $`;
+    (document.getElementById(`${targetId}Prop`) as HTMLElement).dataset.price = `${priceArray[i]}`;
+  }
+  if (targetId === 'maxStock' || targetId === 'minStock') {
+    (document.getElementById('betStockSpan') as HTMLElement).innerHTML = `&lt;&gt;`;
+    (document.getElementById(`${targetId}Prop`) as HTMLElement).innerHTML = `${stockArray[i]}`;
+    (document.getElementById(`${targetId}Prop`) as HTMLElement).dataset.stock = `${stockArray[i]}`;
+  }
 }
 
 function updateFilters() {
@@ -152,14 +212,6 @@ function updateFilters() {
       (e.parentNode as HTMLElement).classList.remove('brand-block__item_out-of-stock');
     }
   });
-  const priceArray = getPricesArray('price', shownArr);
-  console.log(priceArray);
-  (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = `${priceArray[priceArray.length - 1]} $`;
-  (document.getElementById('minPriceProp') as HTMLElement).innerHTML = `${priceArray[0]} $`;
-
-  const stockArray = getPricesArray('stock', shownArr);
-  (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${stockArray[stockArray.length - 1]}`;
-  (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${stockArray[0]}`;
 }
 
-export { createFiltersBlock, generateCategories, updateFilters };
+export { createFiltersBlock, generateCategories, updateFilters, changeInput };

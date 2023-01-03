@@ -1,4 +1,4 @@
-import { updateFilters } from '../../pages/mainPage/filtersBar';
+import { updateFilters, changeInput } from '../../pages/mainPage/filtersBar';
 import { IQuery } from '../../types/types';
 import { routes } from '../router/routes';
 import filterData from './filterCards';
@@ -143,10 +143,11 @@ function filters() {
   function startPrice() {
     const categoryInputs = document.querySelectorAll('.slider-input') as NodeListOf<HTMLLinkElement>;
     categoryInputs.forEach((input) => {
-      input.addEventListener('change', () => {
-        const minPrice = (document.querySelector('#minPriceProp') as HTMLDivElement).textContent?.replace(' $', '');
-        const maxPrice = (document.querySelector('#maxPriceProp') as HTMLDivElement).textContent?.replace(' $', '');
-        changeUrl('price', `${minPrice}↕${maxPrice}`);
+      input.addEventListener('input', (event) => {
+        changeInput(event);
+        const minPrice = (document.querySelector('#minPriceProp') as HTMLDivElement).dataset.price as string;
+        const maxPrice = (document.querySelector('#maxPriceProp') as HTMLDivElement).dataset.price as string;
+        changeUrl('price', `${Math.min(+minPrice, +maxPrice)}↕${Math.max(+minPrice, +maxPrice)}`);
         parseQuery();
       });
     });
@@ -155,10 +156,11 @@ function filters() {
   function startStock() {
     const categoryInputs = document.querySelectorAll('.slider-input') as NodeListOf<HTMLLinkElement>;
     categoryInputs.forEach((input) => {
-      input.addEventListener('change', () => {
-        const minStock = (document.querySelector('#minStockProp') as HTMLDivElement).textContent;
-        const maxStock = (document.querySelector('#maxStockProp') as HTMLDivElement).textContent;
-        changeUrl('stock', `${minStock}↕${maxStock}`);
+      input.addEventListener('input', (event) => {
+        changeInput(event);
+        const minStock = (document.querySelector('#minStockProp') as HTMLDivElement).dataset.stock as string;
+        const maxStock = (document.querySelector('#maxStockProp') as HTMLDivElement).dataset.stock as string;
+        changeUrl('stock', `${Math.min(+minStock, +maxStock)}↕${Math.max(+minStock, +maxStock)}`);
         parseQuery();
       });
     });

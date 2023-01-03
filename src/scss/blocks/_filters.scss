@@ -82,6 +82,9 @@
         width: 250px;
         justify-content: space-around;
         margin-top: 5px;
+        span {
+            white-space: nowrap;
+        }
     }
     &__properties_reverse {
         flex-direction: row-reverse;
