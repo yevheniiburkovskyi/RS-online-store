@@ -34,7 +34,7 @@
   }
   &__item {
     display: grid;
-    grid-template: 220px 25px 25px 15px/1fr;
+    grid-template: 220px auto 25px 15px/1fr;
     gap: 10px;
     width: 100%;
     height: 290px;
@@ -110,7 +110,7 @@
   align-items: center;
   justify-content: center;
   font-size: 2rem;
-  right: 50px;
+  left: 15%;
   bottom: 50px;
   width: 50px;
   height: 50px;
