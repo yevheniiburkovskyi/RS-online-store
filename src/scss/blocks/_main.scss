@@ -29,12 +29,12 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: 300px;
-    row-gap: 40px;
+    row-gap: 65px;
     column-gap: 25px;
   }
   &__item {
     display: grid;
-    grid-template: 220px 1fr 1fr / 1fr;
+    grid-template: 220px 25px 25px 15px/1fr;
     gap: 10px;
     width: 100%;
     height: 290px;
@@ -75,16 +75,19 @@
       object-fit: cover;
     }
     &-title {
-      font-size: 1.1rem;
+      font-size: 100%;
       color: $main-black;
       text-align: center;
-      align-self: flex-end;
+      align-self: flex-start;
       transition: all 0.2s;
       user-select: none;
       cursor: pointer;
       &:hover {
         color: $main-gold;
       }
+    }
+    &-rating {
+      text-align: center;
     }
     &-price {
       text-align: center;
