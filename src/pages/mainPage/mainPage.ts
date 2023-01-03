@@ -11,7 +11,7 @@ function mainPage(data: Array<IProduct>) {
   emptyList.textContent = 'No products found';
   data.forEach((product: IProduct) => {
     productsList.innerHTML += `
-          <li class="products__item" data-title = "${product.title}"
+          <li class="products__item" id="${product.id}" data-title = "${product.title}"
           data-description = "${product.description}" data-price ="${product.price}" data-rating ="${product.rating}"
           data-stock ="${product.stock}" data-brand ="${product.brand}" data-category ="${product.category}">
             <div class="products__item-container">

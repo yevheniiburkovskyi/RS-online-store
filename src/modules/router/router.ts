@@ -3,6 +3,7 @@ import changeNavigation from '../navigation';
 import { routes } from './routes';
 import filters from '../filters/filters';
 import { generateCategories } from '../../pages/mainPage/filtersBar';
+import updateProductProps from '../updateProductProps';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -29,6 +30,7 @@ const handleLocation = async () => {
   if (mainPage.querySelector('.products')) {
     generateCategories();
     filters();
+    updateProductProps();
   }
 };
 

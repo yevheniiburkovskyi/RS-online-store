@@ -26,3 +26,9 @@ export interface ICategory {
 export interface IQuery {
   [key: string]: string;
 }
+
+export interface ICartItem {
+  id: number;
+  price: number;
+  stock: number;
+}

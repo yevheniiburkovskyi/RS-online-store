@@ -36,8 +36,11 @@ function filters() {
     const inputArea = document.querySelector('.search-block__input') as HTMLInputElement;
     if (searchParams.has('search')) {
       inputArea.value = searchParams.get('search') as string;
+    } else {
+      inputArea.value = '';
     }
     inputArea?.addEventListener('input', () => {
+      inputArea.value = inputArea.value.replace(/[^a-z0-9]/gi, '');
       changeUrl('search', inputArea.value);
       parseQuery();
     });
