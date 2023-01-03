@@ -10,11 +10,9 @@ function changeNavigation() {
       const pathUrlComponents = pathUrl.split('/');
       const urlId = Number(pathUrlComponents[pathUrlComponents.length - 1]);
       const productsArr = data;
-      if (typeof urlId === 'number') {
-        const product = productsArr?.filter((item) => item.id === urlId)[0];
-        if (product) {
-          pathSpan.textContent = ` / ${product.category} / ${product.brand} / ${product.title}`;
-        }
+      const product = productsArr?.filter((item) => item.id === urlId)[0];
+      if (product && product.category === pathUrlComponents[pathUrlComponents.length - 2]) {
+        pathSpan.textContent = ` / ${product.category} / ${product.brand} / ${product.title}`;
       }
     }
   });

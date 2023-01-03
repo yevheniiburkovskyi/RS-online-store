@@ -48,7 +48,7 @@ function filters() {
     if (searchParams.has('sort')) {
       inputArea.value = searchParams.get('sort') as string;
     }
-    inputArea?.addEventListener('change', () => {
+    inputArea.addEventListener('change', () => {
       changeUrl('sort', inputArea.value);
       parseQuery();
     });

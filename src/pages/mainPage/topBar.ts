@@ -10,7 +10,8 @@ function createTopBar(data: IProduct[]) {
   totalCount.innerHTML = `Found: ${data.length} of ${data.length}`;
   sortBuntns.innerHTML = `
   <select id="sort-select" class="products__bar-sort-select">
-    <option value="price-ASC" selected>Sort by price: low to high</option>
+    <option value="default" selected>Default(random)</option>
+    <option value="price-ASC">Sort by price: low to high</option>
     <option value="price-DESC">Sort by price: high to low</option>
     <option value="rating-ASC">Sort by rating: low to high</option>
     <option value="rating-DESC">Sort by rating: high to low</option>

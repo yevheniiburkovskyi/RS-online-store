@@ -145,7 +145,7 @@ function sortProducts(arr: Array<HTMLLinkElement>, param?: string) {
       arr.sort((a, b) => Number(b.dataset.rating) - Number(a.dataset.rating));
       break;
     default:
-      arr.sort((a, b) => Number(a.dataset.price) - Number(b.dataset.price));
+      arr.sort(() => Math.random() - 0.5);
   }
   return arr;
 }
