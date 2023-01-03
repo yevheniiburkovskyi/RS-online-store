@@ -137,9 +137,9 @@ function generateCategories() {
         const curMax = stockArray[stockArray.length - 1];
         const curMin = stockArray[0];
         (document.getElementById('maxStock') as HTMLInputElement).value = `${stockArrayAll.indexOf(curMax)}`;
-        (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${curMax} $`;
+        (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${curMax}`;
         (document.getElementById('minStock') as HTMLInputElement).value = `${stockArrayAll.indexOf(curMin)}`;
-        (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${curMin} $`;
+        (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${curMin}`;
         (document.getElementById('betStockSpan') as HTMLElement).innerHTML = `&lt;&gt;`;
         if (!curMax || !curMin) {
           (document.getElementById('maxStockProp') as HTMLElement).innerHTML = ``;
@@ -147,6 +147,25 @@ function generateCategories() {
           (document.getElementById('betStockSpan') as HTMLElement).innerHTML = `Not found`;
         }
       }
+      if (
+        eventTarget === document.getElementById('maxPrice') &&
+        (document.getElementById('minPriceProp') as HTMLElement).textContent === ''
+      ) {
+        (document.getElementById('minPriceProp') as HTMLElement).innerHTML = `${priceArray[0]} $`;
+      }
+      if (
+        eventTarget === document.getElementById('maxStock') &&
+        !(document.getElementById('minStockProp') as HTMLElement).textContent
+      ) {
+        (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${stockArray[0]}`;
+      }
+    }
+  });
+
+  addEventListener('change', (event) => {
+    const eventTarget: HTMLInputElement = event.target as HTMLInputElement;
+    if (eventTarget.classList.contains('category-input') || eventTarget.classList.contains('brand-input')) {
+      updateSliders();
     }
   });
 }
@@ -214,4 +233,42 @@ function updateFilters() {
   });
 }
 
-export { createFiltersBlock, generateCategories, updateFilters, changeInput };
+function updateSliders() {
+  const prodArr = document.querySelectorAll('.products__item');
+  const shownArr: Array<HTMLElement> = [];
+  prodArr.forEach((e) => {
+    if ((e as HTMLElement).getAttribute('style') === 'display: grid;') {
+      shownArr.push(e as HTMLElement);
+    }
+  });
+  const stockArray = getPricesArray('stock', shownArr);
+  const stockArrayAll = getPricesArray('stock');
+  const curMax = stockArray[stockArray.length - 1];
+  const curMin = stockArray[0];
+  (document.getElementById('maxStock') as HTMLInputElement).value = `${stockArrayAll.indexOf(curMax)}`;
+  (document.getElementById('maxStockProp') as HTMLElement).innerHTML = `${curMax}`;
+  (document.getElementById('minStock') as HTMLInputElement).value = `${stockArrayAll.indexOf(curMin)}`;
+  (document.getElementById('minStockProp') as HTMLElement).innerHTML = `${curMin}`;
+  (document.getElementById('betStockSpan') as HTMLElement).innerHTML = `&lt;&gt;`;
+  if (!curMax || !curMin) {
+    (document.getElementById('maxStockProp') as HTMLElement).innerHTML = ``;
+    (document.getElementById('minStockProp') as HTMLElement).innerHTML = ``;
+    (document.getElementById('betStockSpan') as HTMLElement).innerHTML = `Not found`;
+  }
+  const priceArray = getPricesArray('price', shownArr);
+  const priceArrayAll = getPricesArray('price');
+  const curPrMax = priceArray[priceArray.length - 1];
+  const curPrMin = priceArray[0];
+  (document.getElementById('maxPrice') as HTMLInputElement).value = `${priceArrayAll.indexOf(curPrMax)}`;
+  (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = `${curPrMax} $`;
+  (document.getElementById('minPrice') as HTMLInputElement).value = `${priceArrayAll.indexOf(curPrMin)}`;
+  (document.getElementById('minPriceProp') as HTMLElement).innerHTML = `${curPrMin} $`;
+  (document.getElementById('betPriceSpan') as HTMLElement).innerHTML = `&lt;&gt;`;
+  if (!curPrMax || !curPrMin) {
+    (document.getElementById('maxPriceProp') as HTMLElement).innerHTML = ``;
+    (document.getElementById('minPriceProp') as HTMLElement).innerHTML = ``;
+    (document.getElementById('betPriceSpan') as HTMLElement).innerHTML = `Not found`;
+  }
+}
+
+export { createFiltersBlock, generateCategories, updateFilters, changeInput, updateSliders };
