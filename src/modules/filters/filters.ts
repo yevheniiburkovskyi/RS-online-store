@@ -1,4 +1,4 @@
-import { updateFilters, changeInput, updateSliders } from '../../pages/mainPage/filtersBar';
+import { updateFilters, changeInput } from '../../pages/mainPage/filtersBar';
 import { IQuery } from '../../types/types';
 import { routes } from '../router/routes';
 import filterData from './filterCards';
@@ -43,7 +43,6 @@ function filters() {
       inputArea.value = inputArea.value.replace(/[^a-z0-9]/gi, '');
       changeUrl('search', inputArea.value);
       parseQuery();
-      updateSliders();
     });
   }
 

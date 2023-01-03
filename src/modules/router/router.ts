@@ -26,8 +26,8 @@ const handleLocation = async () => {
   }
 
   changeNavigation();
-  startProductCardEvents();
   if (mainPage.querySelector('.products')) {
+    startProductCardEvents();
     generateCategories();
     filters();
     updateProductProps();
