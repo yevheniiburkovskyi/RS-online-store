@@ -1,8 +1,8 @@
-import startEvents from '../routingEvents';
+import startProductCardEvents from '../productCardEvents';
 import changeNavigation from '../navigation';
 import { routes } from './routes';
 import filters from '../filters/filters';
-import { generateCategories } from '../../pages/filtersPage';
+import { generateCategories } from '../../pages/mainPage/filtersBar';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -23,8 +23,9 @@ const handleLocation = async () => {
     mainPage.innerHTML = '';
     mainPage.append(route);
   }
+
   changeNavigation();
-  startEvents();
+  startProductCardEvents();
   if (mainPage.querySelector('.products')) {
     generateCategories();
     filters();
