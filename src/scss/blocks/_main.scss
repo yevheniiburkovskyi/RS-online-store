@@ -100,3 +100,19 @@
   align-items: center;
   justify-content: center;
 }
+.page-up {
+  color: $main-white;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  right: 50px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: $main-gold;
+  opacity: 0;
+  transition: all 0.5s;
+}
