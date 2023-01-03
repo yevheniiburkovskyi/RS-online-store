@@ -2,7 +2,7 @@ import startProductCardEvents from '../productCardEvents';
 import changeNavigation from '../navigation';
 import { routes } from './routes';
 import filters from '../filters/filters';
-import { generateCategories } from '../../pages/mainPage/filtersBar';
+import { generateCategories, updateSliders } from '../../pages/mainPage/filtersBar';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -29,6 +29,7 @@ const handleLocation = async () => {
   if (mainPage.querySelector('.products')) {
     generateCategories();
     filters();
+    updateSliders();
   }
 };
 

@@ -1,4 +1,4 @@
-import { updateFilters, changeInput } from '../../pages/mainPage/filtersBar';
+import { updateFilters, changeInput, updateSliders } from '../../pages/mainPage/filtersBar';
 import { IQuery } from '../../types/types';
 import { routes } from '../router/routes';
 import filterData from './filterCards';
@@ -40,6 +40,7 @@ function filters() {
     inputArea?.addEventListener('input', () => {
       changeUrl('search', inputArea.value);
       parseQuery();
+      updateSliders();
     });
   }
 
