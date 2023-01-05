@@ -2,10 +2,6 @@ export interface IRoutes {
   [key: string | number]: string | HTMLElement;
 }
 
-export interface keyable {
-  [key: string | number]: Array<object>;
-}
-
 export interface IProduct {
   brand: string;
   category: string;
@@ -25,4 +21,14 @@ export interface ICategory {
   products: Array<IProduct>;
   skip: number;
   total: number;
+}
+
+export interface IQuery {
+  [key: string]: string;
+}
+
+export interface ICartItem {
+  id: number;
+  price: number;
+  stock: number;
 }

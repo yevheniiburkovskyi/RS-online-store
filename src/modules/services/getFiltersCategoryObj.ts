@@ -1,11 +1,9 @@
-import { IProduct } from '../../types/types';
-
-function getFiltersCategoryObj(keyName: string, data: IProduct[]) {
-  const prodArray = data;
+function getFiltersCategoryObj(keyName: string) {
   const categoriesObj = {};
-  prodArray.forEach((e, i) => {
-    const subObj = prodArray[i];
-    const propName = subObj[keyName as keyof typeof subObj];
+  const prodNodeList = document.querySelectorAll('.products__item');
+  prodNodeList.forEach((e, i) => {
+    const subObj = prodNodeList[i];
+    const propName = subObj.getAttribute(`data-${keyName}`);
     if (!Object.prototype.hasOwnProperty.call(categoriesObj, propName as string)) {
       Object.defineProperty(categoriesObj, propName as string, {
         value: 1,

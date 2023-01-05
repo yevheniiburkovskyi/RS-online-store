@@ -1,5 +1,9 @@
+import startProductCardEvents from '../productCardEvents';
 import changeNavigation from '../navigation';
 import { routes } from './routes';
+import filters from '../filters/filters';
+import updateProductProps from '../updateProductProps';
+import { generateCategories, updateSliders } from '../../pages/mainPage/filtersBar';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -22,6 +26,13 @@ const handleLocation = async () => {
   }
 
   changeNavigation();
+  if (mainPage.querySelector('.products')) {
+    startProductCardEvents();
+    generateCategories();
+    filters();
+    updateProductProps();
+    updateSliders();
+  }
 };
 
 const startRouting = () => {
