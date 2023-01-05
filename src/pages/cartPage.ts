@@ -49,10 +49,10 @@ function buildCartPage(data: Array<IProduct>) {
                   placeholder="3"></label>
               <div class="cart-page-number">
                 <span>Page:</span>
-                <button class="cart-page-btn">
+                <button class="cart-page-btn" id="prevPageBtn">
                   < </button>
                     <span class="cart-cur-page" id="cartCurPage">1</span>
-                    <button class="cart-page-btn"> > </button>
+                    <button class="cart-page-btn" id="nextPageBtn"> > </button>
               </div>
             </div>
           </div>
