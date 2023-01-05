@@ -1,0 +1,162 @@
+.modal-container {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: $color-bg-half-transparent;
+    transition: 300ms;
+}
+
+.modal-container_hide {
+    display: none;
+}
+
+.modal-content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    row-gap: 10px;
+    min-height: 50vh;
+    min-width: 320px;
+    width: 90vw;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $main-white;
+    .modal-cross-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        &__line1,
+        &__line2 {
+            width: 20px;
+            height: 2px;
+            background-color: $main-black-deep;
+            position: absolute;
+            margin-top: 9px;
+            transition: 300ms;
+            transform: rotate(45deg);
+        }
+        &__line2 {
+            transform: rotate(-45deg);
+        }
+    }
+    .modal-cross-btn:hover .modal-cross-btn__line1,
+    .modal-cross-btn:hover .modal-cross-btn__line2  {
+        background-color: $main-gold;
+    }
+    &__title {
+        font-weight: bold;
+    }
+    &__input {
+        height: 50px;
+        width: 280px;
+        border: 1px solid $gray-input-border;
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+    &__input:invalid {
+        border-color: $color-red-sale-icon;
+    }
+    &__input:focus {
+        border-color: $main-gold;
+    }
+    &__input_card-info {
+        height: 30px;
+        width: 110px;
+    }
+    &__input_card-number {
+        height: 30px;
+        width: 230px;
+    }
+    &__btn {
+        border: 0 solid;
+        width: 120px;
+        height: 40px;
+        font-weight: bold;
+        font-size: $base-font-size;
+        background-color: $main-black-deep;
+        color: $main-white;
+        transition: 300ms;
+        cursor: pointer;
+    }
+    &__btn:hover {
+        background-color: $main-gold;
+    }
+    &__credit-block {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        row-gap: 10px;
+        input {
+            text-align: center;
+        }
+        .credit-block__number-line {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+    }
+    .input-wrapper {
+        position: relative;
+    }
+    .error-span {
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        color: $color-red-sale-icon;
+        font-size: $pagination-font-size;
+    }
+    &__input:invalid+.error-span::after {
+        content: 'Error';
+    }
+}
+
+.credit-block__icon {
+    height: 30px;
+    width: 45px;
+    background-image: $card-logo;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.credit-block__icon_aexpress {
+    background-image: $card-aexpres;
+}
+
+.credit-block__icon_visa {
+    background-image: $card-visa;
+}
+
+.credit-block__icon_mcard {
+    background-image: $card-mc;
+}
+
+.credit-block__icon_up {
+    background-image: $card-up;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+.credit-block__info-line {
+    display: flex;
+    gap: 30px;
+}
+

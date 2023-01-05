@@ -30,6 +30,45 @@
           <use xlink:href="./assets/svg/burger.svg#burger"></use>
         </svg>
       </div>
+      <div class="modal-container modal-container_hide">
+        <form class="modal-content">
+          <div class="modal-cross-btn">
+            <div class="modal-cross-btn__line1"></div>
+            <div class="modal-cross-btn__line2"></div>
+          </div>
+          <p class="modal-content__title">Personal details</p>
+          <div class="input-wrapper">
+            <input type="text" class="modal-content__input" id="modalInputName" placeholder="Name *" pattern="(([a-zA-Z]{3,})+\s){1,}(([a-zA-Z]{3,})+)"><span class="error-span"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="tel" class="modal-content__input" id="modalInputTel" placeholder="Phone number *" minlength="10" pattern=".{10,}"><span class="error-span"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="text" class="modal-content__input" id="modalInputAdress" placeholder="Delivery address *" pattern="(([a-zA-Z]{5,})+\s){2,}(([a-zA-Z]{5,})+)"><span class="error-span"></span>
+          </div>
+          <div class="input-wrapper">
+            <input type="email" class="modal-content__input" id="modalInputEmail" placeholder="E-mail *" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"><span class="error-span"></span>
+          </div>
+          <p class="modal-content__title">Credit card details</p>
+          <div class="modal-content__credit-block">
+            <div class="credit-block__number-line">
+              <div class="credit-block__icon"></div>
+              <div class="input-wrapper">
+                <input type="text" class="modal-content__input modal-content__input_card-number" id="modalInputCardNum" maxlength="19" placeholder="Card number *" pattern="[0-9\s]{19}"><span class="error-span"></span>
+              </div>
+            </div>
+            <div class="credit-block__info-line">
+              <div class="input-wrapper">
+                <input type="text" class="modal-content__input modal-content__input_card-info" id="modalCardDate" maxlength="5" placeholder="MM / YY *" pattern="(?:0[1-9]|1[0-2])/[0-9]{2}"><span class="error-span"></span>
+              </div>
+              <div class="input-wrapper">
+                <input type="text" class="modal-content__input modal-content__input_card-info" id="modalInputCvv" maxlength="3" placeholder="CVV *" pattern="^\d{3,3}$"><span class="error-span"></span>
+              </div>
+            </div>
+          </div>
+          <input type="submit" class="modal-content__btn" value="CONFIRM">
+        </form>
+      </div>
     </header>
     <main id="root">
       <nav id="page-menu">

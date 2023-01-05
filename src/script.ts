@@ -5,6 +5,7 @@ import { startRouting } from './modules/router/router';
 import mainPage from './pages/mainPage/mainPage';
 import imgShow from './modules//imgShow';
 import getData from './modules/services/getData';
+import modaleValidateEvent from './modules/modalValidateEvent';
 import scrollUp from './modules/scroll';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -12,6 +13,7 @@ window.addEventListener('DOMContentLoaded', () => {
     startRouting();
     mainPage(data);
     imgShow();
+    modaleValidateEvent();
     scrollUp();
   });
 });
