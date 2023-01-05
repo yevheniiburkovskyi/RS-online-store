@@ -31,4 +31,6 @@ export interface ICartItem {
   id: number;
   price: number;
   stock: number;
+  count: number;
+  totalPrice: number;
 }

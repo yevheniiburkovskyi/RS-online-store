@@ -1,5 +1,4 @@
 import { ICartItem } from '../types/types';
-import updateHeader from './cart/updateHeader';
 
 function updateProductProps() {
   const productItems = [...(document.querySelectorAll('.products__item') as NodeListOf<HTMLDivElement>)];
@@ -16,7 +15,6 @@ function updateProductProps() {
   }
   if (cartProductsArr) {
     updateBtns();
-    updateHeader();
   }
 }
 

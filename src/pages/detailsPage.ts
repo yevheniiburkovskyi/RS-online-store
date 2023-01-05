@@ -1,7 +1,7 @@
 import generateElement from '../modules/services/generateElement';
 import { IProduct } from '../types/types';
 
-function detailsPage(id: number | string, data: IProduct[]) {
+function buildDetailsPage(id: number | string, data: IProduct[]) {
   const productPage = generateElement('section', 'product');
   const imagesList = generateElement('ul', 'product__images-choose');
   const productObj: IProduct = data.filter((item: IProduct) => item.id === Number(id))[0];
@@ -38,4 +38,4 @@ function detailsPage(id: number | string, data: IProduct[]) {
   return productPage;
 }
 
-export default detailsPage;
+export default buildDetailsPage;

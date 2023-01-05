@@ -25,6 +25,8 @@ function startProductCardEvents() {
         id: Number(productCard?.id),
         price: Number(productCard?.dataset.price),
         stock: Number(productCard?.dataset.stock),
+        count: 1,
+        totalPrice: Number(productCard?.dataset.price),
       };
 
       btn.textContent = '-';
