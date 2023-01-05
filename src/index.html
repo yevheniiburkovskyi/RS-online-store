@@ -17,14 +17,14 @@
           <use xlink:href="./assets/svg/search.svg#search"></use>
         </svg>
       </div>
-      <div class="store-logo">Online Store</div>
+      <div class="store-logo" id="logo">Online Store</div>
       <div class="cart-block">
-        <div class="cart-block__total-price">Cart total: $ 9999</div>
+        <div class="cart-block__total-price">Cart total: $ 0</div>
         <div class="cart-block__cart-icon">
           <svg class="cart-icon__svg">
             <use xlink:href="./assets/svg/cart.svg#cart"></use>
           </svg>
-          <div class="cart-icon__count">99</div>
+          <div class="cart-icon__count">0</div>
         </div>
         <svg class="cart-block__filters-icon">
           <use xlink:href="./assets/svg/burger.svg#burger"></use>
@@ -72,7 +72,7 @@
     </header>
     <main id="root">
       <nav id="page-menu">
-        <a href="/">Catalog</a>
+        <a href="/" id="catalog-link">Catalog</a><span class="page-menu__path"></span>
       </nav>
       <article id="main-page">
       </article>
@@ -98,6 +98,7 @@
           <use xlink:href="./assets/svg/rss.svg#rss"></use>
         </svg>
       </a>
+      <a class="page-up" href="#logo">↑</a>
     </footer>
   </section>
 </body>

@@ -1,38 +1,93 @@
-.products {
+@mixin cardBtns {
+  width: 35px;
+  height: 35px;
+  border-radius: 100%;
+  background-color: $color-gray-placeholder;
   display: flex;
+  justify-content: center;
+  align-items: center;
+  color: $main-black-deep;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  &:hover {
+    color: $main-gold;
+  }
+}
+.products {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  grid-template-rows: 0fr 1fr;
   width: 100%;
   &__list {
+    grid-column: 2/3;
+    grid-row: 2/3;
     order: 2;
     width: 100%;
+    height: 100%;
     padding: 10px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    row-gap: 40px;
+    grid-auto-rows: 300px;
+    row-gap: 65px;
     column-gap: 25px;
   }
   &__item {
     display: grid;
-    grid-template: 220px 1fr 1fr / 1fr;
+    grid-template: 220px 25px 25px 15px/1fr;
     gap: 10px;
     width: 100%;
+    height: 290px;
     position: relative;
     z-index: 10;
-    cursor: pointer;
+    &-container {
+      position: relative;
+    }
+    &-background {
+      position: absolute;
+      overflow: hidden;
+      width: 100%;
+      height: 100%;
+      transition: all 0.5s;
+      &:hover {
+        background-color: $color-bg-half-transparent;
+      }
+    }
+    &-row {
+      display: flex;
+      column-gap: 20px;
+      position: absolute;
+      bottom: -50%;
+      left: 50%;
+      transform: translate(-50%, 50%);
+      transition: all 0.5s;
+      &-cartBtn {
+        @include cardBtns;
+      }
+      &-detailsBtn {
+        @include cardBtns;
+      }
+    }
     &-img {
       align-self: flex-start;
       width: 100%;
       height: 100%;
-      object-fit: contain;
+      object-fit: cover;
     }
     &-title {
-      font-size: 1.1rem;
+      font-size: 100%;
       color: $main-black;
       text-align: center;
-      align-self: flex-end;
+      align-self: flex-start;
       transition: all 0.2s;
+      user-select: none;
+      cursor: pointer;
       &:hover {
         color: $main-gold;
       }
+    }
+    &-rating {
+      text-align: center;
     }
     &-price {
       text-align: center;
@@ -41,4 +96,26 @@
       align-self: flex-end;
     }
   }
+}
+.empty__list {
+  display: none;
+  font-size: 5rem;
+  align-items: center;
+  justify-content: center;
+}
+.page-up {
+  color: $main-white;
+  position: fixed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  right: 50px;
+  bottom: 50px;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  background-color: $main-gold;
+  opacity: 0;
+  transition: all 0.5s;
 }

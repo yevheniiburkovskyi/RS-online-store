@@ -1,9 +1,9 @@
-@import './_colors.scss';
+@import "./_colors.scss";
 
 .page-footer {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     height: 130px;
 }
@@ -48,7 +48,6 @@
     &__icon:hover {
         fill: $main-gold;
     }
-
 }
 
 @media (min-width: $breakpoint-small-tablet) {

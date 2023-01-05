@@ -3,11 +3,11 @@
 @import "./blocks/colors";
 @import "./blocks/footer";
 @import "./blocks/main";
-@import "./blocks/details";
+@import "./blocks/detailsPage";
 @import "./blocks/page404";
 @import "./blocks/filters";
 @import "./blocks/modal";
-
+@import "./blocks//mainBar";
 
 html {
     font-family: $base-font-family;
@@ -22,6 +22,7 @@ html {
 .page-wrapper {
     margin: 0 auto;
     max-width: 1200px;
+    padding: 0 20px;
 }
 #page-menu {
     margin: 40px 0px;

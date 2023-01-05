@@ -3,22 +3,27 @@ import { IProduct } from '../types/types';
 
 function detailsPage(id: number | string, data: IProduct[]) {
   const productPage = generateElement('section', 'product');
+  const imagesList = generateElement('ul', 'product__images-choose');
   const productObj: IProduct = data.filter((item: IProduct) => item.id === Number(id))[0];
+
+  const starsArr = Array(Math.round(productObj.rating)).fill('★');
+  starsArr.length < 5 ? starsArr.push('☆') : starsArr;
+
+  productObj.images.forEach((image) => {
+    imagesList.innerHTML += `
+    <li class="product__images-choose-item"><img src=${image} alt="photo1" loading="lazy">
+    </li>
+    `;
+  });
   productPage.innerHTML = `
   <div class="product__wrapper">
   <aside class="product__images">
-    <ul class="product__images-choose">
-      <li class="product__images-choose-item"><img src=${productObj.images[0]} alt="photo1">
-      </li>
-      <li class="product__images-choose-item"><img src=${productObj.images[1]} alt="photo2">
-      </li>
-      <li class="product__images-choose-item"><img src=${productObj.images[2]} alt="photo3">
-      </li>
-    </ul>
+    ${imagesList.outerHTML}
   </aside>
-  <div class="product__big-img"><img src=${productObj.images[0]} alt="photo1"></div>
+  <div class="product__big-img"><img src=${productObj.images[0]} alt="photo1" loading="lazy"></div>
   <div class="product__about">
     <h3 class="product__title">${productObj.title}</h3>
+    <p class="product__rating">${starsArr.join('')}</p>
     <p class="product__price">$${productObj.price}</p>
     <p class="product__descr">${productObj.description}</p>
     <a href="#" class="product__add-to-cart-btn">Add to cart</a>
