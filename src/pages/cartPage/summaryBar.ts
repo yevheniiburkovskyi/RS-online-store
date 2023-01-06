@@ -27,18 +27,17 @@ function addSummaryListeners() {
       if (!EPromoCodes[inputPromoValue as keyof typeof EPromoCodes] && document.querySelector('.avaliable-promo')) {
         document.querySelector('.avaliable-promo')?.remove();
       }
+      saveSummary();
     }
   });
   document.getElementsByTagName('body')[0].addEventListener('click', (e) => {
     if (e.target === document.querySelector('.add-promo-code-btn')) {
       const inputPromo = document.querySelector('.total-promo') as HTMLInputElement;
-      if (inputPromo.value) {
-        const inputPromoValue = inputPromo.value.toUpperCase();
-        if (!document.querySelector('.total-apply-codes')) inputPromo.before(generateApplyPromoBlock());
-        const promoBlock = document.querySelector('.total-apply-codes') as HTMLInputElement;
-        if (!document.getElementById(inputPromoValue)) promoBlock.append(generateApplyPromo(inputPromoValue));
-        updateTotalPrice();
-      }
+      const promoKey = ((e.target as HTMLElement).parentNode as HTMLElement).id;
+      if (!document.querySelector('.total-apply-codes')) inputPromo.before(generateApplyPromoBlock());
+      const promoBlock = document.querySelector('.total-apply-codes') as HTMLInputElement;
+      if (!document.getElementById(`apply${promoKey}`)) promoBlock.append(generateApplyPromo(promoKey));
+      updateTotalPrice();
     }
     if ((e.target as HTMLElement).classList.contains('remove-promo-code-btn')) {
       ((e.target as HTMLElement).parentNode as HTMLElement).remove();
@@ -52,6 +51,7 @@ function addSummaryListeners() {
 
 function generateAvaliablePromo(inputPromo: string) {
   const avaliablePromo = generateElement('div', 'avaliable-promo');
+  avaliablePromo.setAttribute('id', `${inputPromo}`);
   avaliablePromo.innerHTML = `<span class="promo-content">${EPromoCodes[inputPromo as keyof typeof EPromoCodes]}</span>
     <button class="add-promo-code-btn">ADD</button>`;
   return avaliablePromo;
@@ -65,7 +65,7 @@ function generateApplyPromoBlock() {
 
 function generateApplyPromo(inputPromo: string) {
   const applyPromo = generateElement('div', 'total-apply-codes__item');
-  applyPromo.setAttribute('id', inputPromo);
+  applyPromo.setAttribute('id', `apply${inputPromo}`);
   applyPromo.innerHTML = `<span class="promo-content">${EPromoCodes[inputPromo as keyof typeof EPromoCodes]}</span>
     <button class="remove-promo-code-btn">DROP</button>`;
   return applyPromo;
