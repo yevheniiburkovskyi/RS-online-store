@@ -1,9 +1,10 @@
 import './index.html';
 import './scss/style.scss';
 
+import { addSummaryListeners } from './pages/cartPage/summaryBar';
 import { startRouting } from './modules/router/router';
 import buildMainPage from './pages/mainPage/mainPage';
-import imgShow from './modules//imgShow';
+import detailsPageEvents from './modules/details/detailsPageEvents';
 import getData from './modules/services/getData';
 import modaleValidateEvent from './modules/modalValidateEvent';
 import scrollUp from './modules/scroll';
@@ -20,10 +21,11 @@ window.addEventListener('DOMContentLoaded', () => {
     if (document.querySelector('.products-in-cart')) {
       updateCartPage();
     }
-    imgShow();
+    detailsPageEvents(data);
     modaleValidateEvent();
     scrollUp();
     startCartEvents(data);
     updateHeader();
+    addSummaryListeners();
   });
 });

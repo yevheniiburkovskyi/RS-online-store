@@ -4,6 +4,7 @@ import { routes } from './routes';
 import filters from '../filters/filters';
 import updateProductProps from '../updateProductProps';
 import { generateCategories, updateSliders } from '../../pages/mainPage/filtersBar';
+import changeButtons from '../details/changeButtons';
 
 const route = (event: Event | undefined) => {
   event = event || window.event;
@@ -32,6 +33,8 @@ const handleLocation = async () => {
     filters();
     updateProductProps();
     updateSliders();
+  } else if (mainPage.querySelector('.product')) {
+    changeButtons();
   }
 };
 

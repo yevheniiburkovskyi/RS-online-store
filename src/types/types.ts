@@ -34,3 +34,8 @@ export interface ICartItem {
   count: number;
   totalPrice: number;
 }
+
+export enum EPromoCodes {
+  RS = 'Rolling Scopes School - 10%',
+  EPM = 'EPAM Systems - 10%',
+}

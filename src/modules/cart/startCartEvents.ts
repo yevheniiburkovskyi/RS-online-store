@@ -5,11 +5,13 @@ import updateCartPage from './updateCartPage';
 
 function startCartEvents(data: Array<IProduct>) {
   const cartBtn = document.querySelector('.cart-button');
-  cartBtn?.addEventListener('click', () => {
+  cartBtn?.addEventListener('click', (e) => {
     buildCartPage(data);
-    setTimeout(updateCartPage, 1);
+    route(e);
+    if (document.querySelector('.products-in-cart')) {
+      updateCartPage();
+    }
   });
-  cartBtn?.addEventListener('click', route);
 }
 
 export default startCartEvents;

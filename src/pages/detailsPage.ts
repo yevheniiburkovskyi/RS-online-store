@@ -21,13 +21,13 @@ function buildDetailsPage(id: number | string, data: IProduct[]) {
     ${imagesList.outerHTML}
   </aside>
   <div class="product__big-img"><img src=${productObj.images[0]} alt="photo1" loading="lazy"></div>
-  <div class="product__about">
+  <div class="product__about" id="${productObj.id}">
     <h3 class="product__title">${productObj.title}</h3>
     <p class="product__rating">${starsArr.join('')}</p>
     <p class="product__price">$${productObj.price}</p>
     <p class="product__descr">${productObj.description}</p>
-    <a href="#" class="product__add-to-cart-btn">Add to cart</a>
-    <a href="#" class="product__buy-now-btn">Buy now</a>
+    <button class="product__add-to-cart-btn">Add to cart</button>
+    <a href="/cart" class="product__buy-now-btn">Buy now</a>
     <p class="product__rate"><span>Rate:</span>${productObj.rating}</p>
     <p class="product__stock"><span>Stock:</span>${productObj.stock}</p>
     <p class="product__brand"><span>Brand:</span>${productObj.brand}</p>

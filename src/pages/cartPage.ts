@@ -1,6 +1,7 @@
 import { routes } from '../modules/router/routes';
 import generateElement from '../modules/services/generateElement';
 import { ICartItem, IProduct } from '../types/types';
+import { generateSummaryBar } from './cartPage/summaryBar';
 
 function buildCartPage(data: Array<IProduct>) {
   const page = generateElement('section', 'cart');
@@ -58,14 +59,7 @@ function buildCartPage(data: Array<IProduct>) {
           </div>
           ${itemsList.outerHTML}
         </div>
-        <div class="total-cart">
-          <h2 class="total-title">Summary</h2>
-          <div class="total-products">Products: <span id="totalItems">99</span></div>
-          <div class="total-price">Total: $<span id="totalPriceCart">9999</span></div>
-          <input type="text" class="total-promo" placeholder="Enter promo code">
-          <span class="total-promo-ex">Promo for test: 'RS', 'EPM'</span>
-          <button class="total-buy-btn">BUY NOW</button>
-        </div>
+        ${generateSummaryBar().outerHTML}
   `;
   } else {
     page.innerHTML = 'cart is empty';
