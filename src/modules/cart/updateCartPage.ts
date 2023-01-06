@@ -3,17 +3,14 @@ import updateHeader from './updateHeader';
 
 function updateCartPage() {
   const productCartArr = [...(document.querySelectorAll('.cart-item') as NodeListOf<HTMLLIElement>)];
+
   const productsBlock = document.querySelector('.products-in-cart') as HTMLDivElement;
   const cartContainer = document.querySelector('.cart') as HTMLDivElement;
   const storageArr: Array<ICartItem> = JSON.parse(localStorage.getItem('OnlineStoreCart') as string);
 
   const controlBar = document.querySelector('.products-in-cart__top-bar') as HTMLDivElement;
-  const limitInput = controlBar.querySelector('#cartViewLimit') as HTMLInputElement;
   const currPage = controlBar.querySelector('#cartCurPage') as HTMLSpanElement;
-
-  let inputValue = Number(limitInput.value);
-  let currPageValue = 1;
-  let counter = inputValue;
+  const limitInput = controlBar.querySelector('#cartViewLimit') as HTMLInputElement;
 
   function changeCount() {
     if (productsBlock) {
@@ -54,34 +51,44 @@ function updateCartPage() {
   }
 
   function startPagination() {
-    hideElements(inputValue, counter);
+    let currPosition = +limitInput.value * Number(currPage.textContent);
+
+    hideElements(+limitInput.value, currPosition);
+
     limitInput.addEventListener('input', () => {
-      currPageValue = 1;
-      inputValue = Number(limitInput.value);
-      counter = Number(limitInput.value);
-      hideElements(inputValue, counter);
-      currPage.textContent = `${currPageValue}`;
+      if (limitInput.value === '0' || +limitInput.value < 0) {
+        limitInput.value = '1';
+      }
+      const maxPages = Math.ceil(productCartArr.length / Number(limitInput.value));
+      if (Number(currPage.textContent) > maxPages) {
+        currPage.textContent = `${maxPages}`;
+      }
+      currPosition = +limitInput.value * Number(currPage.textContent);
+      changeCartUrl('limit', limitInput.value);
+      hideElements(+limitInput.value, currPosition);
     });
+
     controlBar.addEventListener('click', (e) => {
-      const maxPages = Math.ceil(productCartArr.length / inputValue);
+      const maxPages = Math.ceil(productCartArr.length / Number(limitInput.value));
       const target = e.target as HTMLDivElement;
+      let currPageValue = Number(currPage.textContent);
       if (target && (target.id === 'nextPageBtn' || target.id === 'prevPageBtn')) {
-        if (target.id === 'nextPageBtn' && currPageValue < maxPages) {
-          counter += inputValue;
+        if (target.id === 'nextPageBtn' && Number(currPage.textContent) < maxPages) {
           currPageValue += 1;
-        } else if (target.id === 'prevPageBtn' && currPageValue > 1) {
-          counter -= inputValue;
+        } else if (target.id === 'prevPageBtn' && Number(currPage.textContent) > 1) {
           currPageValue -= 1;
         }
-        hideElements(inputValue, counter);
+        const currPosition = +limitInput.value * currPageValue;
+        changeCartUrl('page', `${currPageValue}`);
+        hideElements(+limitInput.value, currPosition);
         currPage.textContent = `${currPageValue}`;
       }
     });
   }
 
-  function hideElements(startValue: number, endValue: number) {
+  function hideElements(interval: number, endValue: number) {
     const endIndex = endValue;
-    const startIndex = endValue - startValue;
+    const startIndex = endIndex - interval;
     productCartArr.forEach((item, i) => {
       item.style.display = 'none';
       if (i >= startIndex && i < endIndex) {
@@ -93,16 +100,48 @@ function updateCartPage() {
   function deleteItem(product: HTMLLIElement) {
     product.remove();
     productCartArr.splice(productCartArr.indexOf(product), 1);
-    productCartArr.forEach((item, i) => {
-      (item.querySelector('#cartItemIndex') as HTMLDivElement).textContent = `${i + 1}`;
-    });
-    if (!productCartArr.find((item) => item.style.display === 'flex')) {
-      counter -= inputValue;
-      currPageValue -= 1;
-      currPage.textContent = `${currPageValue}`;
+    const maxPages = Math.ceil(productCartArr.length / Number(limitInput.value));
+    if (Number(currPage.textContent) > maxPages) {
+      currPage.textContent = `${maxPages}`;
     }
-    hideElements(inputValue, counter);
+
+    const currPosition = +limitInput.value * Number(currPage.textContent);
+
+    productCartArr.forEach((item, i) => {
+      (item.querySelector('.cart-item__index') as HTMLDivElement).textContent = `${i + 1}`;
+    });
+    hideElements(+limitInput.value, currPosition);
+    changeCartUrl('page', `${Number(currPage.textContent)}`);
   }
+
+  function getSearchParams() {
+    const url = new URL(window.location.href);
+    const queryUrl = url.search;
+    const searchParams = new URLSearchParams(queryUrl);
+    return searchParams;
+  }
+
+  function changeCartUrl(topic: string, value: string) {
+    const searchParams = getSearchParams();
+    searchParams.set(topic, value);
+    window.history.pushState({}, '', `?${searchParams.toString()}`);
+    if (!searchParams.toString()) {
+      window.history.pushState({}, '', `.`);
+    }
+  }
+
+  function updateCartPageFromUrl() {
+    const searchParams = getSearchParams();
+    searchParams.forEach((value, key) => {
+      if (key === 'page') {
+        currPage.textContent = value;
+      }
+      if (key === 'limit') {
+        limitInput.value = value;
+      }
+    });
+  }
+  updateCartPageFromUrl();
   changeCount();
   startPagination();
 }

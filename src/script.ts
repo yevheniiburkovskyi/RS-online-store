@@ -17,7 +17,9 @@ window.addEventListener('DOMContentLoaded', () => {
     buildMainPage(data);
     buildCartPage(data);
     startRouting();
-    updateCartPage();
+    if (document.querySelector('.products-in-cart')) {
+      updateCartPage();
+    }
     imgShow();
     modaleValidateEvent();
     scrollUp();

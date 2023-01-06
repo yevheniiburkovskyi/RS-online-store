@@ -13,7 +13,7 @@ function buildCartPage(data: Array<IProduct>) {
       if (product) {
         itemsList.innerHTML += `
         <li class="cart-item" id="${storageItem.id}">
-        <div class="cart-item__index" id="cartItemIndex">${i + 1}</div>
+        <div class="cart-item__index">${i + 1}</div>
         <div class="cart-item__info">
           <img src=${product.thumbnail} alt=${product.title} class="item-img">
           <div class="item-details">
@@ -46,7 +46,7 @@ function buildCartPage(data: Array<IProduct>) {
             <h2 class="top-bar__title">Products in Cart</h2>
             <div class="top-bar__control">
               <label for="cartViewLimit">LIMIT: <input type="number" id="cartViewLimit" value="3"
-                  placeholder="3"></label>
+                  placeholder="3" min="1"></label>
               <div class="cart-page-number">
                 <span>Page:</span>
                 <button class="cart-page-btn" id="prevPageBtn">
