@@ -32,3 +32,8 @@ export interface ICartItem {
   price: number;
   stock: number;
 }
+
+export enum EPromoCodes {
+  RS = 'Rolling Scopes School - 10%',
+  EPM = 'EPAM Systems - 10%',
+}

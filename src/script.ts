@@ -6,6 +6,7 @@ import './scss/style.scss';
 // import imgShow from './modules//imgShow';
 // import getData from './modules/services/getData';
 // import scrollUp from './modules/scroll';
+import { addSummaryListeners, generateSummaryBar } from './pages/cartPage/summaryBar';
 
 // window.addEventListener('DOMContentLoaded', () => {
 //   getData().then((data) => {
@@ -15,3 +16,6 @@ import './scss/style.scss';
 //     scrollUp();
 //   });
 // });
+
+document.querySelector('.cart')?.append(generateSummaryBar());
+addSummaryListeners();
