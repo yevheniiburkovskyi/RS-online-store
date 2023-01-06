@@ -20,4 +20,3 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 addSummaryListeners();
-
