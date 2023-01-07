@@ -1,8 +1,9 @@
-import generateElement from '../../modules/services/generateElement';
+import generateElement from '../services/generateElement';
 import { EPromoCodes } from '../../types/types';
 
 function generateSummaryBar() {
-  const totalPriceHeader = document.getElementById('totalPriceHeader')?.textContent;
+  const totalPriceStr = document.querySelector('.cart-block__total-price')?.textContent as string;
+  const totalPriceHeader = totalPriceStr.split('$')[totalPriceStr.split('$').length - 1];
   const summaryBar = generateElement('div', 'summary-wrapper');
   summaryBar.innerHTML = `<div class="total-cart"><h2 class="total-title">Summary</h2>
   <div class="total-products">Products: <span id="totalItems">99</span></div>
@@ -72,12 +73,19 @@ function generateApplyPromo(inputPromo: string) {
 }
 
 function updateTotalPrice() {
-  const totalPriceHeader = document.getElementById('totalPriceHeader')?.textContent as string;
-  (document.getElementById('totalPriceCart') as HTMLElement).innerHTML = totalPriceHeader;
+  const totalPriceStr = document.querySelector('.cart-block__total-price')?.textContent as string;
+  const totalPriceHeader = totalPriceStr.split('$')[totalPriceStr.split('$').length - 1];
+  if (document.getElementById('totalPriceCart')) {
+    (document.getElementById('totalPriceCart') as HTMLElement).innerHTML = totalPriceHeader;
+  }
+  const totalItems = (document.getElementById('totalItemsHeader') as HTMLElement).textContent as string;
+  if (document.getElementById('totalItems')) {
+    (document.getElementById('totalItems') as HTMLElement).innerHTML = totalItems;
+  }
   if (document.querySelector('.total-apply-codes')) {
     (document.querySelector('.total-price') as HTMLElement).classList.add('total-price_inactive');
     const promoItems = document.querySelectorAll('.total-apply-codes__item');
-    const newPrice = +totalPriceHeader * (1 - promoItems.length * 0.1);
+    const newPrice = Math.round(+totalPriceHeader * (1 - promoItems.length * 0.1) * 100) / 100;
     if (!document.getElementById('newTotalPriceCart')) {
       const newPriceBlock = generateElement('div', 'total-price');
       newPriceBlock.innerHTML = `Total: $<span id="newTotalPriceCart">${newPrice}</span>`;
@@ -87,14 +95,20 @@ function updateTotalPrice() {
     }
   }
   if (!document.querySelector('.total-apply-codes')) {
-    (document.querySelector('.total-price') as HTMLElement).classList.remove('total-price_inactive');
-    ((document.getElementById('newTotalPriceCart') as HTMLElement).parentNode as HTMLElement).remove();
+    if (document.querySelector('.total-price')) {
+      (document.querySelector('.total-price') as HTMLElement).classList.remove('total-price_inactive');
+    }
+    if (document.getElementById('newTotalPriceCart')) {
+      ((document.getElementById('newTotalPriceCart') as HTMLElement).parentNode as HTMLElement).remove();
+    }
   }
   saveSummary();
 }
 
 function saveSummary() {
-  localStorage.setItem('cartSummaryBlock', `${document.querySelector('.total-cart')?.outerHTML}`);
+  if (document.querySelector('.total-cart')) {
+    localStorage.setItem('cartSummaryBlock', `${document.querySelector('.total-cart')?.outerHTML}`);
+  }
 }
 
-export { generateSummaryBar, addSummaryListeners };
+export { generateSummaryBar, addSummaryListeners, updateTotalPrice };

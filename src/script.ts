@@ -1,7 +1,7 @@
 import './index.html';
 import './scss/style.scss';
 
-import { addSummaryListeners } from './pages/cartPage/summaryBar';
+import { addSummaryListeners } from './modules/cart/summaryBar';
 import { startRouting } from './modules/router/router';
 import buildMainPage from './pages/mainPage/mainPage';
 import detailsPageEvents from './modules/details/detailsPageEvents';

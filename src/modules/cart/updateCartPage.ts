@@ -1,5 +1,6 @@
 import { ICartItem } from '../../types/types';
 import updateHeader from './updateHeader';
+import { updateTotalPrice } from '../cart/summaryBar';
 
 function updateCartPage() {
   const productCartArr = [...(document.querySelectorAll('.cart-item') as NodeListOf<HTMLLIElement>)];
@@ -144,6 +145,7 @@ function updateCartPage() {
   updateCartPageFromUrl();
   changeCount();
   startPagination();
+  updateTotalPrice();
 }
 
 export default updateCartPage;

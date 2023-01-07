@@ -1,7 +1,7 @@
 import { routes } from '../modules/router/routes';
 import generateElement from '../modules/services/generateElement';
 import { ICartItem, IProduct } from '../types/types';
-import { generateSummaryBar } from './cartPage/summaryBar';
+import { generateSummaryBar } from '../modules/cart/summaryBar';
 
 function buildCartPage(data: Array<IProduct>) {
   const page = generateElement('section', 'cart');
