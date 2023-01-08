@@ -3,14 +3,20 @@ import { IQuery } from '../../types/types';
 import { routes } from '../router/routes';
 import filterData from './filterCards';
 
-function filters() {
-  const url = new URL(window.location.href);
-  const queryUrl = url.search;
-  const searchParams = new URLSearchParams(queryUrl);
+class Filters {
+  private url: URL;
+  private queryUrl: string;
+  private searchParams: URLSearchParams;
 
-  function parseQuery() {
+  constructor() {
+    this.url = new URL(window.location.href);
+    this.queryUrl = this.url.search;
+    this.searchParams = new URLSearchParams(this.queryUrl);
+  }
+
+  private parseQuery() {
     const queryObj: IQuery = {};
-    searchParams.forEach((item, key) => {
+    this.searchParams.forEach((item, key) => {
       queryObj[key] = item;
     });
     filterData(queryObj);
@@ -19,49 +25,49 @@ function filters() {
     updateFilters();
   }
 
-  function changeUrl(topic: string, ...queryArr: string[]) {
+  private changeUrl(topic: string, ...queryArr: string[]) {
     queryArr.forEach((item) => {
-      searchParams.set(topic, item);
+      this.searchParams.set(topic, item);
     });
     if (queryArr.length === 1 && queryArr[0] === '') {
-      searchParams.delete(topic);
+      this.searchParams.delete(topic);
     }
-    window.history.pushState({}, '', `?${searchParams.toString()}`);
-    if (!searchParams.toString()) {
+    window.history.pushState({}, '', `?${this.searchParams.toString()}`);
+    if (!this.searchParams.toString()) {
       window.history.pushState({}, '', `.`);
     }
   }
 
-  function startSearch() {
+  private startSearch() {
     const inputArea = document.querySelector('.search-block__input') as HTMLInputElement;
-    if (searchParams.has('search')) {
-      inputArea.value = searchParams.get('search') as string;
+    if (this.searchParams.has('search')) {
+      inputArea.value = this.searchParams.get('search') as string;
     } else {
       inputArea.value = '';
     }
     inputArea?.addEventListener('input', () => {
       inputArea.value = inputArea.value.replace(/[^a-z0-9]/gi, '');
-      changeUrl('search', inputArea.value);
-      parseQuery();
+      this.changeUrl('search', inputArea.value);
+      this.parseQuery();
     });
   }
 
-  function startSort() {
+  private startSort() {
     const inputArea = document.querySelector('#sort-select') as HTMLInputElement;
-    if (searchParams.has('sort')) {
-      inputArea.value = searchParams.get('sort') as string;
+    if (this.searchParams.has('sort')) {
+      inputArea.value = this.searchParams.get('sort') as string;
     }
     inputArea.addEventListener('change', () => {
-      changeUrl('sort', inputArea.value);
-      parseQuery();
+      this.changeUrl('sort', inputArea.value);
+      this.parseQuery();
     });
   }
 
-  function startPosition() {
+  private startPosition() {
     const inputArea = document.querySelector('#position-select') as HTMLInputElement;
     const positionsBtns = [...(inputArea.children as HTMLCollection)] as HTMLDivElement[];
-    if (searchParams.has('grid')) {
-      const gridParam = searchParams.get('grid') as string;
+    if (this.searchParams.has('grid')) {
+      const gridParam = this.searchParams.get('grid') as string;
       positionsBtns.forEach((item) => {
         if (item.dataset.position === gridParam) {
           item.classList.add('products__bar-position-row-active');
@@ -84,16 +90,16 @@ function filters() {
           }
         });
         postitionBtn.classList.add('products__bar-position-row-active');
-        changeUrl('grid', postitionBtn.dataset.position as string);
-        parseQuery();
+        this.changeUrl('grid', postitionBtn.dataset.position as string);
+        this.parseQuery();
       }
     });
   }
 
-  function startCategory() {
+  private startCategory() {
     const categoryInputs = document.querySelectorAll('.category-input') as NodeListOf<HTMLInputElement>;
-    if (searchParams.has('category')) {
-      const categoryParam = (searchParams.get('category') as string)?.split('↕');
+    if (this.searchParams.has('category')) {
+      const categoryParam = (this.searchParams.get('category') as string)?.split('↕');
       categoryInputs.forEach((item) => {
         if (categoryParam.includes(item.value)) {
           item.checked = true;
@@ -110,16 +116,16 @@ function filters() {
             categoriesArr.push(item.value);
           }
         });
-        changeUrl('category', categoriesArr.join('↕'));
-        parseQuery();
+        this.changeUrl('category', categoriesArr.join('↕'));
+        this.parseQuery();
       });
     });
   }
 
-  function startBrand() {
+  private startBrand() {
     const categoryInputs = document.querySelectorAll('.brand-input') as NodeListOf<HTMLInputElement>;
-    if (searchParams.has('brand')) {
-      const categoryParam = (searchParams.get('brand') as string)?.split('↕');
+    if (this.searchParams.has('brand')) {
+      const categoryParam = (this.searchParams.get('brand') as string)?.split('↕');
       categoryInputs.forEach((item) => {
         if (categoryParam.includes(item.value)) {
           item.checked = true;
@@ -137,39 +143,39 @@ function filters() {
             categoriesArr.push(item.value);
           }
         });
-        changeUrl('brand', categoriesArr.join('↕'));
-        parseQuery();
+        this.changeUrl('brand', categoriesArr.join('↕'));
+        this.parseQuery();
       });
     });
   }
 
-  function startPrice() {
+  private startPrice() {
     const categoryInputs = document.querySelectorAll('.slider-input') as NodeListOf<HTMLLinkElement>;
     categoryInputs.forEach((input) => {
       input.addEventListener('input', (event) => {
         changeInput(event);
         const minPrice = (document.querySelector('#minPriceProp') as HTMLDivElement).dataset.price as string;
         const maxPrice = (document.querySelector('#maxPriceProp') as HTMLDivElement).dataset.price as string;
-        changeUrl('price', `${Math.min(+minPrice, +maxPrice)}↕${Math.max(+minPrice, +maxPrice)}`);
-        parseQuery();
+        this.changeUrl('price', `${Math.min(+minPrice, +maxPrice)}↕${Math.max(+minPrice, +maxPrice)}`);
+        this.parseQuery();
       });
     });
   }
 
-  function startStock() {
+  private startStock() {
     const categoryInputs = document.querySelectorAll('.slider-input') as NodeListOf<HTMLLinkElement>;
     categoryInputs.forEach((input) => {
       input.addEventListener('input', (event) => {
         changeInput(event);
         const minStock = (document.querySelector('#minStockProp') as HTMLDivElement).dataset.stock as string;
         const maxStock = (document.querySelector('#maxStockProp') as HTMLDivElement).dataset.stock as string;
-        changeUrl('stock', `${Math.min(+minStock, +maxStock)}↕${Math.max(+minStock, +maxStock)}`);
-        parseQuery();
+        this.changeUrl('stock', `${Math.min(+minStock, +maxStock)}↕${Math.max(+minStock, +maxStock)}`);
+        this.parseQuery();
       });
     });
   }
 
-  function copyFilters() {
+  private copyFilters() {
     const copyBtn = document.querySelector('.filters-btns-block__copy-link-btn') as HTMLButtonElement;
     const copyBtnText = copyBtn.textContent;
     copyBtn.addEventListener('click', () => {
@@ -181,12 +187,12 @@ function filters() {
     });
   }
 
-  function resetFilters() {
+  private resetFilters() {
     const resetBtn = document.querySelector('.filters-btns-block__reset-btn') as HTMLButtonElement;
     const resetBtnText = resetBtn.textContent;
     resetBtn.addEventListener('click', () => {
-      searchParams.forEach((item, key) => {
-        searchParams.delete(key);
+      this.searchParams.forEach((item, key) => {
+        this.searchParams.delete(key);
       });
       window.history.pushState({}, '', `.`);
       (document.querySelector('#page-menu > a') as HTMLLinkElement).href = window.location.href;
@@ -199,18 +205,20 @@ function filters() {
     });
   }
 
-  if (document.querySelector('.products')) {
-    parseQuery();
-    startSearch();
-    startSort();
-    startPosition();
-    startCategory();
-    startBrand();
-    startPrice();
-    startStock();
-    copyFilters();
-    resetFilters();
+  public startFilter() {
+    if (document.querySelector('.products')) {
+      this.parseQuery();
+      this.startSearch();
+      this.startSort();
+      this.startPosition();
+      this.startCategory();
+      this.startBrand();
+      this.startPrice();
+      this.startStock();
+      this.copyFilters();
+      this.resetFilters();
+    }
   }
 }
 
-export default filters;
+export default Filters;
