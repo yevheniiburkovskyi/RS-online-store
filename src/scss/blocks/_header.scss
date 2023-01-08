@@ -29,6 +29,9 @@
         height: 1.5rem;
         align-self: center;
         cursor: pointer;
+        background-image: $search-icon;
+        background-repeat: no-repeat;
+        background-size: cover;
     }
 }
 
@@ -83,15 +86,15 @@
             transition: 300ms;
         }
     }
-
-    &__cart-icon:hover .cart-icon__svg {
-        stroke: $main-gold;
-    }
-
-    &__cart-icon:hover .cart-icon__count {
-        color: $main-white;
-    }
 }
+
+.cart-block:hover .cart-block__cart-icon .cart-icon__svg {
+    stroke: $main-gold;
+}
+.cart-block:hover .cart-block__cart-icon .cart-icon__count {
+    color: $main-white;
+}
+
 .cart-button {
     position: absolute;
     width: 100%;

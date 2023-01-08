@@ -11,12 +11,6 @@
 <body>
   <section class="page-wrapper">
     <header class="page-header">
-      <div class="search-block">
-        <input type="search" name="search" placeholder="Search Anything..." class="search-block__input">
-        <svg class="search-block__icon">
-          <use xlink:href="./assets/svg/search.svg#search"></use>
-        </svg>
-      </div>
       <div class="store-logo" id="logo">Online Store</div>
       <div class="cart-block">
         <a class="cart-button" href="/cart"></a>
@@ -27,9 +21,6 @@
           </svg>
           <div class="cart-icon__count" id="totalItemsHeader">0</div>
         </div>
-        <svg class="cart-block__filters-icon">
-          <use xlink:href="./assets/svg/burger.svg#burger"></use>
-        </svg>
       </div>
       <div class="modal-container modal-container_hide">
         <div class="modal-close-message modal-container_hide">Thanks for your order. Redirect to the store after a few sec.</div>
@@ -73,34 +64,39 @@
       </div>
     </header>
     <main id="root">
-      <nav id="page-menu">
-        <a href="/" id="catalog-link">Catalog</a><span class="page-menu__path"></span>
-      </nav>
+      <div class="naw-wrapper">
+        <nav id="page-menu">
+          <a href="/" id="catalog-link">Catalog</a><span class="page-menu__path"></span>
+        </nav>
+      </div>
       <article id="main-page">
       </article>
     </main>
-    <footer class="page-footer">
-      <div class="gh-anchor-block">
-        <a href="https://github.com/EugeneBurkovskiy" class="gh-anchor-block__anchor" target="_blank">
-          <svg class="github-icon">
-            <use xlink:href="./assets/svg/github.svg#github"></use>
+    <footer>
+      <div class="footer-line"></div>
+      <div class="page-footer">
+        <div class="gh-anchor-block">
+          <a href="https://github.com/EugeneBurkovskiy" class="gh-anchor-block__anchor" target="_blank">
+            <svg class="github-icon">
+              <use xlink:href="./assets/svg/github.svg#github"></use>
+            </svg>
+            E. Burkovskiy
+          </a>
+          <a href="https://github.com/ordinaraviro" class="gh-anchor-block__anchor" target="_blank">
+            <svg class="github-icon">
+              <use xlink:href="./assets/svg/github.svg#github"></use>
+            </svg>
+            A. Yulin
+          </a>
+        </div>
+        <div class="footer-year">© 2022 Online Store</div>
+        <a class="footer-rs-anchor" href="https://rs.school/js/" target="_blank">
+          <svg class="footer-rs-anchor__icon">
+            <use xlink:href="./assets/svg/rss.svg#rss"></use>
           </svg>
-          E. Burkovskiy
         </a>
-        <a href="https://github.com/ordinaraviro" class="gh-anchor-block__anchor" target="_blank">
-          <svg class="github-icon">
-            <use xlink:href="./assets/svg/github.svg#github"></use>
-          </svg>
-          A. Yulin
-        </a>
+        <a class="page-up" href="#logo">↑</a>
       </div>
-      <div class="footer-year">© 2022 Online Store</div>
-      <a class="footer-rs-anchor" href="https://rs.school/js/" target="_blank">
-        <svg class="footer-rs-anchor__icon">
-          <use xlink:href="./assets/svg/rss.svg#rss"></use>
-        </svg>
-      </a>
-      <a class="page-up" href="#logo">↑</a>
     </footer>
   </section>
 </body>

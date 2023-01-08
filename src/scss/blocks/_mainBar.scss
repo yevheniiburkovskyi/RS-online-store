@@ -22,14 +22,20 @@
   display: flex;
   justify-content: space-between;
   padding-top: 20px;
-  font-size: 1.2rem;
   font-weight: 500;
   grid-row: 1/2;
   margin-bottom: 30px;
+  align-items: center;
+  .sort-block {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
   &-sort {
     &-select {
       cursor: pointer;
-      font-size: 1.2rem;
+      font-size: $base-font-size;
+      font-family: $base-font-family;
       font-weight: 500;
     }
   }

@@ -1,13 +1,14 @@
 .cart {
     max-width: 1200px;
+    padding-top: 20px;
     margin: 0 auto;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .products-in-cart {
-    width: 60%;
+    width: 73%;
     display: flex;
     flex-direction: column;
     row-gap: 10px;
@@ -33,6 +34,7 @@
     &__items{
         display: flex;
         flex-direction: column;
+        gap: 1px;
     }
     button {
         width: 15px;
@@ -40,6 +42,10 @@
         color: $main-white;
         background-color: $main-black;
         text-align: center;
+        transition: 300ms;
+    }
+    button:hover {
+        background-color: $main-gold;
     }
 }
 
@@ -51,17 +57,26 @@
     background-color: $gray-light-bg;
     border: 1px solid $gray-light-border;
     padding: 5px;
+    height: 150px;
+    &__index {
+        width: 3%;
+    }
     &__info {
+        width: 90%;
         display: flex;
         flex-direction: row;
         column-gap: 10px;
+        height: 140px;
+        overflow: hidden;
         .item-img {
-            width: 150px;
+            width: 18%;
+            height: fit-content;
         }
         .item-details {
             display: flex;
+            width: 80%;
             flex-direction: column;
-            justify-content: space-between;
+            justify-content: space-around;
             align-items: center;
             .item-title {
                 font-weight: bold;
@@ -74,6 +89,7 @@
             }
             .item-description {
                 font-size: $pagination-font-size;
+                text-align: center;
             }
             .item-other {
                 display: flex;
@@ -97,7 +113,7 @@
 }
 
 .summary-wrapper {
-    min-width: 250px;
+    min-width: 260px;
     width: 25%;
     min-height: 250px;
 }
@@ -159,10 +175,11 @@
 .avaliable-promo {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     gap: 10px;
     font-size: $pagination-font-size;
     align-items: center;
+    width: 205px;
 }
 
 .add-promo-code-btn,
