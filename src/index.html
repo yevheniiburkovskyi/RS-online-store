@@ -19,18 +19,20 @@
       </div>
       <div class="store-logo" id="logo">Online Store</div>
       <div class="cart-block">
-        <div class="cart-block__total-price">Cart total: $ 0</div>
+        <a class="cart-button" href="/cart"></a>
+        <div class="cart-block__total-price">Cart total: $<span id="totalPriceHeader">0</span></div>
         <div class="cart-block__cart-icon">
           <svg class="cart-icon__svg">
             <use xlink:href="./assets/svg/cart.svg#cart"></use>
           </svg>
-          <div class="cart-icon__count">0</div>
+          <div class="cart-icon__count" id="totalItemsHeader">0</div>
         </div>
         <svg class="cart-block__filters-icon">
           <use xlink:href="./assets/svg/burger.svg#burger"></use>
         </svg>
       </div>
       <div class="modal-container modal-container_hide">
+        <div class="modal-close-message modal-container_hide">Thanks for your order. Redirect to the store after a few sec.</div>
         <form class="modal-content">
           <div class="modal-cross-btn">
             <div class="modal-cross-btn__line1"></div>
@@ -66,7 +68,7 @@
               </div>
             </div>
           </div>
-          <input type="submit" class="modal-content__btn" value="CONFIRM">
+          <button class="modal-content__btn">CONFIRM</button>
         </form>
       </div>
     </header>

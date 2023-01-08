@@ -1,0 +1,181 @@
+.cart {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.products-in-cart {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 10px;
+    &__top-bar {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        .top-bar__title {
+            font-weight: bold;
+            font-size: $price-font-size;
+        }
+        .top-bar__control {
+            display: flex;
+            flex-direction: row;
+            font-size: $nav-font-size;
+            gap: 5px;
+            #cartViewLimit {
+                border: 1px solid $gray-light-border;
+                width: 35px;
+            }
+        }
+    }
+    &__items{
+        display: flex;
+        flex-direction: column;
+    }
+    button {
+        width: 15px;
+        height: 15px;
+        color: $main-white;
+        background-color: $main-black;
+        text-align: center;
+    }
+}
+
+.cart-item {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $gray-light-bg;
+    border: 1px solid $gray-light-border;
+    padding: 5px;
+    &__info {
+        display: flex;
+        flex-direction: row;
+        column-gap: 10px;
+        .item-img {
+            width: 150px;
+        }
+        .item-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            .item-title {
+                font-weight: bold;
+                font-size: $nav-font-size;
+            }
+            .item-line {
+                width: 100%;
+                height: 1px;
+                background-color: $gray-light-border;
+            }
+            .item-description {
+                font-size: $pagination-font-size;
+            }
+            .item-other {
+                display: flex;
+                font-size: $pagination-font-size;
+                gap: 20px;
+            }
+        }
+    }
+    &__control {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        font-size: $pagination-font-size;
+        .item-add-control {
+            display: flex;
+            flex-direction: row;
+            gap: 5px;
+        }
+    }
+}
+
+.summary-wrapper {
+    min-width: 250px;
+    width: 25%;
+    min-height: 250px;
+}
+
+.total-cart {
+    display: flex;
+    flex-direction: column;
+    min-width: 250px;
+    min-height: 250px;
+    padding: 5px;
+    row-gap: 20px;
+    align-items: center;
+    background-color: $gray-light-bg;
+    border: 1px solid $gray-light-border;
+    .total-title {
+        font-weight: bold;
+        font-size: $price-font-size;
+    }
+    .total-price_inactive {
+        text-decoration: line-through;
+    }
+    .total-apply-codes {
+        display: flex;
+        flex-direction: column;
+        row-gap: 5px;
+        align-items: center;
+        padding: 5px;
+        width: 90%;
+        border: 1px solid $gray-light-border;
+        font-size: $nav-font-size;
+        &__title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+    }
+    .total-promo {
+        width: 90%;
+        text-align: center;
+        height: 30px;
+        border: 1px solid $gray-light-border;
+    }
+    .total-promo-ex {
+        font-size: $pagination-font-size;
+    }
+    .total-buy-btn {
+        background-color: $main-black-deep;
+        color: $main-white;
+        font-weight: bold;
+        width: 90%;
+        height: 40px;
+        transition: 300ms;
+    }
+    .total-buy-btn:hover {
+        background-color: $main-gold;
+    }
+}
+
+.total-apply-codes__item,
+.avaliable-promo {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    gap: 10px;
+    font-size: $pagination-font-size;
+    align-items: center;
+}
+
+.add-promo-code-btn,
+.remove-promo-code-btn {
+    color: $main-white;
+    background-color: $main-black-deep;
+    font-size: $pagination-font-size;
+    width: 40px;
+    height: 20px;
+    transition: 300ms;
+}
+
+.add-promo-code-btn:hover,
+.remove-promo-code-btn:hover {
+    background-color: $main-gold;
+}

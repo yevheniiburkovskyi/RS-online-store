@@ -33,6 +33,7 @@
 }
 
 .cart-block {
+    position: relative;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -91,7 +92,12 @@
         color: $main-white;
     }
 }
-
+.cart-button {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+}
 @media (min-width: $breakpoint-small-tablet) {
     .cart-block__total-price {
         display: block;

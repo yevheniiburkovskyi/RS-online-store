@@ -12,8 +12,22 @@
     transition: 300ms;
 }
 
-.modal-container_hide {
-    display: none;
+.modal-close-message {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    row-gap: 10px;
+    min-height: 50vh;
+    min-width: 320px;
+    width: 90vw;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: $main-white;
 }
 
 .modal-content {
@@ -160,3 +174,6 @@ input::-webkit-inner-spin-button {
     gap: 30px;
 }
 
+.modal-container_hide {
+    display: none;
+}
