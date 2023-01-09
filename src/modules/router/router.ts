@@ -1,7 +1,7 @@
 import startProductCardEvents from '../productCardEvents';
 import changeNavigation from '../navigation';
 import { routes } from './routes';
-import filters from '../filters/filters';
+import Filters from '../filters/filters';
 import updateProductProps from '../updateProductProps';
 import { generateCategories, updateSliders } from '../../pages/mainPage/filtersBar';
 import changeButtons from '../details/changeButtons';
@@ -30,7 +30,7 @@ const handleLocation = async () => {
   if (mainPage.querySelector('.products')) {
     startProductCardEvents();
     generateCategories();
-    filters();
+    new Filters().startFilter();
     updateProductProps();
     updateSliders();
   } else if (mainPage.querySelector('.product')) {
