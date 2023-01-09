@@ -18,7 +18,7 @@ function createFiltersBlock() {
     <div class="brand-block" id="brandBlock">
     </div>
     <div class="filters-block__line"></div>
-    <div class="category-block">
+    <div class="category-block category-block_sliders">
       <div class="category-block__title">Price</div>
       <div class="category-block__properties">
         <div class="category-block__prop" id="minPriceProp"></div><span id="betPriceSpan">&lt;&gt;</span>
@@ -30,7 +30,7 @@ function createFiltersBlock() {
       </div>
     </div>
     <div class="filters-block__line"></div>
-    <div class="category-block">
+    <div class="category-block category-block_sliders">
       <div class="category-block__title">Stock</div>
       <div class="category-block__properties">
         <div class="category-block__prop" id="minStockProp"></div><span id="betStockSpan">&lt;&gt;</span>
@@ -271,4 +271,14 @@ function updateSliders() {
   }
 }
 
-export { createFiltersBlock, generateCategories, updateFilters, changeInput, updateSliders };
+function filterBarHideEvent() {
+  addEventListener('click', (e) => {
+    if (e.target === document.querySelector('.filter-btn') || e.target === document.querySelector('.filters-bg')) {
+      document.querySelector('.filters-block')?.classList.toggle('filters-block_show');
+      document.querySelector('.filters-bg')?.classList.toggle('filters-bg_show');
+      document.getElementsByTagName('html')[0].classList.toggle('html_scroll-lock');
+    }
+  });
+}
+
+export { createFiltersBlock, generateCategories, updateFilters, changeInput, updateSliders, filterBarHideEvent };
