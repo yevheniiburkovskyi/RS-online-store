@@ -15,7 +15,7 @@ import updateCartPage from './modules/cart/updateCartPage';
 import { filterBarHideEvent } from './pages/mainPage/filtersBar';
 
 window.addEventListener('DOMContentLoaded', () => {
-  getData().then((data) => {
+  getData('https://dummyjson.com/products?limit=40&skip=10').then((data) => {
     buildMainPage(data);
     buildCartPage(data);
     startRouting();

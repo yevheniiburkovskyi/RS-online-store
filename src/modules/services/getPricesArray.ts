@@ -7,8 +7,13 @@ function getPricesArray(
     const subObj = prodNodeList[i];
     pricesArr.push(+(subObj.getAttribute(`data-${propName}`) as string));
   });
-  const finalArr = Array.from(new Set(pricesArr.sort((a, b) => a - b)));
+  const finalArr = sortPricesArray(pricesArr);
   return finalArr;
 }
 
-export { getPricesArray };
+function sortPricesArray(arr: number[]) {
+  return Array.from(new Set(arr.sort((a, b) => a - b)));
+}
+
+export { sortPricesArray };
+export default getPricesArray;

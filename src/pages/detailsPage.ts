@@ -6,8 +6,7 @@ function buildDetailsPage(id: number | string, data: IProduct[]) {
   const imagesList = generateElement('ul', 'product__images-choose');
   const productObj: IProduct = data.filter((item: IProduct) => item.id === Number(id))[0];
 
-  const starsArr = Array(Math.round(productObj.rating)).fill('★');
-  starsArr.length < 5 ? starsArr.push('☆') : starsArr;
+  const starsArr = createStars(productObj.rating);
 
   productObj.images.forEach((image, i) => {
     if (i < 3) {
@@ -40,4 +39,12 @@ function buildDetailsPage(id: number | string, data: IProduct[]) {
   return productPage;
 }
 
+function createStars(rating: number) {
+  const starsArr = Array(Math.round(rating)).fill('★');
+  while (starsArr.length < 5) {
+    starsArr.push('☆');
+  }
+  return starsArr;
+}
+export { createStars };
 export default buildDetailsPage;

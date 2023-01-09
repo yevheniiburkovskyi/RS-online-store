@@ -4,7 +4,7 @@ import getData from './services/getData';
 function changeNavigation() {
   const catalogBtn = document.querySelector('#catalog-link') as HTMLDivElement;
   catalogBtn?.addEventListener('click', route);
-  getData().then((data) => {
+  getData('https://dummyjson.com/products?limit=40&skip=10').then((data) => {
     const pathSpan = document.querySelector('.page-menu__path') as HTMLDivElement;
     pathSpan.innerHTML = '';
     const url = new URL(window.location.href);

@@ -9,7 +9,7 @@ product3.classList.add('catalog');
 const product4 = document.createElement('p');
 product4.classList.add('grid');
 
-describe('check searchBrands', () => {
+describe('check generateElements', () => {
   const testCases = [
     {
       in: {
