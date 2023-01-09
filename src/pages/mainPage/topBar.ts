@@ -6,6 +6,7 @@ function createTopBar(data: IProduct[]) {
   const totalCount = generateElement('p', 'products__bar-total-count');
   const sortBuntns = generateElement('div', 'products__bar-sort');
   const positionRow = generateElement('div', 'products__bar-position-row');
+  const searchInput = generateElement('div', 'search-block');
   positionRow.id = 'position-select';
   totalCount.innerHTML = `Found: ${data.length} of ${data.length}`;
   sortBuntns.innerHTML = `
@@ -37,7 +38,17 @@ function createTopBar(data: IProduct[]) {
     <p></p>
   </div>
   `;
-  row.append(totalCount, sortBuntns, positionRow);
+  searchInput.innerHTML = `<input type="search" name="search" placeholder="Search Anything..." class="search-block__input">
+  <svg class="search-block__icon">
+    <use xlink:href="./assets/svg/search.svg#search"></use>
+  </svg>`;
+  const sortBlock = generateElement('div', 'sort-block');
+  const sortLine = generateElement('div', 'sort-line');
+  sortLine.innerHTML = '|';
+  sortBlock.append(totalCount, sortLine, sortBuntns);
+  const filterBtn = generateElement('button', 'filter-btn');
+  filterBtn.innerHTML = 'Filters';
+  row.append(filterBtn, sortBlock, searchInput, positionRow);
   return row;
 }
 export default createTopBar;

@@ -22,8 +22,8 @@ function buildCartPage(data: Array<IProduct>) {
             <div class="item-line"></div>
             <div class="item-description"> ${product.description} </div>
             <div class="item-other">
-              <div class="item-rating">${product.rating}</div>
-              <div class="item-discount">${product.discountPercentage}</div>
+              <div class="item-rating">Rate: ${product.rating}</div>
+              <div class="item-discount">Discount: ${product.discountPercentage}%</div>
             </div>
           </div>
         </div>
@@ -46,7 +46,7 @@ function buildCartPage(data: Array<IProduct>) {
           <div class="products-in-cart__top-bar">
             <h2 class="top-bar__title">Products in Cart</h2>
             <div class="top-bar__control">
-              <label for="cartViewLimit">LIMIT: <input type="number" id="cartViewLimit" value="3"
+              <label for="cartViewLimit">Limit: <input type="number" id="cartViewLimit" value="3"
                   placeholder="3" min="1"></label>
               <div class="cart-page-number">
                 <span>Page:</span>
