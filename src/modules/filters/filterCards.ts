@@ -2,8 +2,8 @@ import { IQuery } from '../../types/types';
 
 function filterData(queryObj: IQuery) {
   const queryMap = new Map(Object.entries(queryObj));
-  const productsArr: Array<HTMLLinkElement> = [
-    ...(document.querySelectorAll('.products__item') as NodeListOf<HTMLLinkElement>),
+  const productsArr: Array<HTMLElement> = [
+    ...(document.querySelectorAll('.products__item') as NodeListOf<HTMLElement>),
   ];
   const productsList = document.querySelector('.products__list') as HTMLUListElement;
   const emptyList = document.querySelector('.empty__list') as HTMLDivElement;
@@ -11,7 +11,7 @@ function filterData(queryObj: IQuery) {
   productsList.style.display = 'grid';
   emptyList.style.display = 'none';
 
-  let searchArr: HTMLLinkElement[] = [];
+  let searchArr: HTMLElement[] = [];
 
   if (queryMap.has('sort')) {
     sortProducts(productsArr, queryMap.get('sort'));
@@ -43,17 +43,8 @@ function filterData(queryObj: IQuery) {
   }
 
   if (queryMap.has('search')) {
-    const charArr = ['title', 'description', 'price', 'rating', 'stock', 'brand', 'category'];
     const pattern = new RegExp(queryMap.get('search') as string, 'ig');
-    let matchArr: HTMLLinkElement[] = [];
-    searchArr.forEach((product) => {
-      charArr.forEach((char) => {
-        if (pattern.test(product.dataset[char] as string)) {
-          matchArr.push(product);
-        }
-      });
-    });
-    matchArr = [...new Set(matchArr)];
+    const matchArr = searchProducts(searchArr, pattern);
     searchArr.forEach((product) => {
       if (matchArr.includes(product)) {
         product.style.display = 'grid';
@@ -65,13 +56,8 @@ function filterData(queryObj: IQuery) {
   }
 
   if (queryMap.has('brand')) {
-    const categoryArr = queryMap.get('brand')?.split('↕');
-    const matchArr: HTMLLinkElement[] = [];
-    searchArr.forEach((product) => {
-      if (categoryArr?.includes(product.dataset.brand as string)) {
-        matchArr.push(product);
-      }
-    });
+    const categoryArr = queryMap.get('brand')?.split('↕') as string[];
+    const matchArr = searchBrand(searchArr, categoryArr);
     searchArr.forEach((product) => {
       if (matchArr.includes(product)) {
         product.style.display = 'grid';
@@ -84,13 +70,7 @@ function filterData(queryObj: IQuery) {
 
   if (queryMap.has('price')) {
     const priceArr = queryMap.get('price')?.split('↕') as Array<string>;
-    const matchArr: HTMLLinkElement[] = [];
-    searchArr.forEach((product) => {
-      const currentPrice = Number(product.dataset['price']) as number;
-      if (currentPrice >= +priceArr[0] && currentPrice <= +priceArr[1]) {
-        matchArr.push(product);
-      }
-    });
+    const matchArr = searchPriceAndStock(searchArr, priceArr, 'price');
     searchArr.forEach((product) => {
       if (matchArr.includes(product)) {
         product.style.display = 'grid';
@@ -103,13 +83,7 @@ function filterData(queryObj: IQuery) {
 
   if (queryMap.has('stock')) {
     const stockArr = queryMap.get('stock')?.split('↕') as Array<string>;
-    const matchArr: HTMLLinkElement[] = [];
-    searchArr.forEach((product) => {
-      const currentPrice = Number(product.dataset['stock']) as number;
-      if (currentPrice >= +stockArr[0] && currentPrice <= +stockArr[1]) {
-        matchArr.push(product);
-      }
-    });
+    const matchArr = searchPriceAndStock(searchArr, stockArr, 'stock');
     searchArr.forEach((product) => {
       if (matchArr.includes(product)) {
         product.style.display = 'grid';
@@ -130,7 +104,7 @@ function filterData(queryObj: IQuery) {
   }
 }
 
-function sortProducts(arr: Array<HTMLLinkElement>, param?: string) {
+function sortProducts(arr: Array<HTMLElement>, param?: string) {
   switch (param) {
     case 'price-ASC':
       arr.sort((a, b) => Number(a.dataset.price) - Number(b.dataset.price));
@@ -150,4 +124,39 @@ function sortProducts(arr: Array<HTMLLinkElement>, param?: string) {
   return arr;
 }
 
+function searchProducts(productsArr: HTMLElement[], pattern: RegExp) {
+  const matchArr: HTMLElement[] = [];
+  const charArr = ['title', 'description', 'price', 'rating', 'stock', 'brand', 'category'];
+  productsArr.forEach((product) => {
+    charArr.forEach((char) => {
+      if (pattern.test(product.dataset[char] as string)) {
+        matchArr.push(product);
+      }
+    });
+  });
+  return [...new Set(matchArr)];
+}
+
+function searchBrand(productsArr: HTMLElement[], categoryArr: string[]) {
+  const matchArr: HTMLElement[] = [];
+  productsArr.forEach((product) => {
+    if (categoryArr?.includes(product.dataset.brand as string)) {
+      matchArr.push(product);
+    }
+  });
+  return matchArr;
+}
+
+function searchPriceAndStock(productsArr: HTMLElement[], pattern: string[], attribute: string) {
+  const matchArr: HTMLElement[] = [];
+  productsArr.forEach((product) => {
+    const currentValue = Number(product.dataset[attribute]) as number;
+    if (currentValue >= +pattern[0] && currentValue <= +pattern[1]) {
+      matchArr.push(product);
+    }
+  });
+  return matchArr;
+}
+
+export { sortProducts, searchProducts, searchBrand, searchPriceAndStock };
 export default filterData;

@@ -1,5 +1,7 @@
-import updateHeader from './cart/updateHeader';
-import { handleLocation } from './router/router';
+import updateHeader from '../cart/updateHeader';
+import { handleLocation } from '../router/router';
+import validationCard from './validationCard';
+import validationDate from './validationDate';
 
 const inputTel = document.getElementById('modalInputTel') as HTMLInputElement;
 const inputCvv = document.getElementById('modalInputCvv') as HTMLInputElement;
@@ -31,16 +33,8 @@ inputCvv.addEventListener('input', () => {
 
 inputCardNum.addEventListener('input', () => {
   inputCardNum.value = inputCardNum.value.replace(/[^\d]/g, '');
-  if (inputCardNum.value.length > 4 && inputCardNum.value.length < 9) {
-    inputCardNum.value = inputCardNum.value.replace(/(.{4})(.{1,4})/g, '$1 $2');
-  }
-  if (inputCardNum.value.length > 8 && inputCardNum.value.length < 13 && inputCardNum.value[4] !== ' ') {
-    inputCardNum.value = inputCardNum.value.replace(/(.{4})(.{4})(.{1,4})/g, '$1 $2 $3');
-  }
-  if (inputCardNum.value.length > 12 && inputCardNum.value[4] !== ' ') {
-    inputCardNum.value = inputCardNum.value.replace(/(.{4})(.{4})(.{4})(.{1,4})/g, '$1 $2 $3 $4');
-  }
-
+  inputCardNum.value = validationCard(inputCardNum.value);
+  console.log(inputCardNum.value);
   (document.querySelector('.credit-block__icon') as HTMLElement).className = 'credit-block__icon';
 
   if (inputCardNum.value[0] === '3') {
@@ -59,15 +53,8 @@ inputCardNum.addEventListener('input', () => {
 
 inputCardDate.addEventListener('input', () => {
   inputCardDate.value = inputCardDate.value.replace(/[^\d]/g, '');
-  if (+inputCardDate.value > 1 && inputCardDate.value.length === 1) {
-    inputCardDate.value = `0${inputCardDate.value}/`;
-  }
-  if (inputCardDate.value.length === 3 && inputCardDate.value[2] !== '/') {
-    inputCardDate.value = `${inputCardDate.value[0]}${inputCardDate.value[1]}/${inputCardDate.value[2]}`;
-  }
-  if (inputCardDate.value.length === 4 && inputCardDate.value[2] !== '/') {
-    inputCardDate.value = `${inputCardDate.value[0]}${inputCardDate.value[1]}/${inputCardDate.value[2]}${inputCardDate.value[3]}`;
-  }
+
+  inputCardDate.value = validationDate(inputCardDate.value);
 });
 
 modalCrossBtn.addEventListener('click', () => {
