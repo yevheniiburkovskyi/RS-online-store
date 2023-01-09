@@ -1,5 +1,6 @@
 import buildCartPage from '../../pages/cartPage';
 import { IProduct } from '../../types/types';
+import updateCartPage from '../cart/updateCartPage';
 import { route } from '../router/router';
 import addCartProduct from '../services/addCartProduct';
 
@@ -34,6 +35,7 @@ function detailsPageEvents(data: IProduct[]) {
         buildCartPage(data);
         document.querySelector('.modal-container')?.classList.remove('modal-container_hide');
         route(e);
+        updateCartPage();
       }
     }
   });

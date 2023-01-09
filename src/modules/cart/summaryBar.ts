@@ -85,7 +85,7 @@ function updateTotalPrice() {
   if (document.querySelector('.total-apply-codes')) {
     (document.querySelector('.total-price') as HTMLElement).classList.add('total-price_inactive');
     const promoItems = document.querySelectorAll('.total-apply-codes__item');
-    const newPrice = Math.round(+totalPriceHeader * (1 - promoItems.length * 0.1) * 100) / 100;
+    const newPrice = calculateDiscount(+totalPriceHeader, promoItems.length);
     if (!document.getElementById('newTotalPriceCart')) {
       const newPriceBlock = generateElement('div', 'total-price');
       newPriceBlock.innerHTML = `Total: $<span id="newTotalPriceCart">${newPrice}</span>`;
@@ -111,4 +111,8 @@ function saveSummary() {
   }
 }
 
-export { generateSummaryBar, addSummaryListeners, updateTotalPrice };
+function calculateDiscount(totalPrice: number, discountValue: number) {
+  return Math.round(totalPrice * (1 - discountValue * 0.1) * 100) / 100;
+}
+
+export { generateSummaryBar, addSummaryListeners, updateTotalPrice, calculateDiscount };

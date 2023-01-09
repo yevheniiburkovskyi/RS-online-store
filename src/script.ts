@@ -6,7 +6,7 @@ import { startRouting } from './modules/router/router';
 import buildMainPage from './pages/mainPage/mainPage';
 import detailsPageEvents from './modules/details/detailsPageEvents';
 import getData from './modules/services/getData';
-import modaleValidateEvent from './modules/modalValidateEvent';
+import modaleValidateEvent from './modules/modal/modalValidateEvent';
 import scrollUp from './modules/scroll';
 import startCartEvents from './modules/cart/startCartEvents';
 import buildCartPage from './pages/cartPage';
