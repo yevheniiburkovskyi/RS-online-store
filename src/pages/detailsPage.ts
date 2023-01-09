@@ -9,11 +9,13 @@ function buildDetailsPage(id: number | string, data: IProduct[]) {
   const starsArr = Array(Math.round(productObj.rating)).fill('★');
   starsArr.length < 5 ? starsArr.push('☆') : starsArr;
 
-  productObj.images.forEach((image) => {
-    imagesList.innerHTML += `
-    <li class="product__images-choose-item"><img src=${image} alt="photo1" loading="lazy">
-    </li>
-    `;
+  productObj.images.forEach((image, i) => {
+    if (i < 3) {
+      imagesList.innerHTML += `
+      <li class="product__images-choose-item"><img src=${image} alt="photo1" loading="lazy">
+      </li>
+      `;
+    }
   });
   productPage.innerHTML = `
   <div class="product__wrapper">
