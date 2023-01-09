@@ -16,14 +16,18 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
+        background-color: $gray-light-bg;
+        padding: 10px;
+        align-items: center;
         .top-bar__title {
-            font-weight: bold;
-            font-size: $price-font-size;
+            // font-weight: bold;
+            font-size: 1.4rem;
         }
         .top-bar__control {
             display: flex;
             flex-direction: row;
             font-size: $nav-font-size;
+            align-items: center;
             gap: 5px;
             #cartViewLimit {
                 border: 1px solid $gray-light-border;
@@ -34,18 +38,21 @@
     &__items{
         display: flex;
         flex-direction: column;
-        gap: 1px;
+        gap: 10px;
     }
     button {
-        width: 15px;
-        height: 15px;
-        color: $main-white;
-        background-color: $main-black;
+        width: 25px;
+        height: 25px;
+        color: $main-black;
+        background-color: $gray-light-bg;
+        border: 1px solid $gray-light-border;
         text-align: center;
         transition: 300ms;
+        font-size: $base-font-size;
     }
     button:hover {
-        background-color: $main-gold;
+        background-color: $main-black;
+        color: $main-white;
     }
 }
 
@@ -55,8 +62,8 @@
     justify-content: space-between;
     align-items: center;
     background-color: $gray-light-bg;
-    border: 1px solid $gray-light-border;
-    padding: 5px;
+    border-bottom: 1px solid $gray-light-border;
+    padding: 10px;
     height: 150px;
     &__index {
         width: 3%;
@@ -70,30 +77,27 @@
         overflow: hidden;
         .item-img {
             width: 18%;
-            height: fit-content;
+            object-fit: cover;
         }
         .item-details {
             display: flex;
-            width: 80%;
+            width: 78%;
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
             .item-title {
                 font-weight: bold;
-                font-size: $nav-font-size;
             }
             .item-line {
                 width: 100%;
-                height: 1px;
                 background-color: $gray-light-border;
+                display: none;
             }
             .item-description {
-                font-size: $pagination-font-size;
                 text-align: center;
             }
             .item-other {
                 display: flex;
-                font-size: $pagination-font-size;
                 gap: 20px;
             }
         }
@@ -103,11 +107,14 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
-        font-size: $pagination-font-size;
+        width: 78px;
         .item-add-control {
             display: flex;
             flex-direction: row;
             gap: 5px;
+        }
+        .item-count {
+            line-height: 25px;
         }
     }
 }
@@ -184,8 +191,9 @@
 
 .add-promo-code-btn,
 .remove-promo-code-btn {
-    color: $main-white;
-    background-color: $main-black-deep;
+    color: $main-black;
+    background-color: $gray-light-bg;
+    border: 1px solid $gray-light-border;
     font-size: $pagination-font-size;
     width: 40px;
     height: 20px;
@@ -194,5 +202,6 @@
 
 .add-promo-code-btn:hover,
 .remove-promo-code-btn:hover {
-    background-color: $main-gold;
+    background-color: $main-black;
+    color: $main-white;
 }

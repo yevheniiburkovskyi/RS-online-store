@@ -12,6 +12,7 @@ import startCartEvents from './modules/cart/startCartEvents';
 import buildCartPage from './pages/cartPage';
 import updateHeader from './modules/cart/updateHeader';
 import updateCartPage from './modules/cart/updateCartPage';
+import { filterBarHideEvent } from './pages/mainPage/filtersBar';
 
 window.addEventListener('DOMContentLoaded', () => {
   getData().then((data) => {
@@ -27,5 +28,6 @@ window.addEventListener('DOMContentLoaded', () => {
     startCartEvents(data);
     updateHeader();
     addSummaryListeners();
+    filterBarHideEvent();
   });
 });

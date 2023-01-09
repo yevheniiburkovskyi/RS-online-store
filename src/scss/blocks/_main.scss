@@ -125,3 +125,8 @@
 .page-up:hover {
   background-color: $main-gold;
 }
+@media (max-width: $breakpoint-big-tablet) {
+  .products {
+      grid-template-columns: 3fr;
+  }
+}

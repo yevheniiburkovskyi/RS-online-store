@@ -12,7 +12,6 @@ function modaleValidateEvent() {
   const modalContainer = document.querySelector('.modal-container');
   modalContainer?.addEventListener('click', (event) => {
     const eventTarget = event?.target;
-    console.log(eventTarget);
     (eventTarget as HTMLInputElement).required = true;
     if (eventTarget === inputTel && !inputTel.value) {
       inputTel.value = '+';

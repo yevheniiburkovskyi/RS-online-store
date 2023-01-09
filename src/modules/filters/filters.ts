@@ -202,6 +202,10 @@ class Filters {
       setTimeout(() => {
         resetBtn.textContent = resetBtnText;
       }, 500);
+      if (document.querySelector('.filters-bg_show')) {
+        document.querySelector('.filters-bg')?.classList.toggle('filters-bg_show');
+        document.getElementsByTagName('html')[0].classList.toggle('html_scroll-lock');
+      }
     });
   }
 

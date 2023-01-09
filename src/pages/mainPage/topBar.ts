@@ -46,7 +46,9 @@ function createTopBar(data: IProduct[]) {
   const sortLine = generateElement('div', 'sort-line');
   sortLine.innerHTML = '|';
   sortBlock.append(totalCount, sortLine, sortBuntns);
-  row.append(sortBlock, searchInput, positionRow);
+  const filterBtn = generateElement('button', 'filter-btn');
+  filterBtn.innerHTML = 'Filters';
+  row.append(filterBtn, sortBlock, searchInput, positionRow);
   return row;
 }
 export default createTopBar;
