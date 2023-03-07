@@ -34,4 +34,5 @@ https://dummyjson.com/
 - HTML
 - SCSS
 - Webpack
+- Jest
 - ESlint / Prettier
