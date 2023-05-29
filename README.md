@@ -1,6 +1,6 @@
 # RS-online-store
 
-Group project at RS School (EPAM) for 2 people. Development time limit - 4 weeks.
+Group project at RS School (EPAM) for 2 people. Development time limit - 4 weeks. Online store with multiple filtering, product page, search, shopping cart, and form with validation.
 
 ## Deploy
 
