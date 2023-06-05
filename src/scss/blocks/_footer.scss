@@ -1,0 +1,84 @@
+@import "./_colors.scss";
+
+.footer-wrapper {
+    border-top: 1px solid $gray-light-border;
+}
+
+.footer-line {
+    height: 1px;
+    width: 100vw;
+    background-color: $gray-input-border;
+    margin-top: 40px;
+    position: relative;
+    left: -20px;
+}
+
+.page-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 20px;
+    height: 200px;
+}
+
+.gh-anchor-block {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    &__anchor {
+        display: flex;
+        align-items: center;
+        color: $main-black;
+        text-decoration: none;
+        column-gap: 5px;
+        transition: 300ms;
+    }
+    .github-icon {
+        width: 20px;
+        height: 20px;
+        fill: $main-black;
+        transition: 300ms;
+    }
+    &__anchor:hover,
+    &__anchor:hover .github-icon {
+        fill: $main-gold;
+        color: $main-gold;
+    }
+}
+
+.footer-year {
+    text-align: center;
+}
+
+.footer-rs-anchor {
+    width: 120px;
+    &__icon {
+        fill: $main-black;
+        transition: 300ms;
+        width: 120px;
+        max-height: 50px;
+    }
+    &__icon:hover {
+        fill: $main-gold;
+    }
+}
+
+@media (min-width: $breakpoint-small-tablet) {
+    .page-footer {
+        flex-direction: row;
+        height: 130px;
+    }
+    .gh-anchor-block {
+        flex-direction: column;
+        gap: 6px;
+    }
+}
+
+@media (min-width: $breakpoint-desc) {
+    .footer-line {
+        left: calc( (0 - (100vw - 1160px)) / 2);
+        padding-left: calc((100vw - 1160px) / 2 + 20px);
+    }
+}

@@ -1,0 +1,186 @@
+.products__filter {
+    grid-row: 1/3;
+}
+.filters-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    column-gap: 20px;
+    padding-top: 20px;
+    z-index: 100;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    background-color: $main-white;
+    transition: 500ms;
+    overflow: auto;
+    height: 100vh;
+    &__line {
+        width: 260px;
+        border-bottom: 1px solid $main-gray-light;
+        background-color: $main-gray-light;
+        margin: 20px 0;
+    }
+}
+
+.filters-block_show {
+    left: 0;
+}
+
+.filters-btns-block {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    &__reset-btn,
+    &__copy-link-btn {
+        border: 0 solid;
+        width: 120px;
+        height: 40px;
+        font-weight: bold;
+        font-size: $base-font-size;
+        background-color: $main-black-deep;
+        color: $main-white;
+        transition: 300ms;
+        cursor: pointer;
+    }
+    &__reset-btn:hover,
+    &__copy-link-btn:hover {
+        background-color: $main-gold;
+    }
+}
+
+.filter-btn {
+    width: 100px;
+    height: 35px;
+    font-size: $base-font-size;
+    background-color: $main-black;
+    color: $main-white;
+    transition: 300ms;
+    cursor: pointer;
+}
+.filter-btn:hover {
+    background-color: $main-gold;
+}
+
+.category-block,
+.brand-block {
+    display: flex;
+    flex-direction: column;
+    width: 250px;
+    max-height: 260px;
+    min-height: 250px;
+    overflow-x: overlay;
+    &__title {
+        user-select: none;
+        color: $main-black;
+        font-weight: bold;
+        font-size: $price-font-size;
+        width: 250px;
+        margin-bottom: 10px;
+    }
+    &__item {
+        margin-top: 20px;
+        cursor: pointer;
+        .category-input,
+        .brand-input {
+            cursor: pointer;
+            margin-right: 10px;
+        }
+    }
+    &__item_out-of-stock {
+        color: $main-gray-light;
+    }
+    &__properties {
+        display: flex;
+        width: 250px;
+        justify-content: space-around;
+        margin-top: 5px;
+        span {
+            white-space: nowrap;
+        }
+    }
+    &__properties_reverse {
+        flex-direction: row-reverse;
+    }
+    &__prop {
+        width: 100px;
+        text-align: center;
+    }
+    &__slider {
+        display: grid;
+        grid-template-rows: max-content 1em;
+        margin: 1em auto;
+        width: 250px;
+        overflow: hidden;
+        position: relative;
+        background: $gradient-bg-slider;
+        input {
+            &::-webkit-slider-thumb,
+            & {
+                -webkit-appearance: none;
+            }
+            grid-column: 1;
+            grid-row: 2;
+            background: none;
+            color: $main-black-deep;
+            background: none;
+            pointer-events: none;
+            margin: 0;
+            &::-webkit-slider-thumb {
+                width: 1em;
+                height: 1em;
+                pointer-events: auto;
+                border-radius: 0;
+                background: $main-black-deep;
+                cursor: pointer;
+                transition: 300ms;
+            }
+            &::-webkit-slider-thumb:hover {
+                background: $main-gold;
+            }
+        }
+    }
+}
+
+.category-block_sliders {
+    min-height: 100px;
+}
+
+.filters-bg {
+    position: absolute;
+    z-index: -100;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 1000vh;
+    background-color: $color-bg-half-transparent;
+    display: none;
+    transition: 300ms;
+}
+.filters-bg_show {
+    display: block;
+    z-index: 99;
+}
+
+@media (min-width: $breakpoint-big-tablet) {
+    .products__filter {
+        grid-row: 1/3;
+    }
+    .filters-container {
+        position: relative;
+        z-index: 0;
+        height: auto;
+        width: 300px;
+    }
+    .filters-block {
+        position: relative;
+        top: 0px;
+        left: 0;
+        height: auto;
+        overflow: auto;
+    }
+    .filter-btn {
+        display: none;
+    }
+}
